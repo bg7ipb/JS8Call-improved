@@ -1,12 +1,13 @@
 # JS8CALL-CN — V3.0.1+ 中文支持设计方案(phase-1 草案)
 
 > **基础**:JS8Call V3.0.1(`origin/release/3.0.1`)
-> **状态**:协议层方案收敛 / §9 V1/V2/V3/V4/V6/V7/V8/V9 + bit[53] trick **全部 PASS** / V10 推理 PASS / V5 信息性可省 / 实施留 phase-2
-> **已锁定决策**:红线 #3 软化 / PSK Reporter 残余实际为 0 / 不切 whitening polynomial / 兼容路径方案 / I18N ARQ 协议层完整 spec
+> **状态**:协议层方案收敛 / §9 V1/V2/V3/V4/V6/V7/V8/V9 + bit[53] trick **全部 PASS** / V10 推理 PASS / V5 信息性可省 / 实施留 phase-2 / **§4.5 中继转发协议层(Route ②)spec 收口**
+> **已锁定决策**:红线 #3 软化 / PSK Reporter 残余实际为 0 / 不切 whitening polynomial / 兼容路径方案 / I18N ARQ 协议层完整 spec / **中继转发协议层(Route ②)完整 spec(§4.5)**
 > **修订历史**:
 > - 2026-05-21 phase-1 续接会话 —— §5.1 TTL 表、§10 PR 策略弱化为"候选,议题待澄清"(详见 HANDOFF §2.5)
 > - 2026-05-21 phase-1.5 议题 1/2/3 收尾 —— §5.1 终稿(3 档状态机定型);议题 2 关闭确认 PARK-011 挂 phase-2;§10 改为"phase-1.5 主动挂起"
 > - **2026-05-21 phase-1.5 议题 4 收尾** —— 新增 §4.4 ARQ 协议层(8 帧上限 / 首帧序号复用做总帧数广播 / (ε+β') 复合重传请求载体 / Selective-repeat / 三参数超时机制);§4.2 bit[5..7] 描述追加首帧复用语义 + ILC payload 内部 ARQ header 布局;§5.1 备注 ARQ 救回 QSO 算"成功交换";§7 phase-2 设计清单追加 ILC ARQ_FLAG 识别;§9 验证矩阵追加 V10;新增 PARK-020/021。详细决议见 STATE_SNAPSHOT seq=5。
+> - **2026-05-22 phase-1.6 收尾** —— Route ② CN↔CN 中继转发协议层 spec 收口,DRAFT 升 **v4**(在真 v3 上手术式 10 处增改,其余字节不动):①修订历史本条 ②§4.2 登记 bit[8..10]=5=中继控制帧 ③§8.2 CN↔CN 中继从挂起→已 spec ④§9 V10 注记覆盖 =5 ⑤附录 B 追加 v3.0.1 中继 anchor ⑥新增 §4.5 中继转发协议层整章 ⑦头部状态/已锁定决策标注 Route ② ⑧§4.2 容量段追加中继 payload 口径 ⑨§7 phase-1 锁定追加中继帧 codec 旁路 ⑩附录 A 追加中继/控制帧兼容注记。详细决议见 STATE_SNAPSHOT seq=8/9。
 
 ## 1. 目标
 
@@ -83,7 +84,7 @@ bool DecodedText::tryUnpackCompound(QString const &m) {
 | `bit[0..2]` | FrameType **固定 = 001** | FrameCompound(✅ V9 PASS)<br>⚠️ 绝不能 = 010(FrameCompoundDirected,会填 directed_,红线 #2 破) |
 | `bit[3..4]` | 位置标记(2 bit):00=单帧 / 01=首 / 10=中 / 11=末 | callsign 字段一部分,V3.0.1 视为 base37 callsign 比特 |
 | `bit[5..7]` | **依位置标记上下文相关**(议题 4 终稿):<br>· `bit[3..4]=01`(首帧)→ **总帧数 - 1**(0..7 对应 1..8 帧)<br>· `bit[3..4]=00`(单帧)→ 总帧数 - 1 = 0(固定值)<br>· `bit[3..4]=10/11`(中/末帧)→ 消息序号(0..7)<br>末帧序号 + 1 = 总帧数(冗余,首帧丢失时反推) | 同上 |
-| `bit[8..10]` | **语言 ID / 帧类型(议题 4 扩展)**:0=EN保留 / 1=CN / 2=JA / 3=KO / **4=控制帧(ARQ fallback)** / 5-7 保留 | 同上 |
+| `bit[8..10]` | **语言 ID / 帧类型(议题 4 扩展)**:0=EN保留 / 1=CN / 2=JA / 3=KO / **4=控制帧(ARQ fallback)** / **5=中继控制帧(Route ②,见 §4.5)** / 6-7 保留 | 同上 |
 | `bit[11..18]` | CRC-8(8 bit)覆盖所有非 CRC 比特(64 bit:bit[0..10] + bit[19..71]) | 同上 |
 | `bit[19..52]` | ILC 内容 part1(34 bit)— **议题 4 修订**:首 1 bit 为 ARQ_FLAG,详见 §4.4.2 | 同上 |
 | `bit[53]` | **anti-APRS lock = 1** | packed_11 的 MSB = num bit 15 → 强制 extra ≥ 32768 > nmaxgrid (32767)<br>→ unpackCompoundMessage 不 append grid/cmd(✅ bit[53] trick PASS) |
@@ -95,6 +96,7 @@ bool DecodedText::tryUnpackCompound(QString const &m) {
 - 含 NACK 帧 ILC = 43 bit(扣 1 bit FLAG + 8 bit NACK bitmap)
 - 8 帧消息理论容量约 408 bit(若一帧含 NACK 则 ~400 bit)
 - 按 ~6.5 bit/字 估算:8 帧消息约 62-63 汉字(原 64,议题 4 损失 ~1 字)
+- **中继控制帧(bit[8..10]=5)**:52 bit 全作路由 payload(原始呼号 28 / 目标哈希 16 / msg-ID 5 / TTL 3),不分 ILC 内容 / 不带 ARQ_FLAG —— 详见 §4.5
 
 ### 4.3 HB bits3 = 语言能力广播
 
@@ -196,6 +198,65 @@ phase-1 锁定**三参数机制**,具体数值 PARK-020,phase-2 实测拍:
 - **ARQ 救回**的 QSO 算"I18N 帧成功交换",参与 §5.1 状态 1→2 / 状态 2→3 升级判定
 - **ARQ 彻底失败**的 QSO 不算(消息没成,状态机不被触发,无需特殊处理)
 
+## 4.5 中继转发协议层(Route ②,phase-1.6 收口)
+
+JS8CALL-CN 节点间(**CN↔CN**)多跳中继转发,补"弱信号 / 远距直连不可达"场景。**走 FrameCompound 兼容路径,绝不借 V3.0.1 RELAY cmd**(RELAY ∈ V3.0.1 directed_cmds,破红线 #2)—— 中继控制帧与内容帧一样对 V3.0.1 表现为乱码 callsign(V10),不触发 spot / autoreply。
+
+> **范围**:本节 = Route ②(CN↔CN)。Step 2(让未改的 V3.0.1 转发 CN)仍挂起 / Route ① 长线轻量 PR(PARK-023);其"信封/隧道"路径(Route ③)已**永久技术否决**(效率不可接受),不再讨论。
+
+### 4.5.1 中继模型 = M2 多跳
+
+- **M2(多跳)**:消息可经多个中间 JS8CALL-CN 节点逐跳转发。
+- **M1(单跳)已否决**:单跳无意义;弱信号 / 远距正需多个中间节点接力。
+
+### 4.5.2 中继控制帧 — 载体与位预算
+
+- **载体 = 中继控制帧,`bit[8..10] = 5`**(保留区 5..7 取一;与 §4.4 ARQ 控制帧 `=4` 并列;V10 覆盖 `=5` 的 V3.0.1 兼容性)。
+- **payload = 52 bit**(非 53):`bit[53]` = anti-APRS 锁(必 =1)落在 `bit[19..71]` 区内吃 1 bit;可用 = `bit[19..52]`(34)+ `bit[54..71]`(18)= **52**。
+
+52-bit payload 拆分:
+
+| 字段 | 位宽 | 说明 |
+|---|---|---|
+| 原始发送方呼号 | 28 | 字面(对标 §4.2 packDirectedMessage 标准呼号 28-bit packCallsign),可显示 |
+| 目标呼号哈希 | 16 | 收件方"是否给我"判定;假阳无害(多显一条)→ 哈希选型 PARK-027 |
+| msg-ID | 5 | `(原始呼号, msg-ID)` 作去重键;0..31 |
+| TTL 剩余跳数 | 3 | 0..7;**默认初值 3**;字段留 7 备短波传播不确定性 |
+| **合计** | **52** | 整帧 CRC-8(`bit[11..18]`)已覆盖此区,无需内嵌 CRC |
+
+控制帧结构:`bit[0..2]=001` / `bit[3..4]=00`(单帧)/ `bit[5..7]=0` / `bit[8..10]=5` / `bit[11..18]=CRC-8` / `bit[19..52]+bit[54..71]=52-bit payload` / `bit[53]=1` 锁。
+
+### 4.5.3 跳模型 — M2 防爆 + 防环
+
+| 项 | 决策 | 依据 |
+|---|---|---|
+| 路径**不上线缆** | 只带 TTL,不带累积呼号路径 | 携带路径 = 逐跳 28-bit 爆炸;TTL 计数器位预算随跳数恒定 |
+| 防环 / 防无限转发 | TTL 每跳 −1 到 0 即丢 + 每节点 `(原始呼号, msg-ID)` 去重缓存 | 对标 V3.0.1 `m_aprsRelayDedupCache` 模式 |
+| ACK/ARQ 回程 | 反向路径学习(节点记"从邻居 Y 听到 msg-ID X"),路径活在节点状态非线缆 | 见 §4.5.5 |
+| max-hop 真实约束 | = 信道占空比(每跳重广播占 airtime),**非位预算** | TTL 几乎免费;默认 3 按信道礼仪,字段留 7 |
+
+### 4.5.4 内容帧↔控制帧绑定 = C1 原子突发
+
+- **决策**:中继消息整组原子收发(中继控制帧 + N 个内容帧一起);组内绑定 = JS8 原生 offset 归组(`m_messageBuffer[cd.offset]`,`processDecodeEvent.cpp:439`,v3.0.1↔master IDENTICAL)+ `bit[8..10]` 标签(5=控制 / 1=内容);msg-ID 专司跨跳去重。
+- **内容帧零新增 bit**(中文容量全保);控制帧丢失被同一套 §4.5.5 / §4.4 ARQ 兜。
+- **否决 C2**(每内容帧 msg-ID 标签):M2 下中继节点拿裸内容帧无法路由,C2"独立重发"好处买不到、却每帧付 bit → 净亏;退为逃生舱 **PARK-029**。
+
+### 4.5.5 ACK/ARQ 回程 = Arch II 逐跳 store-and-forward + SNR 退避
+
+- **架构**:逐跳 store-and-forward —— 每中继缓存(有界,策略 PARK-026)已转内容、本地答下游 NACK、cache miss 则往上游升级;多跳 ARQ = 每跳跑一遍已锁的 §4.4 ARQ,零新协议。
+- **响应者选择**(广播无定向):SNR 加权退避(听下游 NACK 越强 = 越近末跳 → 退避越短 → 自然选出末跳应答)+ 听到即抑制 + msg-ID 去重;SNR 取自 decode(`cd.snr`)。显式寻址因控制帧 52-bit 满、不带中继方呼号而排除。
+- **残留(接受)**:退避撞车偶发双重发,靠抑制 + 去重兜成有界冗余 —— 无定向广播介质固有税。
+- **依据**:JS8 慢速,端到端多跳重传延迟不可接受 → 逐跳本地恢复;对齐 V3.0.1 store-and-forward Inbox(`addCommandToStorage("STORE")`)。
+
+### 4.5.6 认证 = 开放信任 / CRC-8 only(dependency ⑥)
+
+- **本版不做防伪造**,仅 CRC-8 防错码;开放信任模型。
+- **依据**:控制帧 52/52 满,无 bit 放签名 / MAC;HAM 加密 / 签名受限、数字模式普遍不做;对齐 V3.0.1(其中继亦无防伪造);upstream 把公钥校验列 Future-Work → 认证随之 **PARK-030**。
+
+### 4.5.7 关联 PARKING(均 phase-2)
+
+PARK-026 中继缓存策略(大小 / 寿命 / 逐出)/ PARK-027 目标呼号 16-bit 哈希函数选型 + 碰撞容忍 / PARK-028 控制帧丢失硬化 / PARK-029 C1 逃生舱 / PARK-030 中继认证 / 防伪造。
+
 ## 5. 语言能力发现 — 三层机制
 
 | 层 | 来源 | 触发 | 用途 |
@@ -267,6 +328,7 @@ phase-1 锁定**三参数机制**,具体数值 PARK-020,phase-2 实测拍:
 - **原则**:多层 codebook 按字频分层(候选起点 8/64/512/4096+)
 - **隔离**:V3.0.1 英文 JSC 路径完全不动
 - **议题 4 追加**:ILC payload 解析需识别 bit[19] = ARQ_FLAG;若为 1,跳过 bit[20..27] NACK bitmap,从 bit[28] 开始解码 ILC 数据。ARQ_FLAG 是协议层定义的契约,codec 必须遵守
+- **Route ② 追加**:中继控制帧(`bit[8..10]=5`)是协议层路由元数据,**不经 ILC codec**;codec 只处理内容帧(`bit[8..10]=1`)
 
 **phase-2 设计**(进 PARKING_LOT):
 
@@ -284,7 +346,8 @@ phase-1 锁定**三参数机制**,具体数值 PARK-020,phase-2 实测拍:
 
 ### 8.2 挂起待定(进 PARKING_LOT,phase-2 或之后决定)
 
-- CN 经 V3.0.1 中继(V3.0.1 中继不识别 I18N)
+- ~~CN↔CN 中继~~ → **已 spec(Route ②,见 §4.5)**,自 phase-1.6 起移出本挂起表
+- CN 经 V3.0.1 中继(**Step 2**;V3.0.1 不识别 I18N)—— **仍挂起** / Route ① 长线轻量 PR(PARK-023);其信封/隧道路径(Route ③)已永久技术否决
 - 跨语言互通(CN↔JA 等)
 
 ### 8.3 强制降级
@@ -304,7 +367,7 @@ target 缓存为 EN-only 时,UI 禁中文,自动退英文。
 | V7 | TransmissionType=3 = `JS8CallFirst\|JS8CallLast` 合法单帧 | I18N 载体合法性 | ✅ PASS | `JS8_Main/Varicode.h:33-38` + `JS8_Mainwindow/initializeDummyData.cpp:218` |
 | V8 | buffered_cmds 触发条件依赖 `directed_cmds.contains` | 多帧 buffer 不被打乱;红线 #2 第三层防御(顺带) | ✅ PASS | `JS8_Main/Varicode.cpp:128, 1239-1242` |
 | V9 | FrameCompound enum = 1 | wire pattern 锁定 | ✅ PASS | `JS8_Main/Varicode.h:51` |
-| **V10** | **bit[8..10] ∈ {4,5,6,7} 时 V3.0.1 不做语义特殊处理**(把整个 bit[3..52] 当 callsign 解码,不识别"语言 ID"字段),控制帧载体 V3.0.1 兼容 | **议题 4 控制帧 fallback 兼容性** | 🟡 **推理 PASS**(基于已验证的 V3.0.1 bit[3..52] 整体当 callsign 解码 + Varicode.cpp:1494-1525 unpackCompoundMessage 行为;phase-2 启动前 EXEC sanity check) | `JS8_Main/Varicode.cpp:1494-1525`(已 cite,议题 4 推理基于此) |
+| **V10** | **bit[8..10] ∈ {4,5,6,7} 时 V3.0.1 不做语义特殊处理**(把整个 bit[3..52] 当 callsign 解码,不识别"语言 ID"字段),控制帧载体 V3.0.1 兼容(含 **=5 中继控制帧 / Route ②**) | **议题 4 控制帧 fallback 兼容性** | 🟡 **推理 PASS**(基于已验证的 V3.0.1 bit[3..52] 整体当 callsign 解码 + Varicode.cpp:1494-1525 unpackCompoundMessage 行为;phase-2 启动前 EXEC sanity check,**须含 =5**) | `JS8_Main/Varicode.cpp:1494-1525`(已 cite,议题 4 推理基于此) |
 | V5 | pskLogReport 无 callsign 格式校验 | (V2 后已无需验证) | 可省 | `JS8_UI/mainwindow.cpp:2444+` |
 
 ## 10. 上游 PR 策略 — 候选方案,phase-1.5 主动挂起
@@ -343,6 +406,8 @@ target 缓存为 EN-only 时,UI 禁中文,自动退英文。
 APRS-IS / 全球 HAM 观察网 / V3.0.1 自动行为 全部不被触发
 ```
 
+> **中继 / 控制帧注记**:中继控制帧(`bit[8..10]=5`,Route ②)与 ARQ 控制帧(`=4`)同走 FrameCompound 兼容路径 —— V3.0.1 把整个 `bit[3..52]` 当乱码 callsign 解(V10),不触发 spot / autoreply。两类控制帧均受上述红线 #1 / #2 三层防御覆盖。
+
 ## 附录 B. V3.0.1 关键源码 anchor 速查
 
 (本会话 phase-1 / phase-1.5 验证过的位置,phase-2 实施 / 上游 PR 时回查)
@@ -380,4 +445,14 @@ JS8_UI/mainwindow.cpp:2359-2369     spotReport(无 grid 检查,但被 V2 阻断)
 JS8_UI/mainwindow.cpp:2418-2450     spotAprsGrid(有 grid.length() < 4 检查,APRS-IS 专用,V4 PASS)
 JS8_UI/mainwindow.cpp:2444+         pskLogReport 定义
 JS8_UI/mainwindow.cpp:6597-6598     m_rxCallQueue 出队循环(唯一调 spotReport + pskLogReport 处)
+
+# —— 中继/转发 anchor(@ v3.0.1,seq=8 §6.B 重 pin;Route ② 承重) ——
+# 唯一与 master 差异 = L737 " CQ" 分支(logCallActivity/logHeardGraph),非中继;L737 前同行号,后 master 偏高,以下以 v3.0.1 为准
+JS8_Mainwindow/processCommandActivity.cpp:326,328   relayPath autoreply swap
+JS8_Mainwindow/processCommandActivity.cpp:441        relay handler parseRelayPathCallsigns(relayPath join 457;ACK reply 459)
+JS8_Mainwindow/processCommandActivity.cpp:599,600,610,621,625
+                                    MSG TO: 存储路径(parseRelayPath 599 / relayPath 600 / cd.relayPath 610 / addCommandToStorage("STORE") 621 / ACK 625)
+JS8_Mainwindow/processCommandActivity.cpp:560-590,773-794
+                                    APRS dedup m_aprsRelayDedupCache(cd.relayPath="APRS" 579 / 788)—— M2 去重缓存对标模式
+JS8_Mainwindow/processCommandActivity.cpp:858,978,1045   QUERY 系 replyPath(relayPath split)
 ```
