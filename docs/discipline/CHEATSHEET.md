@@ -1,6 +1,6 @@
 # CHEATSHEET — Claude 协作纪律速查卡
 
-`docs/discipline/CHEATSHEET.md` | v1.1 | **始终载入** | 需细节时按 §X.Y retrieve，**禁默认载 DISCIPLINE.md 全文**。
+`docs/discipline/CHEATSHEET.md` | v1.2 | **始终载入** | 需细节时按 §X.Y retrieve，**禁默认载 DISCIPLINE.md 全文**。
 
 ## 公理
 
@@ -57,6 +57,14 @@
 
 **批准必须**：明确肯定句 + 针对 CONFIRM 序号。**沉默 / 模糊 / 默示不算同意**。→ §5.5
 
+## 写操作纪律（v1.2 新增）
+
+落盘前的硬规矩，治"对账税"的根：
+
+- **① 开局 ground-truth gate**：每会话**任何 write 之前**先跑一次**只读**扫描（`branch / status / HEAD / 文件清单`），核对活仓库与 manifest 一致。**扫描未过 = 禁发任何 write**。manifest 的"开局强制动作"字段写明此 gate。
+- **② git add 具体路径 + 读写分离**：写操作 EXEC **只 `git add <具体文件路径>`**，禁 `git add .` / `-A` / 整目录 add（seq=9 教训：整目录 add 误纳垃圾）。**写操作 EXEC 不与前置只读检查同包**，分两个 packet。
+- **③ EXEC 默认 `git --no-pager`**：所有 git 读命令默认带 `--no-pager`，免 pager 卡住非交互执行。
+
 ## SESSION-OPEN manifest（新会话必先收）
 
 ```
@@ -64,7 +72,7 @@
 任务类型: <design | dev | sync | debug | writing | bootstrap | handoff>
 阶段: <phase-N>
 本 phase 推进原始目的的方式: <一句话；空 / 空泛（如"为后续做准备"）= 违纪>
-应载入: CHEATSHEET + STATE_SNAPSHOT seq=N,N-1,N-2 + <额外>
+应载入: CHEATSHEET + STATE_SNAPSHOT_seqN.md（最新 3 条 seq=N,N-1,N-2）+ <额外>
 允许 retrieve: <whitelist>
 禁载入: DISCIPLINE 全文 / 未声明项
 [SESSION-OPEN END]
@@ -78,7 +86,7 @@
 
 - `DISCIPLINE.md` — 本纪律详情，**按 section retrieve，禁全文载**
 - `WORKFLOW.md` — 行业工程实践（git / branch / commit / PR / 凭据 / sync），**不默认载，参考用**
-- `STATE_SNAPSHOT.md` — append-only 状态序列，默认载最新 3 条
+- `STATE_SNAPSHOT_seqN.md` — per-seq 文件，append-only 状态序列，默认载最新 3 条
 - `PARKING_LOT.md` — 挂起项清单，阶段末 review
 - `BOOTSTRAP.md` — 环境登记 + 健康检查脚本
 
@@ -87,8 +95,19 @@
 - 需细节 → 显式 retrieve "§X.Y 因 [原因]"
 - User 粘 DISCIPLINE 全文 → 拒绝："占 X% 上下文，按 §4.5 我应按 section retrieve，请告诉我具体要哪段"
 - 长会话末段附 `[budget ~N tokens, region: green/soft/hard]`
+- **files 分法**：稳定三件（CHEATSHEET / DISCIPLINE / WORKFLOW）= Project 稳定参考；volatile（`STATE_SNAPSHOT_seqN.md` / HANDOFF / PARKING_LOT / DRAFT / BOOTSTRAP）一律从活仓库读，**不信 Project 旧副本**
 
 ---
+
+## v1.2 变更日志（2026-05-22）
+
+**变更**：
+
+- 新增"写操作纪律"节：① 开局 ground-truth gate（write 前必跑只读扫描）② git add 具体路径 + 读写分离（seq=9 整目录 add 误纳垃圾教训）③ EXEC 默认 `git --no-pager`
+- 加载自律新增 ④ files 分法（稳定三件 Project / volatile 活仓库读）
+- 快照引用统一为 per-seq 文件 `STATE_SNAPSHOT_seqN.md`（配套全项目"去 stale 两刀"）
+
+**背景**：phase-2 启动会话发现"对账税"的根 —— 文档散文复刻 git log/status 状态必 stale（HANDOFF §1/§7"待 append / 未 commit"在 HEAD 已含三产物后即失真）。本轮把写操作 hygiene 提进 T0，并对 HANDOFF 瘦身 + 快照引用统一做一次永久止血。
 
 ## v1.1 变更日志（2026-05-21）
 

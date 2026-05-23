@@ -1,26 +1,8 @@
 # HANDOFF — phase-1.6 → phase-2(实施)
 
 > **生成时间**:2026-05-22,phase-1.6 收尾
-> **修订**:相对 v2 全面更新 —— phase-1.6 议题(Route ② CN↔CN 中继转发协议层)spec **收口**;DRAFT 升 **v4**;snapshot 至 **seq=9**;基线纠正 master→**v3.0.1** + re-home 工作线 `cn-dev`
 > **目的**:为 phase-2(实施)提供衔接锚点,避免设计跑偏 / 重复讨论已决项 / 重新引入污染
-> **本会话产出**:Route ② 全 dependency 收口(详见 STATE_SNAPSHOT seq=6/7/8/9)+ DRAFT v4 + PARKING 026~030 + 本 HANDOFF v3
 > **下次会话使命**:**phase-2 实施** —— ILC codec 详细设计 + 中继/ARQ 实现 + UI 集成 + 上游 sync setup;**启动前先跑 V10 EXEC sanity check(含 bit[8..10]=5)**
-
----
-
-## 1. 当前状态(指针)
-
-| 文档 | 状态 | 路径 |
-|---|---|---|
-| 设计草案 | **v4** 定稿,新增 §4.5 中继转发协议层(Route ②) | `docs/discipline/PHASE1_DESIGN_DRAFT.md`(约 458 行) |
-| 状态快照 | **seq=9** 已落 `cn-dev`;seq=10(phase-1.6 收尾)待 append | `docs/discipline/STATE_SNAPSHOT.md` |
-| 纪律 cheatsheet | v1.1(本会话未动) | `docs/discipline/CHEATSHEET.md` |
-| 挂起清单 | 累积至 **PARK-030** | `docs/discipline/PARKING_LOT.md` |
-| 本交接文档 | **v3**,当前文件 | `docs/discipline/HANDOFF.md` |
-
-**基线**:base = **v3.0.1**;工作线 = `cn-dev`(off v3.0.1);docs backfill re-home commit = `05d377ba`(15 files,`[loc][docs]`)。
-
-**DRAFT §9 验证矩阵**:V1/V2/V3/V4/V6/V7/V8/V9 + bit[53] trick **全 PASS**;**V10**(控制帧载体,含 =5 中继控制帧)推理 PASS,**phase-2 启动前 EXEC sanity check 须含 =5**;V5 可省。
 
 ---
 
@@ -93,7 +75,7 @@ phase-1.6 新增(详见 PARKING_LOT.md;源 seq=9 §8):
 本 phase 推进原始目的的方式: 把 phase-1 v4 协议层 spec 落成可运行实现,
                               先 ILC codec + 中继/ARQ 核心,再 UI 集成。
                               启动前跑 V10 EXEC sanity check(含 bit[8..10]=5)。
-应载入: CHEATSHEET v1.1 + STATE_SNAPSHOT seq=8/9/10 + PHASE1_DESIGN_DRAFT.md v4 + HANDOFF.md v3
+应载入: CHEATSHEET v1.2 + STATE_SNAPSHOT_seqN.md(seq=8/9/10) + PHASE1_DESIGN_DRAFT.md v4 + HANDOFF.md v3
 允许 retrieve: DISCIPLINE 按 § / WORKFLOW §5.3(commit 前缀)/ §4.2(凭据红线)/ §2(sync)
 禁载入: DISCIPLINE / WORKFLOW 全文 / 2.5.2 时代外部文档 / Route ③ 任何材料 / 已 closed 议题重复讨论
 [SESSION-OPEN END]
@@ -118,8 +100,6 @@ phase-1.6 新增(详见 PARKING_LOT.md;源 seq=9 §8):
 - **红线 #1(APRS-IS)/ #2(auto-response)在中继议题里仍硬,不可破** —— 中继控制帧(=5)与 ARQ 控制帧(=4)都走 FrameCompound 兼容路径,不可借 V3.0.1 RELAY cmd
 - **挂起项讨论严格按 CHEATSHEET §4.6 范围管控**(含主线悬置类触发词:"先打地基/先搭脚手架"等 → 回核 manifest"推进原始目的"字段)
 - **每条 EXEC 命令走 paste-bridge**;默认加 `git --no-pager`;**写操作 EXEC 不与前置检查批处理,`git add` 用具体文件路径**(seq=9 教训:整目录 add 误纳垃圾)
-- **commit 节点**:phase-1.6 三产物(DRAFT v4 + PARKING 026~030 + HANDOFF v3 + seq=10)未 commit。落 `cn-dev`,`[loc][docs]` 前缀(WORKFLOW §5.3)。Tier 表内属本地,CLI 申请后执行
-- **PARKING_LOT.md 落盘**:026~030 为 append-delta,粘入前核 ID 无碰撞
 
 ---
 

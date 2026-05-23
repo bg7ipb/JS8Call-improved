@@ -15,7 +15,7 @@
 - 第 2 章 工作模式
 - 第 3 章 角色与三端分工
 - 第 4 章 核心机制
-  - §4.1 STATE_SNAPSHOT.md
+  - §4.1 STATE_SNAPSHOT_seqN.md
   - §4.3 离座 / 恢复协议
   - §4.4 环境与依赖核查协议
   - §4.5 上下文预算管理
@@ -47,7 +47,7 @@
 
 ### §1.1 公理 1 —— 上下文外置（Externalize State）
 
-**定义**：任何项目状态、决策、TODO、未决问题、关键约定，不允许只活在对话里，必须落到 git 管理的外部载体（STATE_SNAPSHOT.md、代码注释、commit message、PR 描述等）。
+**定义**：任何项目状态、决策、TODO、未决问题、关键约定，不允许只活在对话里，必须落到 git 管理的外部载体（STATE_SNAPSHOT_seqN.md、代码注释、commit message、PR 描述等）。
 
 **内涵**：对话是 working memory，随会话结束而丢失；只有写入外部载体的内容被视为"存在过"。说过但没写下的等于没说过。这条直接服务于"出差 / 换机延续"的需求 —— 状态必须 portable。
 
@@ -266,11 +266,11 @@
 
 **注**：§4.2 凭据隔离在 WORKFLOW.md（项目专属的 git 实践）。
 
-### §4.1 STATE_SNAPSHOT.md
+### §4.1 STATE_SNAPSHOT_seqN.md（per-seq 状态快照）
 
 **用途**：公理 1（上下文外置）与公理 4（节点对账）的核心载体。所有跨会话、跨设备、跨阶段的状态延续都依赖它。
 
-**位置**：`docs/discipline/STATE_SNAPSHOT.md`，与本纪律文档同目录，进 git 主分支（**不进 .gitignore**），随 `git push` 自动跨设备同步。
+**位置**：`docs/discipline/STATE_SNAPSHOT_seqN.md`（每个 seq 一个文件），与本纪律文档同目录，进 git 主分支（**不进 .gitignore**），随 `git push` 自动跨设备同步。
 
 **触发时机**（强制）：
 
@@ -389,7 +389,7 @@
 **强制动作（顺序不可乱）**：
 
 1. 在 Claude 端写一条**完整 snapshot 草稿**（覆盖所有必填字段）；
-2. CLI 端落地写入 `STATE_SNAPSHOT.md`、`git add` + `git commit`；
+2. CLI 端落地写入 `STATE_SNAPSHOT_seqN.md`、`git add` + `git commit`；
 3. **`git push` 到 remote** —— 没 push 等于没保存；
 4. 在 Bare Terminal 跑 `git status` 验证无 untracked / unstaged 改动；
 5. **登录 GitHub 等 host 网页确认 push 已到达 remote**（防止本地 push 失败但没察觉）；
@@ -620,7 +620,7 @@
 [SESSION-OPEN]
 任务类型: <design | dev | sync | debug | writing | bootstrap | handoff>
 阶段: <phase-N>
-应载入: CHEATSHEET + STATE_SNAPSHOT seq=N,N-1,N-2 + <额外文件>
+应载入: CHEATSHEET + STATE_SNAPSHOT_seqN.md（最新 3 条 seq=N,N-1,N-2）+ <额外文件>
 允许 retrieve: <whitelist>
 禁载入: DISCIPLINE 全文 / 未声明项
 [SESSION-OPEN END]
