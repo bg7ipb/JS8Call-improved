@@ -32,7 +32,7 @@ inline quint32 readBits(const Bits &src, int offset, int width)
 }
 
 // Pack the 64 bit input span of the CRC into 8 bytes, bit[0]=byte0 MSB
-// (DRAFT §4.2 CRC spec). Input span = bit[0..10] ++ bit[19..71] of the wire.
+// (DRAFT §4.2 CRC spec). Input span = bit[0..8] ++ bit[17..71] of the wire.
 QByteArray collectCrcInput(const Bits &frame)
 {
     QByteArray bytes(8, 0);
@@ -42,9 +42,9 @@ QByteArray collectCrcInput(const Bits &frame)
             static_cast<quint8>(bytes[p >> 3]) | (b ? (1u << (7 - (p & 7))) : 0u));
         ++p;
     };
-    for (int i = 0; i <= 10; ++i) push(frame.at(i));
-    for (int i = 19; i <= 71; ++i) push(frame.at(i));
-    // 11 + 53 = 64 -> exactly fills 8 bytes
+    for (int i = 0; i <= 8; ++i) push(frame.at(i));
+    for (int i = 17; i <= 71; ++i) push(frame.at(i));
+    // 9 + 55 = 64 -> exactly fills 8 bytes
     return bytes;
 }
 
@@ -92,33 +92,29 @@ EncodeResult encode(const ILC &codec, const QString &text, int langID)
         // bit[0..2] FrameType=001
         writeBits(frame, 0, kFrameTypeCompound, 3);
 
-        // bit[3..4] position, bit[5..7] total-1 (first/single) | seq (mid/last)
-        int pos, b57;
-        if (n == 1) { pos = kPosSingle; b57 = 0; }
-        else if (i == 0) { pos = kPosFirst; b57 = n - 1; }
-        else if (i == n - 1) { pos = kPosLast; b57 = i; }
-        else { pos = kPosMid; b57 = i; }
-        writeBits(frame, 3, static_cast<quint32>(pos), 2);
-        writeBits(frame, 5, static_cast<quint32>(b57), 3);
+        // bit[3..5] total/seq field: first|single -> total-1 ; subsequent -> seq
+        // (frame position first/mid/last lives in the outer i3bit First/Last)
+        const int b35 = (i == 0) ? (n - 1) : i;
+        writeBits(frame, 3, static_cast<quint32>(b35), 3);
 
-        // bit[8..10] langID
-        writeBits(frame, 8, static_cast<quint32>(langID), 3);
+        // bit[6..8] langID
+        writeBits(frame, 6, static_cast<quint32>(langID), 3);
 
-        // bit[11..18] CRC placeholder (filled after payload)
-        // bit[19] ARQ_FLAG=0
-        frame[19] = false;
+        // bit[9..16] CRC placeholder (filled after payload)
+        // bit[17] ARQ_FLAG=0
+        frame[17] = false;
 
-        // bit[20..52] ILC part1 (33 bits) ; bit[54..71] ILC part2 (18 bits)
+        // bit[18..52] ILC part1 (35 bits) ; bit[54..71] ILC part2 (18 bits)
         const Bits &c = chunks[i];
-        for (int k = 0; k < 33; ++k) frame[20 + k] = c.at(k);
+        for (int k = 0; k < 35; ++k) frame[18 + k] = c.at(k);
         frame[53] = true;                       // anti-APRS lock
-        for (int k = 0; k < 18; ++k) frame[54 + k] = c.at(33 + k);
+        for (int k = 0; k < 18; ++k) frame[54 + k] = c.at(35 + k);
 
         const QByteArray crcInput = collectCrcInput(frame);
         const quint8 crc = crc8Autosar(
             reinterpret_cast<const quint8 *>(crcInput.constData()),
             crcInput.size());
-        writeBits(frame, 11, crc, 8);
+        writeBits(frame, 9, crc, 8);
 
         // 72 bits -> 64-bit value + 8-bit rem (DRAFT bit[0]=MSB of value)
         const quint64 value = Varicode::bitsToInt(frame.mid(0, 64));
@@ -147,7 +143,8 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
     int declaredTotal = -1;
     int langID = -1;
 
-    for (const QString &f : frames) {
+    for (int fi = 0; fi < frames.size(); ++fi) {
+        const QString &f = frames.at(fi);
         if (f.length() != kFrameCharLen) {
             r.err = QStringLiteral("frame length != 12 chars: %1").arg(f.length());
             return r;
@@ -167,7 +164,7 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
             return r;
         }
         if (!bits.at(53)) { r.err = QStringLiteral("bit[53] anti-APRS lock not set"); return r; }
-        if (bits.at(19)) {
+        if (bits.at(17)) {
             r.err = QStringLiteral("ARQ_FLAG=1 not supported in this version");
             return r;
         }
@@ -176,7 +173,7 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
         const quint8 crcCalc = crc8Autosar(
             reinterpret_cast<const quint8 *>(crcInput.constData()),
             crcInput.size());
-        const quint8 crcWire = static_cast<quint8>(readBits(bits, 11, 8));
+        const quint8 crcWire = static_cast<quint8>(readBits(bits, 9, 8));
         if (crcCalc != crcWire) {
             r.err = QStringLiteral("CRC mismatch wire=0x%1 calc=0x%2")
                         .arg(crcWire, 2, 16, QLatin1Char('0'))
@@ -184,7 +181,7 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
             return r;
         }
 
-        const int frameLang = static_cast<int>(readBits(bits, 8, 3));
+        const int frameLang = static_cast<int>(readBits(bits, 6, 3));
         if (langID < 0) langID = frameLang;
         else if (langID != frameLang) {
             r.err = QStringLiteral("langID mismatch across frames: %1 vs %2")
@@ -192,8 +189,14 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
             return r;
         }
 
-        const int pos = static_cast<int>(readBits(bits, 3, 2));
-        const int b57 = static_cast<int>(readBits(bits, 5, 3));
+        // position now derives from list order (the outer i3bit First/Last owns
+        // it on the wire); bit[3..5] is the single total/seq field.
+        int pos;
+        if (frames.size() == 1)            pos = kPosSingle;
+        else if (fi == 0)                  pos = kPosFirst;
+        else if (fi == frames.size() - 1)  pos = kPosLast;
+        else                               pos = kPosMid;
+        const int b57 = static_cast<int>(readBits(bits, 3, 3));
         int seq, total;
         switch (pos) {
         case kPosSingle: seq = 0; total = 1; break;
@@ -212,8 +215,8 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
         }
 
         Bits payload(kFramePayloadBits, false);
-        for (int k = 0; k < 33; ++k) payload[k]      = bits.at(20 + k);
-        for (int k = 0; k < 18; ++k) payload[33 + k] = bits.at(54 + k);
+        for (int k = 0; k < 35; ++k) payload[k]      = bits.at(18 + k);
+        for (int k = 0; k < 18; ++k) payload[35 + k] = bits.at(54 + k);
         rxSlots.append({seq, payload});
     }
 

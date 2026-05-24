@@ -52,7 +52,7 @@ int main(int argc, char **argv)
         QString::fromUtf8("稀有字测试：㐀"),
     };
 
-    const int FRAME = 51, MAXF = 8;
+    const int FRAME = 53, MAXF = 8;
     long ab = 0, ac = 0;
     bool allpass = true;
 
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
         if (!ok) return 3;
     }
 
-    // ---- Framer round-trip vectors (incl. multi-frame >51 bit) ----
+    // ---- Framer round-trip vectors (incl. multi-frame >53 bit) ----
     out << QString(76, QLatin1Char('-')) << "\n";
     const QStringList framerMsgs = {
         QString::fromUtf8("你好"),                   // tiny, 1 frame
