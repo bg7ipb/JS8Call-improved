@@ -1,8 +1,13 @@
 // JS8CALL-CN ILC codec self-test. Mirrors ilc_mvp.py::run() (seq=19).
 // Standalone (links QtCore only). Verifies round-trip + reproduces D8 bit/char.
+// EXEC-22·1: adds CRC-8/AUTOSAR independent check + framer round-trip + V10
+// 3-assertion (real CN frame -> Varicode::unpackCompoundMessage compatibility).
 // Usage: ilc_selftest [path-to-codebook_v0.1.csv]
 #include "ILC.h"
 #include "ILC_codebook.h"
+#include "ILC_framer.h"
+
+#include "../JS8_Main/Varicode.h"
 
 #include <QCoreApplication>
 #include <QFileInfo>
@@ -88,5 +93,85 @@ int main(int argc, char **argv)
         return 1;
     }
     out << ">>> ALL round-trip PASS\n";
+
+    // ---- CRC-8/AUTOSAR independent check (input "123456789" -> 0xDF) ----
+    out << QString(76, QLatin1Char('-')) << "\n";
+    {
+        const QByteArray check = QByteArrayLiteral("123456789");
+        const quint8 got = ILCFramer::crc8Autosar(
+            reinterpret_cast<const quint8 *>(check.constData()), check.size());
+        const bool ok = (got == 0xDF);
+        out << QString::asprintf("CRC-8/AUTOSAR(\"123456789\") = 0x%02X (want 0xDF) %s\n",
+                                 got, ok ? "PASS" : "FAIL");
+        if (!ok) return 3;
+    }
+
+    // ---- Framer round-trip vectors (incl. multi-frame >51 bit) ----
+    out << QString(76, QLatin1Char('-')) << "\n";
+    const QStringList framerMsgs = {
+        QString::fromUtf8("你好"),                   // tiny, 1 frame
+        QString::fromUtf8("信号很好谢谢73"),         // mid, 1 frame border
+        QString::fromUtf8("我的天线是八木，收到你信号很强，今天天气很好"), // multi-frame
+    };
+    bool framerAll = true;
+    for (const QString &m : framerMsgs) {
+        ILCFramer::EncodeResult enc = ILCFramer::encode(ilc, m);
+        if (!enc.ok) {
+            out << "  framer encode FAIL: " << enc.err << "\n";
+            framerAll = false;
+            continue;
+        }
+        ILCFramer::DecodeResult dec = ILCFramer::decode(ilc, enc.frames);
+        const bool pass = dec.ok && dec.text == m
+                          && dec.langID == ILCFramer::kLangIdCn
+                          && dec.frameCount == enc.frames.size();
+        out << m.leftJustified(28, QLatin1Char(' '))
+            << QString::asprintf(" frames=%d lang=%d ", int(enc.frames.size()), dec.langID)
+            << (pass ? "PASS" : "FAIL") << "\n";
+        if (!pass) {
+            out << "    got text='" << dec.text << "' err='" << dec.err << "'\n";
+            framerAll = false;
+        }
+    }
+    if (!framerAll) {
+        out << ">>> framer round-trip FAIL\n";
+        return 4;
+    }
+    out << ">>> framer round-trip PASS\n";
+
+    // ---- V10: real CN frame -> Varicode::unpackCompoundMessage compat ----
+    out << QString(76, QLatin1Char('-')) << "\n";
+    {
+        ILCFramer::EncodeResult enc =
+            ILCFramer::encode(ilc, QString::fromUtf8("你好73"));
+        if (!enc.ok || enc.frames.isEmpty()) {
+            out << "V10 setup FAIL: " << enc.err << "\n";
+            return 5;
+        }
+        const QString wire = enc.frames.first();
+        quint8 vtype = 0, vbits3 = 0;
+        QStringList unpacked = Varicode::unpackCompoundMessage(wire, &vtype, &vbits3);
+
+        const bool a1 = (vtype == Varicode::FrameCompound);
+        // unpackCompoundFrame seeds list = [callsign, ""]; the grid/cmd append
+        // branches in unpackCompoundMessage gate on `extra` range. bit[53]=1
+        // forces extra > nmaxgrid -> neither branch fires -> list stays length 2
+        // with index 1 still empty. Any non-empty index>=1 = grid/cmd leaked.
+        bool a2 = (unpacked.size() == 2);
+        for (int i = 1; a2 && i < unpacked.size(); ++i)
+            if (!unpacked.at(i).isEmpty()) a2 = false;
+        const bool a3 = true; // no crash reaching here
+
+        out << QString::asprintf("V10 a1(type==FrameCompound) = %s\n", a1 ? "PASS" : "FAIL");
+        out << QString::asprintf("V10 a2(no grid/cmd append)  = %s (got %d entries)\n",
+                                 a2 ? "PASS" : "FAIL", int(unpacked.size()));
+        out << QString::asprintf("V10 a3(no crash)            = %s\n", a3 ? "PASS" : "FAIL");
+        if (!(a1 && a2 && a3)) {
+            for (const QString &u : unpacked) out << "    entry='" << u << "'\n";
+            return 6;
+        }
+        out << ">>> V10 3-assertion PASS\n";
+    }
+
     return 0;
 }
