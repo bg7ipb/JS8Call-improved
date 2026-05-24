@@ -6,6 +6,7 @@
 #include "DriftingDateTime.h"
 #include "FrequencyList.h"
 #include "JS8MessageBox.h"
+#include "JS8_I18N/ILC_runtime.h"
 #include "JS8_Include/SettingsGroup.h"
 #include "JS8_Include/commons.h"
 #include "JS8_UI/mainwindow.h"
@@ -19,6 +20,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDir>
+#include <QFile>
 #include <QLibraryInfo>
 #include <QLockFile>
 #include <QLoggingCategory>
@@ -93,6 +95,23 @@ int main(int argc, char *argv[]) {
         
         // Apply platform-specific styles from styles.h
         a.setStyleSheet(buttonStyle());
+
+        // JS8CALL-CN: load ILC codebook + construct the process-level i18n
+        // codec singleton. Failure is non-fatal: i18n stays off, the app
+        // continues with its original TX/RX paths unchanged.
+        {
+            QString ilcErr;
+            QString ilcPath = QCoreApplication::applicationDirPath()
+                              + QStringLiteral("/codebook_v0.1.csv");
+            if (!QFile::exists(ilcPath)) {
+                ilcPath = QCoreApplication::applicationDirPath()
+                          + QStringLiteral("/../JS8_I18N/codebook_v0.1.csv");
+            }
+            if (!ILCRuntime::init(ilcPath, &ilcErr)) {
+                qWarning() << "JS8CALL-CN: ILC init failed, i18n disabled:"
+                           << ilcErr << "(tried" << ilcPath << ")";
+            }
+        }
 
 #if QT_VERSION >= 0x050200
         QCommandLineParser parser;

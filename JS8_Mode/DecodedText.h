@@ -50,6 +50,7 @@ class DecodedText {
     // Unpacking strategies, attempted in order until one of them
     // works or all of them have failed.
 
+    bool tryUnpackILC(QString const &);
     bool tryUnpackFastData(QString const &);
     bool tryUnpackData(QString const &);
     bool tryUnpackHeartbeat(QString const &);
@@ -57,6 +58,7 @@ class DecodedText {
     bool tryUnpackDirected(QString const &);
 
     static constexpr std::array unpackStrategies = {
+        &DecodedText::tryUnpackILC,
         &DecodedText::tryUnpackFastData, &DecodedText::tryUnpackData,
         &DecodedText::tryUnpackHeartbeat, &DecodedText::tryUnpackCompound,
         &DecodedText::tryUnpackDirected};

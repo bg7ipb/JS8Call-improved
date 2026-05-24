@@ -6,6 +6,8 @@
  */
 
 #include "Varicode.h"
+#include "JS8_I18N/ILC_framer.h"
+#include "JS8_I18N/ILC_runtime.h"
 #include "JS8_JSC/JSC.h"
 #include "JS8_Mode/DecodedText.h"
 
@@ -2108,6 +2110,23 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
 #endif
 
         while (line.size() > 0) {
+            // JS8CALL-CN: single-frame ILC short-circuit. If the i18n
+            // codec is loaded and the line contains CJK, try to pack the
+            // whole line into one 72-bit Compound frame. On miss (codec
+            // off, no CJK, encode failure, or >1 frame) fall through to
+            // the original pack* path with no side-effects.
+            if (auto const *ilc = ILCRuntime::instance();
+                ilc && ILCRuntime::containsCJK(line)) {
+                auto const enc = ILCFramer::encode(*ilc, line,
+                                                   ILCFramer::kLangIdCn);
+                if (enc.ok && enc.frames.size() == 1) {
+                    lineFrames.append(
+                        {enc.frames.first(), Varicode::JS8Call});
+                    line.clear();
+                    continue;
+                }
+            }
+
             QString frame;
 
             bool useBcn = false;

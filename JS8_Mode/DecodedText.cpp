@@ -4,6 +4,8 @@
  */
 
 #include "DecodedText.h"
+#include "JS8_I18N/ILC_framer.h"
+#include "JS8_I18N/ILC_runtime.h"
 #include "JS8_Include/commons.h"
 #include <JS8_Main/Varicode.h>
 
@@ -184,6 +186,24 @@ bool DecodedText::tryUnpackHeartbeat(QString const &m) {
 
     message_ += ' ' % extra_ % ' ';
 
+    return true;
+}
+
+// JS8CALL-CN: ILC strategy. Validates a 12-char wire as an ILC Compound
+// frame via ILCFramer::decode (FrameType + bit[53] + ARQ_FLAG + CRC-8/AUTOSAR)
+// and post-gates langID ∈ {1,2,3}. On match, populates message_ with the
+// decoded CN text and short-circuits the strategy chain; on any miss returns
+// false so tryUnpackCompound runs as usual.
+bool DecodedText::tryUnpackILC(QString const &m) {
+    auto const *ilc = ILCRuntime::instance();
+    if (!ilc) return false;
+
+    auto const dec = ILCFramer::decode(*ilc, {m});
+    if (!dec.ok) return false;
+    if (dec.langID < 1 || dec.langID > 3) return false;
+
+    frameType_ = Varicode::FrameCompound;
+    message_   = dec.text;
     return true;
 }
 

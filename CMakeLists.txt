@@ -251,6 +251,7 @@ target_sources(
   JS8_I18N/ILC.cpp
   JS8_I18N/ILC_codebook.cpp
   JS8_I18N/ILC_framer.cpp
+  JS8_I18N/ILC_runtime.cpp
   JS8_JSC/JSC.cpp
   JS8_JSC/JSC_checker.cpp
   JS8_JSC/JSC_list.cpp
