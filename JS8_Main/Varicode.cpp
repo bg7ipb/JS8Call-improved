@@ -2110,21 +2110,37 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
 #endif
 
         while (line.size() > 0) {
-            // JS8CALL-CN: single-frame ILC short-circuit. If the i18n
-            // codec is loaded and the line contains CJK, try to pack the
-            // whole line into one 72-bit Compound frame. On miss (codec
-            // off, no CJK, encode failure, or >1 frame) fall through to
-            // the original pack* path with no side-effects.
+            // JS8CALL-CN: CJK ILC path. If the i18n codec is loaded and the
+            // line contains CJK, encode the whole line into 1..8 Compound
+            // frames, prepended by a compound callsign frame for RX
+            // attribution. On encode failure (super-BMP / >8 frames / bad
+            // langID) the line is dropped (NOT passed to the English
+            // pack* path, which would mojibake CJK).
             if (auto const *ilc = ILCRuntime::instance();
                 ilc && ILCRuntime::containsCJK(line)) {
                 auto const enc = ILCFramer::encode(*ilc, line,
                                                    ILCFramer::kLangIdCn);
-                if (enc.ok && enc.frames.size() == 1) {
-                    lineFrames.append(
-                        {enc.frames.first(), Varicode::JS8Call});
+                if (enc.ok) {
+                    // JS8CALL-CN multi-frame + callsign prepend (D3=B, D5). RX
+                    // attributes via the prepended compound callsign frame; the
+                    // 1..8 ILC content frames follow. First/Last set downstream
+                    // by prepareNextMessageFrame.
+                    QString cmpMsg = QString("`%1 %2").arg(mycall).arg(mygrid);
+                    QString cmpFrame = Varicode::packCompoundMessage(cmpMsg, nullptr);
+                    if (!cmpFrame.isEmpty()) {
+                        lineFrames.append({cmpFrame, Varicode::JS8Call});
+                    }
+                    for (auto const &f : enc.frames) {
+                        lineFrames.append({f, Varicode::JS8Call});
+                    }
                     line.clear();
                     continue;
                 }
+                // !enc.ok: do NOT fall back to English (would mojibake CJK; D2).
+                // Drop the line with a warning (UI notice is Slice B2/2a).
+                qWarning() << "JS8CALL-CN: ILC encode failed, dropping line:" << enc.err;
+                line.clear();
+                continue;
             }
 
             QString frame;

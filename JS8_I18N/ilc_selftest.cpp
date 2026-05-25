@@ -141,6 +141,49 @@ int runIlcSelftest()
     }
     out << ">>> framer round-trip PASS\n";
 
+    // ---- TX assembly: ILC content + compound callsign prepend (Slice B) ----
+    out << QString(76, QLatin1Char('-')) << "\n";
+    {
+        const QString txMycall = QStringLiteral("BG7IPB");
+        const QString txMygrid = QStringLiteral("OM89");
+        const QStringList txMsgs = {
+            QString::fromUtf8("你好"),
+            QString::fromUtf8("我的天线是八木，收到你信号很强，今天天气很好"),
+        };
+        bool txAll = true;
+        for (const QString &m : txMsgs) {
+            ILCFramer::EncodeResult enc = ILCFramer::encode(ilc, m);
+            if (!enc.ok) {
+                out << "  tx encode FAIL: " << enc.err << "\n";
+                txAll = false;
+                continue;
+            }
+            QList<QPair<QString, int>> tx;
+            const QString cmpMsg = QString("`%1 %2").arg(txMycall).arg(txMygrid);
+            const QString cmpFrame = Varicode::packCompoundMessage(cmpMsg, nullptr);
+            const bool aPrepend = !cmpFrame.isEmpty() && cmpFrame.size() == 12;
+            if (!cmpFrame.isEmpty()) tx.append({cmpFrame, Varicode::JS8Call});
+            for (auto const &f : enc.frames) tx.append({f, Varicode::JS8Call});
+            ILCFramer::DecodeResult dec = ILCFramer::decode(ilc, enc.frames);
+            const bool aContent = dec.ok && dec.text == m;
+            const bool aCount = tx.size() == enc.frames.size() + 1;
+            const bool pass = aPrepend && aContent && aCount;
+            out << m.leftJustified(28, QLatin1Char(' '))
+                << QString::asprintf(" tx=%d (ilc=%d+pre=1) ", int(tx.size()), int(enc.frames.size()))
+                << (pass ? "PASS" : "FAIL") << "\n";
+            if (!pass) {
+                out << "    prepend=" << aPrepend << " content=" << aContent
+                    << " count=" << aCount << " err='" << dec.err << "'\n";
+                txAll = false;
+            }
+        }
+        if (!txAll) {
+            out << ">>> TX assembly FAIL\n";
+            return 7;
+        }
+        out << ">>> TX assembly PASS\n";
+    }
+
     // ---- Streaming accumulator: feed a multi-frame message frame-by-frame --
     out << QString(76, QLatin1Char('-')) << "\n";
     {
