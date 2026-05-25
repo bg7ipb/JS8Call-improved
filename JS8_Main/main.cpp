@@ -7,6 +7,7 @@
 #include "FrequencyList.h"
 #include "JS8MessageBox.h"
 #include "JS8_I18N/ILC_runtime.h"
+#include "JS8_I18N/ilc_selftest.h"
 #include "JS8_Include/SettingsGroup.h"
 #include "JS8_Include/commons.h"
 #include "JS8_UI/mainwindow.h"
@@ -145,6 +146,11 @@ int main(int argc, char *argv[]) {
                                 "caution, for testing only."));
         parser.addOption(test_option);
 
+        QCommandLineOption selftest_option(
+            QStringList{} << "ilc-selftest",
+            a.translate("main", "Run the ILC codec self-test and exit."));
+        parser.addOption(selftest_option);
+
         if (!parser.parse(a.arguments())) {
             std::cerr << parser.errorText().toLocal8Bit().data() << std::endl;
             return -1;
@@ -156,6 +162,10 @@ int main(int argc, char *argv[]) {
                 parser.showVersion();
                 return 0;
             }
+        }
+
+        if (parser.isSet(selftest_option)) {
+            return runIlcSelftest();
         }
 
         if (parser.isSet(output_option)) {
