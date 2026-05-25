@@ -246,4 +246,94 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
     return r;
 }
 
+FrameView validateFrame(const QString &frame)
+{
+    FrameView v;
+    if (frame.length() != kFrameCharLen) {
+        v.err = QStringLiteral("frame length != 12 chars: %1").arg(frame.length());
+        return v;
+    }
+
+    quint8 rem = 0;
+    const quint64 value = Varicode::unpack72bits(frame, &rem);
+    Bits bits = Varicode::intToBits(value, 64) + Varicode::intToBits(rem, 8);
+    if (bits.size() != 72) {
+        v.err = QStringLiteral("bit reassembly produced %1 bits").arg(bits.size());
+        return v;
+    }
+
+    if (readBits(bits, 0, 3) != kFrameTypeCompound) {
+        v.err = QStringLiteral("FrameType != FrameCompound (got %1)")
+                    .arg(readBits(bits, 0, 3));
+        return v;
+    }
+    if (!bits.at(53)) { v.err = QStringLiteral("bit[53] anti-APRS lock not set"); return v; }
+    if (bits.at(17)) {
+        v.err = QStringLiteral("ARQ_FLAG=1 not supported in this version");
+        return v;
+    }
+
+    const QByteArray crcInput = collectCrcInput(bits);
+    const quint8 crcCalc = crc8Autosar(
+        reinterpret_cast<const quint8 *>(crcInput.constData()), crcInput.size());
+    const quint8 crcWire = static_cast<quint8>(readBits(bits, 9, 8));
+    if (crcCalc != crcWire) {
+        v.err = QStringLiteral("CRC mismatch wire=0x%1 calc=0x%2")
+                    .arg(crcWire, 2, 16, QLatin1Char('0'))
+                    .arg(crcCalc, 2, 16, QLatin1Char('0'));
+        return v;
+    }
+
+    v.langID        = static_cast<int>(readBits(bits, 6, 3));
+    v.totalSeqField = static_cast<int>(readBits(bits, 3, 3));
+
+    Codeword payload(kFramePayloadBits, false);
+    for (int k = 0; k < 35; ++k) payload[k]      = bits.at(18 + k);
+    for (int k = 0; k < 18; ++k) payload[35 + k] = bits.at(54 + k);
+    v.payload = payload;
+    v.ok = true;
+    return v;
+}
+
+void StreamAccumulator::reset()
+{
+    payloads_.clear();
+    shownChars_    = 0;
+    langID_        = -1;
+    declaredTotal_ = -1;
+}
+
+QString StreamAccumulator::feed(const ILC &codec, const QString &frame,
+                                bool isFirst, bool isLast, bool *ok)
+{
+    if (ok) *ok = false;
+    const FrameView v = validateFrame(frame);
+    if (!v.ok) return {};
+    if (v.langID < kLangIdCn || v.langID > kLangIdKo) return {};
+
+    if (isFirst) reset();
+    if (langID_ < 0) langID_ = v.langID;
+    else if (langID_ != v.langID) return {};   // langID flip mid-message
+
+    // seq: first|single -> 0 ; mid|last -> raw bit[3..5].
+    const int seq = isFirst ? 0 : v.totalSeqField;
+    if (isFirst || isLast) declaredTotal_ = v.totalSeqField + 1;
+    payloads_.insert(seq, v.payload);
+
+    // Decode the contiguous prefix from seq 0; stop at the first gap.
+    QList<Codeword> prefix;
+    for (int s = 0; payloads_.contains(s); ++s)
+        prefix.append(payloads_.value(s));
+    const Codeword joined = ILC::dechunk(prefix);
+    const QString  full   = codec.decompress(joined);
+
+    QString delta;
+    if (full.size() > shownChars_) {
+        delta = full.mid(shownChars_);
+        shownChars_ = full.size();
+    }
+    if (ok) *ok = true;
+    return delta;
+}
+
 } // namespace ILCFramer

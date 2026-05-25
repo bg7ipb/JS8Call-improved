@@ -22,6 +22,7 @@
 #include "ILC.h"
 
 #include <QList>
+#include <QMap>
 #include <QString>
 
 namespace ILCFramer {
@@ -57,6 +58,45 @@ EncodeResult encode(const ILC &codec, const QString &text, int langID = kLangIdC
 // Validates FrameType=001, CRC, bit[53]=1, ARQ_FLAG=0, langID consistency,
 // position/seq plausibility. Out-of-order tolerated via bit[5..7] resort.
 DecodeResult decode(const ILC &codec, const QList<QString> &frames);
+
+// Per-frame validation result, shared by decode() and StreamAccumulator.
+// Validates one wire frame (FrameType/bit[53]/ARQ/CRC/langID) and extracts its
+// 53-bit ILC payload + raw total/seq field. Frame position (first/mid/last) is
+// NOT interpreted here -- the caller owns it (decode via list order, the
+// streaming accumulator via the outer i3bit First/Last).
+struct FrameView {
+    bool     ok = false;
+    int      langID = -1;
+    int      totalSeqField = -1;   // raw bit[3..5]
+    Codeword payload;              // kFramePayloadBits (53) bits
+    QString  err;
+};
+
+// Validate + parse one 12-char wire frame. ok=false (with err) when it is not
+// a well-formed ARQ_FLAG=0 Compound frame.
+FrameView validateFrame(const QString &frame);
+
+// Incremental per-message reassembler for the RX streaming path. A message's
+// frames arrive one at a time (one decode event each); feed() each as it lands
+// and it returns the *newly* decodable text (delta) for that frame, decoding
+// only the contiguous prefix from seq 0 (stops at a gap -> nothing past it;
+// ARQ recovery is a later slice). Codec-injected + app-agnostic so it is
+// unit-testable standalone (QtCore only).
+class StreamAccumulator {
+public:
+    // isFirst/isLast come from the outer i3bit (Varicode::JS8CallFirst/Last).
+    // ok=false -> not a valid ILC frame; caller should leave its text as-is.
+    QString feed(const ILC &codec, const QString &frame,
+                 bool isFirst, bool isLast, bool *ok = nullptr);
+    void reset();
+    int  langID() const { return langID_; }
+
+private:
+    QMap<int, Codeword> payloads_;    // seq -> 53-bit payload
+    int shownChars_    = 0;
+    int langID_        = -1;
+    int declaredTotal_ = -1;
+};
 
 // CRC-8/AUTOSAR (poly 0x2F / init 0xFF / refin=refout=false / xorout 0xFF).
 // Exposed for self-test only; impl lives in ILC_framer.cpp (no extra TU).

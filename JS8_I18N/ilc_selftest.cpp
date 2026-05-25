@@ -6,10 +6,12 @@
 #include "ILC.h"
 #include "ILC_codebook.h"
 #include "ILC_framer.h"
+#include "ilc_selftest.h"
 
 #include "../JS8_Main/Varicode.h"
 
 #include <QCoreApplication>
+#include <QFile>
 #include <QFileInfo>
 #include <QString>
 #include <QStringList>
@@ -23,15 +25,15 @@ static int hanzi(const QString &s)
     return c;
 }
 
-int main(int argc, char **argv)
+int runIlcSelftest()
 {
-    QCoreApplication app(argc, argv);
     QTextStream out(stdout);
 
-    const QString path = (argc > 1)
-        ? QString::fromLocal8Bit(argv[1])
-        : QFileInfo(QString::fromLocal8Bit(argv[0])).absolutePath()
-              + QStringLiteral("/codebook_v0.1.csv");
+    QString path = QCoreApplication::applicationDirPath()
+                   + QStringLiteral("/codebook_v0.1.csv");
+    if (!QFile::exists(path))
+        path = QCoreApplication::applicationDirPath()
+               + QStringLiteral("/../JS8_I18N/codebook_v0.1.csv");
 
     ILCCodebook cb;
     QString err;
@@ -138,6 +140,40 @@ int main(int argc, char **argv)
         return 4;
     }
     out << ">>> framer round-trip PASS\n";
+
+    // ---- Streaming accumulator: feed a multi-frame message frame-by-frame --
+    out << QString(76, QLatin1Char('-')) << "\n";
+    {
+        const QString streamMsg =
+            QString::fromUtf8("我的天线是八木，收到你信号很强，今天天气很好");
+        ILCFramer::EncodeResult senc = ILCFramer::encode(ilc, streamMsg);
+        bool streamOk = senc.ok && senc.frames.size() >= 2;
+        if (!streamOk) {
+            out << "stream setup FAIL (need multi-frame): " << senc.err << "\n";
+            return 5;
+        }
+        ILCFramer::StreamAccumulator acc;
+        QString assembled;
+        const int n = senc.frames.size();
+        for (int i = 0; i < n; ++i) {
+            bool fok = false;
+            const QString delta = acc.feed(ilc, senc.frames.at(i),
+                                           i == 0, i == n - 1, &fok);
+            assembled += delta;
+            out << QString::asprintf("  frame %d/%d ok=%d delta='", i + 1, n, fok ? 1 : 0)
+                << delta << "' cum='" << assembled << "'\n";
+            if (!fok) streamOk = false;
+        }
+        const bool pass = streamOk && assembled == streamMsg;
+        out << "stream incremental "
+            << QString::asprintf("frames=%d ", n)
+            << (pass ? "PASS" : "FAIL") << "\n";
+        if (!pass) {
+            out << "    cum='" << assembled << "' want='" << streamMsg << "'\n";
+            return 5;
+        }
+    }
+    out << ">>> stream accumulator PASS\n";
 
     // ---- V10: real CN frame -> Varicode::unpackCompoundMessage compat ----
     out << QString(76, QLatin1Char('-')) << "\n";
