@@ -25,6 +25,15 @@ const ILC *instance();
 
 bool isReady();
 
+// RX streaming reassembler for the per-offset receive path. Feeds one wire
+// `frame` (with its outer i3bit First/Last) into the accumulator keyed by
+// `offset`, returning the newly decodable text (delta) for that frame --
+// decoding only the contiguous prefix from seq 0. *ok=false when `frame` is
+// not a valid ILC frame or i18n is off, in which case the caller leaves its
+// text unchanged. The per-offset accumulator is released after the Last frame.
+QString accumulate(int offset, const QString &frame,
+                   bool isFirst, bool isLast, bool *ok = nullptr);
+
 // True when `text` contains ≥1 CJK Unified Ideograph (U+4E00..U+9FFF
 // main block). Cheap O(n) gate used by the TX hook to decide whether
 // to attempt ILC encoding.

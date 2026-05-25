@@ -6,6 +6,7 @@
  */
 
 #include "JS8_UI/mainwindow.h"
+#include "JS8_I18N/ILC_runtime.h"
 
 void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
     static QList<qint32> driftQueue;
@@ -305,6 +306,16 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                     d.dial = freq;
                     d.offset = offset;
                     d.text = decodedtext.message();
+
+                    // JS8CALL-CN: per-offset ILC reassembly. For a valid ILC frame, replace the
+                    // raw frame text with the newly decodable Chinese delta for this frame;
+                    // non-ILC frames are a no-op (ilcOk=false leaves d.text as message()).
+                    bool ilcOk = false;
+                    const QString ilcDelta = ILCRuntime::accumulate(
+                        d.offset, decodedtext.frame(),
+                        (d.bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
+                        (d.bits & Varicode::JS8CallLast) == Varicode::JS8CallLast, &ilcOk);
+                    if (ilcOk) d.text = ilcDelta;
                     d.utcTimestamp = DriftingDateTime::currentDateTimeUtc();
                     d.snr = decodedtext.snr();
                     d.isBuffered = false;
@@ -341,7 +352,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                         // TODO: incremental display if it's "to" me.
                     }
 
-                    m_rxActivityQueue.append(d);
+                    if (!(ilcOk && ilcDelta.isEmpty())) m_rxActivityQueue.append(d);
                     m_bandActivity[offset].append(d);
                     while (m_bandActivity[offset].count() > 10) {
                         m_bandActivity[offset].removeFirst();

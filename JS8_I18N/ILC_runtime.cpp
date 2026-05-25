@@ -3,9 +3,11 @@
 
 #include "ILC.h"
 #include "ILC_codebook.h"
+#include "ILC_framer.h"
 
 #include <memory>
 #include <mutex>
+#include <QHash>
 
 namespace ILCRuntime {
 
@@ -15,6 +17,7 @@ struct State {
     ILCCodebook cb;
     std::unique_ptr<ILC> codec;
     bool ready = false;
+    QHash<int, ILCFramer::StreamAccumulator> accs;  // per-offset RX reassembly
 };
 
 // Function-local static -> C++11 magic-static thread-safe init.
@@ -72,6 +75,24 @@ bool containsCJK(const QString &text)
         if (u >= 0x4E00 && u <= 0x9FFF) return true;
     }
     return false;
+}
+
+QString accumulate(int offset, const QString &frame,
+                   bool isFirst, bool isLast, bool *ok)
+{
+    const ILC *c = instance();
+    // Short-circuit before touching the per-offset map: non-ILC frames (the
+    // common case) must not default-insert an accumulator that is never
+    // released. validateFrame is cheap; feed() re-validates internally.
+    if (!c || !ILCFramer::validateFrame(frame).ok) {
+        if (ok) *ok = false;
+        return {};
+    }
+    State &s = state();
+    const QString delta =
+        s.accs[offset].feed(*c, frame, isFirst, isLast, ok);
+    if (isLast) s.accs.remove(offset);
+    return delta;
 }
 
 } // namespace ILCRuntime
