@@ -10,6 +10,7 @@
 #include "PillRenderer.h"
 #include "TransmitTextSourceMirror.h"
 #include "Varicode.h"
+#include "JS8_I18N/ILC_runtime.h"
 
 #include <QHelpEvent>
 #include <QKeyEvent>
@@ -36,6 +37,7 @@ QString normalizeText(const QString &text) {
                      auto const lc = c.toLatin1();
                      return (lc && (lc == 0x10 || lc == 0x1A ||
                                     ((lc >= 32) && (lc <= 127))))
+                            || ILCRuntime::containsCJK(QString(c))
 #if JS8_ALLOW_UNICODE
                             || c.isPrint();
 #elif JS8_ALLOW_EXTENDED
