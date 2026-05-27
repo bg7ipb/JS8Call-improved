@@ -65,6 +65,10 @@ class TransmitTextEdit : public QTextEdit {
     bool isDirty() const { return m_dirty; }
     void setClean() { m_dirty = false; }
 
+    // JS8CALL-CN (Slice B2, E5): Chinese-mode flag (TX-side faithful input).
+    bool cnMode() const { return m_cnMode; }
+    void setCnMode(bool on);
+
     PillRenderer *pillRenderer() const { return m_pillRenderer; }
 
     void highlightBase();
@@ -92,6 +96,7 @@ class TransmitTextEdit : public QTextEdit {
     QString m_textSent;
     bool m_protected;
     bool m_dirty = false;
+    bool m_cnMode = false;
     QFont m_font;
     QColor m_fg;
     QColor m_bg;

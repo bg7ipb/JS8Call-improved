@@ -9,6 +9,8 @@
 
 #include "moc_mainwindow.cpp"
 
+#include "JS8_I18N/ILC_runtime.h"
+
 // TODO: Move to member:
 static char message[29];
 static char msgsent[29];
@@ -23,6 +25,9 @@ struct specData specData;            // Used by plotter
 std::mutex fftw_mutex;
 
 namespace {
+constexpr int kTxQueuePreviewOffset = -1;
+constexpr int kTxSendOffset = -2;
+
 int ms_minute_error() {
     auto const now = DriftingDateTime::currentDateTimeLocal();
     auto const time = now.time();
@@ -385,6 +390,7 @@ void UI_Constructor::writeSettings() {
                          ui->actionHeartbeatAcknowledgements->isChecked());
     m_settings->setValue("SubModeMultiDecode",
                          ui->actionModeMultiDecoder->isChecked());
+    m_settings->setValue("CnMode", ui->actionModeJS8CN->isChecked());
     m_settings->setValue("DialFreq",
                          QVariant::fromValue(m_lastMonitoredFrequency));
     m_settings->setValue("OutAttenuation", ui->outAttenuation->value());
@@ -526,6 +532,9 @@ void UI_Constructor::readSettings() {
         m_settings->value("SubModeHBAck", false).toBool());
     ui->actionModeMultiDecoder->setChecked(
         m_settings->value("SubModeMultiDecode", true).toBool());
+    ui->actionModeJS8CN->setChecked(
+        m_settings->value("CnMode", false).toBool());
+    ui->extFreeTextMsgEdit->setCnMode(ui->actionModeJS8CN->isChecked());
 
     m_lastMonitoredFrequency =
         m_settings
@@ -3485,8 +3494,17 @@ QString UI_Constructor::createMessageTransmitQueue(QString const &text,
 
     QStringList lines;
     foreach (auto frame, frames) {
-        auto dt = DecodedText(frame.first, frame.second, m_nSubMode);
-        lines.append(dt.message());
+        bool ilcOk = false;
+        const QString ilcDelta = ILCRuntime::accumulate(
+            kTxQueuePreviewOffset, frame.first,
+            (frame.second & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
+            (frame.second & Varicode::JS8CallLast)  == Varicode::JS8CallLast, &ilcOk);
+        if (ilcOk) {
+            lines.append(ilcDelta);
+        } else {
+            auto dt = DecodedText(frame.first, frame.second, m_nSubMode);
+            lines.append(dt.message());
+        }
     }
 
     m_txFrameQueue.append(frames);
@@ -3596,7 +3614,8 @@ UI_Constructor::buildMessageFrames(const QString &text, bool isData,
     Varicode::MessageInfo info;
     auto frames = Varicode::buildMessageFrames(mycall, mygrid, selectedCall,
                                                text, forceIdentify, forceData,
-                                               m_nSubMode, &info);
+                                               m_nSubMode, &info,
+                                               ui->actionModeJS8CN->isChecked());
 
     if (pDisableTypeahead) {
         // checksummed commands should not allow typeahead
@@ -3679,7 +3698,15 @@ bool UI_Constructor::prepareNextMessageFrame() {
 
     // append this frame to the total message sent so far
     auto dt = DecodedText(frame, bits, m_nSubMode);
-    m_totalTxMessage.append(dt.message());
+    // JS8CALL-CN: ILC frames can't self-decode per-frame; reassemble via the same
+    // per-offset accumulator the RX path uses (clean Chinese on TX self-display).
+    bool ilcOk = false;
+    const QString ilcDelta = ILCRuntime::accumulate(
+        kTxSendOffset, frame,
+        (bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
+        (bits & Varicode::JS8CallLast)  == Varicode::JS8CallLast, &ilcOk);
+    const QString shownText = ilcOk ? ilcDelta : dt.message();
+    m_totalTxMessage.append(shownText);
     ui->extFreeTextMsgEdit->setCharsSent(m_totalTxMessage.length());
     m_txFrameCountSent += 1;
     m_lastTxMessage = m_totalTxMessage;
@@ -3689,10 +3716,10 @@ bool UI_Constructor::prepareNextMessageFrame() {
     // display the frame...
     if (m_txFrameQueue.isEmpty()) {
         displayTextForFreq(
-            QString("%1 %2 ").arg(dt.message()).arg(m_config.eot()), freq(),
+            QString("%1 %2 ").arg(shownText).arg(m_config.eot()), freq(),
             DriftingDateTime::currentDateTimeUtc(), true, false, true);
     } else {
-        displayTextForFreq(dt.message(), freq(),
+        displayTextForFreq(shownText, freq(),
                            DriftingDateTime::currentDateTimeUtc(), true,
                            m_txFrameCountSent == 1, false);
     }
@@ -4106,6 +4133,13 @@ void UI_Constructor::on_actionHeartbeatAcknowledgements_toggled(bool) {
     displayActivity(true);
 
     setupJS8();
+}
+
+void UI_Constructor::on_actionModeJS8CN_toggled(bool checked) {
+    // JS8CALL-CN (Slice B2, E6): manual Chinese-mode toggle (TX side). Propagate
+    // to the compose editor so input becomes faithful. Persisted in the "Common"
+    // settings group on shutdown.
+    ui->extFreeTextMsgEdit->setCnMode(checked);
 }
 
 void UI_Constructor::on_actionModeMultiDecoder_toggled(bool checked) {

@@ -39,6 +39,11 @@ public:
     Codeword compress(const QString &text, ILCStats *stats = nullptr,
                       bool *ok = nullptr) const;
 
+    // JS8CALL-CN (Slice B2, D4): read-only capability predicate; same truth as
+    // compress() -- a code point is encodable iff it is a BMP non-surrogate
+    // scalar. Super-BMP (surrogate) is refused.
+    static bool canEncode(char32_t cp);
+
     // logical bitstream -> char sequence. Stops at EOM; trailing zero padding
     // ignored. Unknown (tier,idx) -> U+FFFD.
     QString decompress(const Codeword &bits) const;

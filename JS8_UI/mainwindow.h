@@ -353,6 +353,7 @@ class UI_Constructor : public QMainWindow {
     void toggleTx(bool start);
     void on_logQSOButton_clicked();
     void on_actionModeJS8HB_toggled(bool checked);
+    void on_actionModeJS8CN_toggled(bool checked);
     void on_actionModeJS8Normal_triggered();
     void on_actionModeJS8Fast_triggered();
     void on_actionModeJS8Turbo_triggered();

@@ -2025,7 +2025,7 @@ QList<QPair<QString, int>>
 Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
                              QString const &selectedCall, QString const &text,
                              bool forceIdentify, bool forceData, int submode,
-                             MessageInfo *pInfo) {
+                             MessageInfo *pInfo, bool cnMode) {
 
 #define ALLOW_SEND_COMPOUND 1
 #define ALLOW_SEND_COMPOUND_DIRECTED 1
@@ -2117,8 +2117,33 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
             // langID) the line is dropped (NOT passed to the English
             // pack* path, which would mojibake CJK).
             if (auto const *ilc = ILCRuntime::instance();
-                ilc && ILCRuntime::containsCJK(line)) {
-                auto const enc = ILCFramer::encode(*ilc, line,
+                ilc && cnMode) {
+                // JS8CALL-CN (Slice B2, E2/R5): pre-encode sanitization -- replace each code
+                // point the codec cannot encode (super-BMP/surrogate) with a single
+                // '?', iterating by code point so a surrogate pair collapses to ONE
+                // '?'. (>8-frame overflow stays the drop path below = 2b, out of scope.)
+                QString encLine;
+                encLine.reserve(line.size());
+                for (int i = 0; i < line.size(); ++i) {
+                    const QChar c = line.at(i);
+                    char32_t cp;
+                    int extra = 0;
+                    if (c.isHighSurrogate() && i + 1 < line.size() &&
+                        line.at(i + 1).isLowSurrogate()) {
+                        cp = QChar::surrogateToUcs4(c, line.at(i + 1));
+                        extra = 1;
+                    } else {
+                        cp = c.unicode();
+                    }
+                    if (ILC::canEncode(cp)) {
+                        encLine.append(c);
+                        if (extra) encLine.append(line.at(i + 1));
+                    } else {
+                        encLine.append(QLatin1Char('?'));
+                    }
+                    i += extra;
+                }
+                auto const enc = ILCFramer::encode(*ilc, encLine,
                                                    ILCFramer::kLangIdCn);
                 if (enc.ok) {
                     // JS8CALL-CN multi-frame + callsign prepend (D3=B, D5). RX

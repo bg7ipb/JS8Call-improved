@@ -195,7 +195,7 @@ class Varicode {
     buildMessageFrames(QString const &mycall, QString const &mygrid,
                        QString const &selectedCall, QString const &text,
                        bool forceIdentify, bool forceData, int submode,
-                       MessageInfo *pInfo = nullptr);
+                       MessageInfo *pInfo = nullptr, bool cnMode = false);
 };
 
 class BuildMessageFramesThread : public QThread {

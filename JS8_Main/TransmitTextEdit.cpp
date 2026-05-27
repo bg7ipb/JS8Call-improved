@@ -24,7 +24,13 @@ Q_DECLARE_LOGGING_CATEGORY(transmittextedit_js8)
 
 namespace {
 
-QString normalizeText(const QString &text) {
+QString normalizeText(const QString &text, bool cnMode = false) {
+    // JS8CALL-CN (Slice B2, E4/R1): Chinese mode is faithful -- no NFKD, no
+    // ASCII/CJK-block filtering -- so display == source and on_textContentsChanged
+    // never rewrites the visible text (kills mixed CJK+fullwidth-punct mojibake).
+    if (cnMode) {
+        return text;
+    }
 #if JS8_ALLOW_EXTENDED
     QString normalized = text;
 #else
@@ -51,7 +57,7 @@ QString normalizeText(const QString &text) {
 
 void assertSourceMirrorSynchronized(const TransmitTextEdit *edit) {
 #ifndef NDEBUG
-    Q_ASSERT(normalizeText(edit->QTextEdit::toPlainText().toUpper()) ==
+    Q_ASSERT(normalizeText(edit->QTextEdit::toPlainText().toUpper(), edit->cnMode()) ==
              edit->toPlainText());
 #else
     Q_UNUSED(edit)
@@ -181,7 +187,7 @@ QString TransmitTextEdit::toPlainText() const {
 void TransmitTextEdit::setPlainText(const QString &text) {
     m_textSent.clear();
     m_sent = 0;
-    const QString normalized = normalizeText(text.toUpper());
+    const QString normalized = normalizeText(text.toUpper(), m_cnMode);
     if (QTextEdit::toPlainText() == normalized) {
         m_sourceMirror->syncDocument(normalized);
         m_sourceMirror->updateSentCache();
@@ -200,7 +206,7 @@ void TransmitTextEdit::setPlainText(const QString &text) {
 
 //
 void TransmitTextEdit::replaceUnsentText(const QString &text, bool keepCursor) {
-    const QString normalized = normalizeText(text.toUpper());
+    const QString normalized = normalizeText(text.toUpper(), m_cnMode);
 
     m_sourceMirror->replaceUnsentText(m_sent, normalized);
 
@@ -228,11 +234,19 @@ void TransmitTextEdit::replaceUnsentText(const QString &text, bool keepCursor) {
 
 //
 void TransmitTextEdit::replacePlainText(const QString &text, bool keepCursor) {
-    const QString normalized = normalizeText(text.toUpper());
+    const QString normalized = normalizeText(text.toUpper(), m_cnMode);
     m_sourceMirror->syncDocument(normalized);
     m_sourceMirror->beginSuppression();
     m_sourceMirror->replaceVisiblePlainText(normalized, keepCursor);
     m_sourceMirror->endSuppression();
+}
+
+void TransmitTextEdit::setCnMode(bool on) {
+    if (m_cnMode == on) return;
+    m_cnMode = on;
+    // Re-apply normalization under the new mode so already-typed text is
+    // re-rendered faithfully (CN) or filtered (EN) without losing content.
+    replacePlainText(toPlainText(), true);
 }
 
 //
@@ -369,7 +383,7 @@ void TransmitTextEdit::on_textContentsChanged(int pos, int rem, int add) {
 
     const QString visibleText = QTextEdit::toPlainText();
     const QString displayText = visibleText.toUpper();
-    QString text = normalizeText(displayText);
+    QString text = normalizeText(displayText, m_cnMode);
 
     if (!m_sourceMirror->isSuppressing() && text == m_lastText) {
         return;

@@ -1702,6 +1702,7 @@ background-color: #22ff22;
     <addaction name="separator"/>
     <addaction name="actionModeAutoreply"/>
     <addaction name="actionModeJS8HB"/>
+    <addaction name="actionModeJS8CN"/>
     <addaction name="actionHeartbeatAcknowledgements"/>
     <addaction name="separator"/>
    </widget>
@@ -2002,6 +2003,14 @@ background-color: #22ff22;
    </property>
    <property name="text">
     <string>Enable Heartbeat Networking (&amp;HB)</string>
+   </property>
+  </action>
+  <action name="actionModeJS8CN">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>中文模式 / Chinese Mode</string>
    </property>
   </action>
   <action name="actionHeartbeatAcknowledgements">

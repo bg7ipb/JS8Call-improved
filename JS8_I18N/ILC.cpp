@@ -68,6 +68,13 @@ Codeword ILC::compress(const QString &text, ILCStats *stats, bool *ok) const
     return out;
 }
 
+bool ILC::canEncode(char32_t cp)
+{
+    // Mirrors compress(): any BMP non-surrogate scalar encodes; a super-BMP
+    // (surrogate) code point is refused. Read-only, codebook-independent.
+    return cp <= 0xFFFFu && !(cp >= 0xD800u && cp <= 0xDFFFu);
+}
+
 QString ILC::decompress(const Codeword &bs) const
 {
     QString res;
