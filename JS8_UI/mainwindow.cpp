@@ -2893,6 +2893,8 @@ void UI_Constructor::stopTx() {
 #endif
     if (!shouldContinue) {
         // TODO: jsherer - split this up...
+        if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] clear@2896 stopTx text=" << ui->extFreeTextMsgEdit->toPlainText();
+        if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] unsent@2896=" << ui->extFreeTextMsgEdit->unsentText() << " sent@2896=" << ui->extFreeTextMsgEdit->sentText();
         ui->extFreeTextMsgEdit->clear();
         ui->extFreeTextMsgEdit->setReadOnly(false);
         update_dynamic_property(ui->extFreeTextMsgEdit, "transmitting", false);
@@ -3005,6 +3007,7 @@ void UI_Constructor::clearRXActivity() {
 
     // make sure to clear the read only and transmitting flags so there's always
     // a "way out"
+    if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] clear@3008 clearRXActivity text=" << ui->extFreeTextMsgEdit->toPlainText();
     ui->extFreeTextMsgEdit->clear();
     ui->extFreeTextMsgEdit->setReadOnly(false);
     update_dynamic_property(ui->extFreeTextMsgEdit, "transmitting", false);
@@ -3290,6 +3293,7 @@ void UI_Constructor::addMessageText(QString text, bool clear,
     }
 
     if (clear) {
+        if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] clear@3293 addMessageText text=" << ui->extFreeTextMsgEdit->toPlainText();
         ui->extFreeTextMsgEdit->clear();
     }
 
@@ -3378,6 +3382,7 @@ void UI_Constructor::resetMessage() {
 
 void UI_Constructor::resetMessageUI() {
     m_nextFreeTextMsg.clear();
+    if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] clear@3381 resetMessageUI text=" << ui->extFreeTextMsgEdit->toPlainText();
     ui->extFreeTextMsgEdit->clear();
     ui->extFreeTextMsgEdit->setReadOnly(false);
 
@@ -3691,6 +3696,7 @@ bool UI_Constructor::prepareNextMessageFrame() {
     }
 
     if (frame.isEmpty()) {
+        if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] clear@3694 prepareNextMessageFrame text=" << m_nextFreeTextMsg;
         m_nextFreeTextMsg.clear();
         updateTxButtonDisplay();
         return false;
