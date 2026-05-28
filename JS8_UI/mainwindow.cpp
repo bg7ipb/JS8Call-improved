@@ -2825,6 +2825,13 @@ void UI_Constructor::startTx() {
     }
 #endif
 
+    if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] restore@2828 saved=" << m_savedUnsentText << " widget=" << ui->extFreeTextMsgEdit->toPlainText();
+    if (!m_savedUnsentText.isEmpty()) {
+        ui->extFreeTextMsgEdit->setCharsSent(0);
+        ui->extFreeTextMsgEdit->replaceUnsentText(m_savedUnsentText, false);
+        m_savedUnsentText.clear();
+    }
+
     auto text = ui->extFreeTextMsgEdit->toPlainText();
     if (!ensureCreateMessageReady(text)) {
         return;
@@ -2895,6 +2902,10 @@ void UI_Constructor::stopTx() {
         // TODO: jsherer - split this up...
         if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] clear@2896 stopTx text=" << ui->extFreeTextMsgEdit->toPlainText();
         if (qEnvironmentVariableIsSet("JS8_PARKG_TRACE")) qDebug() << "[PARK-G] unsent@2896=" << ui->extFreeTextMsgEdit->unsentText() << " sent@2896=" << ui->extFreeTextMsgEdit->sentText();
+        QString unsentNow = ui->extFreeTextMsgEdit->unsentText();
+        if (!unsentNow.isEmpty()) {
+            m_savedUnsentText = unsentNow;
+        }
         ui->extFreeTextMsgEdit->clear();
         ui->extFreeTextMsgEdit->setReadOnly(false);
         update_dynamic_property(ui->extFreeTextMsgEdit, "transmitting", false);

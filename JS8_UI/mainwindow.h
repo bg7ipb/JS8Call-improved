@@ -556,6 +556,7 @@ class UI_Constructor : public QMainWindow {
     bool presentlyWantHBReplies();
 
     QString m_nextFreeTextMsg;
+    QString m_savedUnsentText;
 
     NetworkAccessManager m_network_manager;
     bool m_valid;
