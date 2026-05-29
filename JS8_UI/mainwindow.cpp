@@ -3688,8 +3688,22 @@ bool UI_Constructor::prepareNextMessageFrame() {
             qCDebug(mainwindow_js8) << "unsent replaced to" << "\n" << newText;
         }
         ui->extFreeTextMsgEdit->setReadOnly(shouldDisableTypeahead);
-        ui->extFreeTextMsgEdit->replaceUnsentText(newText, true);
-        ui->extFreeTextMsgEdit->setClean();
+        if (newText.isEmpty() && !ui->extFreeTextMsgEdit->unsentText().isEmpty()) {
+            // JS8CALL-CN: exceeded the 8-frame ILC limit; keep text + warn, don't wipe.
+            ui->extFreeTextMsgEdit->setReadOnly(false);
+            // JS8CALL-CN: clear the TX button's stranded checked-state WITHOUT firing its
+            // toggled slot (which would wipe the text). Lets Enter re-trigger after the
+            // user shortens, message kept intact.
+            ui->startTxButton->blockSignals(true);
+            ui->startTxButton->setChecked(false);
+            ui->startTxButton->blockSignals(false);
+            JS8MessageBox::warning_message(
+                this, tr("Message Not Sent"),
+                tr("Message exceeds the 8-frame protocol limit. Please shorten it and try again."));
+        } else {
+            ui->extFreeTextMsgEdit->replaceUnsentText(newText, true);
+            ui->extFreeTextMsgEdit->setClean();
+        }
     }
 
     QPair<QString, int> f = popMessageFrame();
