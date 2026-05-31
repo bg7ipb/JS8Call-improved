@@ -161,6 +161,18 @@ QRegularExpression
                                         // buildMessageFrames)
                 optional_cmd_pattern + optional_num_pattern + ")");
 
+// JS8CALL-CN hybrid CN-gate routing. true => keep the line on the ILC (CJK)
+// path; false => fall through to the English pack* path (directed / HB / CQ /
+// data). CJK-guard is checked FIRST so any line containing a CJK ideograph
+// stays on ILC even if it also carries ASCII tokens; plain-ASCII lines route
+// to English only when they match directed_re or heartbeat_re.
+static bool shouldCnRoute(const QString &line) {
+    if (ILCRuntime::containsCJK(line)) return true;
+    const bool isDirected  = directed_re.match(line).hasMatch();
+    const bool isHeartbeat = heartbeat_re.match(line).hasMatch();
+    return !(isDirected || isHeartbeat);
+}
+
 QMap<QString, QString> hufftable = {
     // char   code                 weight
     {" ", "01"},       // 1.0
@@ -2117,7 +2129,7 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
             // langID) the line is dropped (NOT passed to the English
             // pack* path, which would mojibake CJK).
             if (auto const *ilc = ILCRuntime::instance();
-                ilc && cnMode) {
+                ilc && cnMode && shouldCnRoute(line)) {
                 // JS8CALL-CN (Slice B2, E2/R5): pre-encode sanitization -- replace each code
                 // point the codec cannot encode (super-BMP/surrogate) with a single
                 // '?', iterating by code point so a surrogate pair collapses to ONE
