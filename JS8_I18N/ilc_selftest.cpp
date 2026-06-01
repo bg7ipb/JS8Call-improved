@@ -10,6 +10,8 @@
 
 #include "../JS8_Main/Varicode.h"
 
+namespace varicode_test { bool shouldCnRouteForTest(QString const &line); }
+
 #include <QCoreApplication>
 #include <QFile>
 #include <QFileInfo>
@@ -250,6 +252,30 @@ int runIlcSelftest()
             return 6;
         }
         out << ">>> V10 3-assertion PASS\n";
+    }
+
+    // V11: CN-gate routing (shouldCnRoute) -- Slice B2 / D-69-1..3.
+    // Lowercase-ASCII -> ILC (V11.5) is reachable only via this direct library
+    // call; the UI path forces toUpper before the gate (seq71), not prod-reachable.
+    {
+        struct V { QString line; bool expect; const char *tag; };
+        QString cjk = QString::fromUtf8("你好 世界");
+        V vectors[] = {
+            {"CQ CQ CQ OL72",          false, "V11.1 CQ"},
+            {"BG7IPB: HEARTBEAT OL72", false, "V11.2 HB"},
+            {"BG7IPB: K1ABC SNR -10",  false, "V11.3 directed"},
+            {cjk,                      true,  "V11.4 CJK"},
+            {"hello",                  true,  "V11.5 lowercase"},
+        };
+        int fails = 0;
+        for (auto const &v : vectors) {
+            bool actual = varicode_test::shouldCnRouteForTest(v.line);
+            bool pass = (actual == v.expect);
+            out << "[V11] " << v.tag << " got=" << int(actual)
+                << " exp=" << int(v.expect) << (pass ? " PASS" : " FAIL") << "\n";
+            if (!pass) ++fails;
+        }
+        if (fails) { out << "[V11] " << fails << " FAILED\n"; return 1; }
     }
 
     return 0;

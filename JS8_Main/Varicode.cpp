@@ -2440,3 +2440,9 @@ Varicode::SubmodeType Varicode::intToSubmode(int sm) {
 }
 
 Q_LOGGING_CATEGORY(varicode_js8, "varicode.js8", QtWarningMsg)
+
+// JS8CALL-CN test seam (h2). Exposes file-scope shouldCnRoute to ilc_selftest;
+// shouldCnRoute keeps internal linkage. Test-only, not for upstream.
+namespace varicode_test {
+bool shouldCnRouteForTest(QString const &line) { return shouldCnRoute(line); }
+}
