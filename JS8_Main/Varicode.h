@@ -204,7 +204,7 @@ class BuildMessageFramesThread : public QThread {
     BuildMessageFramesThread(QString const &mycall, QString const &mygrid,
                              QString const &selectedCall, QString const &text,
                              bool forceIdentify, bool forceData, int submode,
-                             QObject *parent = nullptr);
+                             bool cnMode = false, QObject *parent = nullptr);
     void run() override;
   signals:
     void resultReady(QString, int);
@@ -217,6 +217,7 @@ class BuildMessageFramesThread : public QThread {
     bool m_forceIdentify;
     bool m_forceData;
     int m_submode;
+    bool m_cnMode;
 };
 
 #endif // VARICODE_H

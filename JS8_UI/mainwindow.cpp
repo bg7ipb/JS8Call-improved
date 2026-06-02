@@ -5910,7 +5910,8 @@ void UI_Constructor::refreshTextDisplay() {
 
     BuildMessageFramesThread *t =
         new BuildMessageFramesThread(mycall, mygrid, selectedCall, text,
-                                     forceIdentify, forceData, m_nSubMode);
+                                     forceIdentify, forceData, m_nSubMode,
+                                     ui->actionModeJS8CN->isChecked());
 
     connect(t, &BuildMessageFramesThread::finished, t, &QObject::deleteLater);
     connect(t, &BuildMessageFramesThread::resultReady, this,

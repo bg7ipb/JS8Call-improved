@@ -2395,16 +2395,16 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
 BuildMessageFramesThread::BuildMessageFramesThread(
     const QString &mycall, const QString &mygrid, const QString &selectedCall,
     const QString &text, bool forceIdentify, bool forceData, int submode,
-    QObject *parent)
+    bool cnMode, QObject *parent)
     : QThread(parent), m_mycall{mycall}, m_mygrid{mygrid},
       m_selectedCall{selectedCall}, m_text{text},
       m_forceIdentify{forceIdentify}, m_forceData{forceData},
-      m_submode{submode} {}
+      m_submode{submode}, m_cnMode{cnMode} {}
 
 void BuildMessageFramesThread::run() {
     auto results =
         Varicode::buildMessageFrames(m_mycall, m_mygrid, m_selectedCall, m_text,
-                                     m_forceIdentify, m_forceData, m_submode);
+                                     m_forceIdentify, m_forceData, m_submode, nullptr, m_cnMode);
 
     // TODO: jsherer - we wouldn't normally use DecodedText.h here... but it's
     // useful for computing the actual frames transmitted.
