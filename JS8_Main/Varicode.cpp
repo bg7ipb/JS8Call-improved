@@ -173,6 +173,40 @@ static bool shouldCnRoute(const QString &line) {
     return !(isDirected || isHeartbeat);
 }
 
+// JS8CALL-CN (step2, PARK-061): estimate how many ILC content frames `text` would
+// encode to, for the >8-frame chunking decision (called from the startTx pre-flight
+// hook). Returns 0 when not CN-routed or i18n is off; returns kMaxFrames+1 as an
+// overflow sentinel (encode() reports ok=false past the 8-frame cap, so frames.size()
+// is unreliable there). NOTE: the pre-encode sanitize below is a DUPLICATE of the gate
+// sanitize inside buildMessageFrames (~L2137). Keep both in sync; dedup is PARK-083.
+int Varicode::estimateCnFrames(QString const &text) {
+    auto const *ilc = ILCRuntime::instance();
+    if (!ilc || !shouldCnRoute(text)) return 0;
+    QString encLine;
+    encLine.reserve(text.size());
+    for (int i = 0; i < text.size(); ++i) {
+        const QChar c = text.at(i);
+        char32_t cp;
+        int extra = 0;
+        if (c.isHighSurrogate() && i + 1 < text.size() &&
+            text.at(i + 1).isLowSurrogate()) {
+            cp = QChar::surrogateToUcs4(c, text.at(i + 1));
+            extra = 1;
+        } else {
+            cp = c.unicode();
+        }
+        if (ILC::canEncode(cp)) {
+            encLine.append(c);
+            if (extra) encLine.append(text.at(i + 1));
+        } else {
+            encLine.append(QLatin1Char('?'));
+        }
+        i += extra;
+    }
+    auto const enc = ILCFramer::encode(*ilc, encLine, ILCFramer::kLangIdCn);
+    return enc.ok ? int(enc.frames.size()) : (ILCFramer::kMaxFrames + 1);
+}
+
 QMap<QString, QString> hufftable = {
     // char   code                 weight
     {" ", "01"},       // 1.0

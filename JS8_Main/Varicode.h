@@ -170,6 +170,11 @@ class Varicode {
                                               quint8 *pBits3);
 
     static QString packCompoundMessage(QString const &text, int *n);
+    // JS8CALL-CN (step2, PARK-061): pre-encode estimate of ILC content
+    // frames for one line, for the >8-frame chunking decision. Returns 0
+    // when not CN-routed / i18n off; kMaxFrames+1 as overflow sentinel.
+    // Sanitize mirrors the gate in buildMessageFrames; keep in sync (PARK-083).
+    static int estimateCnFrames(QString const &text);
     static QStringList unpackCompoundMessage(const QString &text, quint8 *pType,
                                              quint8 *pBits3);
 
