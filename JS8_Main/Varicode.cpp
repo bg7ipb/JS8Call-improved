@@ -207,6 +207,51 @@ int Varicode::estimateCnFrames(QString const &text) {
     return enc.ok ? int(enc.frames.size()) : (ILCFramer::kMaxFrames + 1);
 }
 
+QStringList Varicode::chunkCnText(QString const &text) {
+    QStringList chunks;
+    auto const *ilc = ILCRuntime::instance();
+    if (!ilc || !shouldCnRoute(text) ||
+        estimateCnFrames(text) <= ILCFramer::kMaxFrames) {
+        chunks.append(text);
+        return chunks;
+    }
+    // Oversized CN message: greedy-split at complete-codepoint boundaries into
+    // independent chunks, each estimating <= kMaxFrames frames. Correct
+    // regardless of frame-count monotonicity (close at last fitting prefix).
+    int start = 0;
+    while (start < text.size()) {
+        int lastFitEnd = -1;
+        int i = start;
+        while (i < text.size()) {
+            int cpLen = 1;
+            if (text.at(i).isHighSurrogate() && i + 1 < text.size() &&
+                text.at(i + 1).isLowSurrogate()) {
+                cpLen = 2;
+            }
+            const int candEnd = i + cpLen;
+            if (estimateCnFrames(text.mid(start, candEnd - start)) <= ILCFramer::kMaxFrames) {
+                lastFitEnd = candEnd;
+                i = candEnd;
+            } else {
+                break;
+            }
+        }
+        if (lastFitEnd > start) {
+            chunks.append(text.mid(start, lastFitEnd - start));
+            start = lastFitEnd;
+        } else {
+            int cpLen = 1;
+            if (text.at(start).isHighSurrogate() && start + 1 < text.size() &&
+                text.at(start + 1).isLowSurrogate()) {
+                cpLen = 2;
+            }
+            qWarning() << "chunkCnText: single codepoint exceeds kMaxFrames; dropped";
+            start += cpLen;
+        }
+    }
+    return chunks;
+}
+
 QMap<QString, QString> hufftable = {
     // char   code                 weight
     {" ", "01"},       // 1.0

@@ -175,6 +175,12 @@ class Varicode {
     // when not CN-routed / i18n off; kMaxFrames+1 as overflow sentinel.
     // Sanitize mirrors the gate in buildMessageFrames; keep in sync (PARK-083).
     static int estimateCnFrames(QString const &text);
+
+    // Split text into independent CN chunks, each estimating <= kMaxFrames ILC
+    // frames, at complete-codepoint boundaries (super-BMP safe). Returns the
+    // whole text as a single chunk when it already fits / is not CN-routed.
+    // Measurement delegates to estimateCnFrames (no extra sanitize; PARK-083).
+    static QStringList chunkCnText(QString const &text);
     static QStringList unpackCompoundMessage(const QString &text, quint8 *pType,
                                              quint8 *pBits3);
 
