@@ -278,5 +278,47 @@ int runIlcSelftest()
         if (fails) { out << "[V11] " << fails << " FAILED\n"; return 1; }
     }
 
+    {
+        out << QString(76, QLatin1Char('-')) << "\n";
+        int fails = 0;
+        QString const nihao = QString::fromUtf8("你好");
+        QString const canon = QString::fromUtf8("我的天线是八木，收到你信号很强，今天天气很好");
+
+        int e1 = Varicode::estimateCnFrames(nihao);
+        bool p1 = (e1 == 1);
+        out << "[V12.1] estimateCnFrames(short)=" << e1 << " exp=1"
+            << (p1 ? " PASS" : " FAIL") << "\n";
+        if (!p1) ++fails;
+
+        int e2 = Varicode::estimateCnFrames(canon);
+        bool p2 = (e2 == 3);
+        out << "[V12.2] estimateCnFrames(canonical)=" << e2 << " exp=3"
+            << (p2 ? " PASS" : " FAIL") << "\n";
+        if (!p2) ++fails;
+
+        QStringList c3 = Varicode::chunkCnText(canon);
+        bool p3 = (c3.size() == 1 && c3.first() == canon);
+        out << "[V12.3] chunkCnText(<=cap) nChunks=" << c3.size()
+            << " roundtrip=" << int(p3) << (p3 ? " PASS" : " FAIL") << "\n";
+        if (!p3) ++fails;
+
+        QString big;
+        for (int k = 0; k < 5; ++k) big += canon;
+        int e4 = Varicode::estimateCnFrames(big);
+        QStringList c4 = Varicode::chunkCnText(big);
+        bool eachFits = true;
+        for (auto const &c : c4)
+            if (Varicode::estimateCnFrames(c) > ILCFramer::kMaxFrames) eachFits = false;
+        bool lossless = (c4.join(QString()) == big);
+        bool p4 = (e4 > ILCFramer::kMaxFrames) && (c4.size() >= 2) && eachFits && lossless;
+        out << "[V12.4] est=" << e4 << " nChunks=" << c4.size()
+            << " eachFits=" << int(eachFits) << " lossless=" << int(lossless)
+            << (p4 ? " PASS" : " FAIL") << "\n";
+        if (!p4) ++fails;
+
+        out << ">>> V12 4-assertion " << (fails ? "FAIL" : "PASS") << "\n";
+        if (fails) { out << "[V12] " << fails << " FAILED\n"; return 8; }
+    }
+
     return 0;
 }
