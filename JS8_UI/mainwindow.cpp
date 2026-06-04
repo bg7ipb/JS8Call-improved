@@ -3580,6 +3580,9 @@ void UI_Constructor::resetMessageTransmitQueue() {
 
     // reset the total message sent
     m_totalTxMessage.clear();
+
+    // JS8CALL-CN: reset the packet-commit / lock pointer for the next message.
+    ui->extFreeTextMsgEdit->setCnLockedChars(0);
 }
 
 QPair<QString, int> UI_Constructor::popMessageFrame() {
@@ -3662,7 +3665,32 @@ bool UI_Constructor::prepareNextMessageFrame() {
 
     // typeahead
     bool shouldDisableTypeahead = false;
-    if (ui->extFreeTextMsgEdit->isDirty() &&
+    const bool cnMode = ui->extFreeTextMsgEdit->cnMode();
+    if (cnMode) {
+        // JS8CALL-CN (PARK-061 alpha-JIT): build one <=8-frame ILC packet per
+        // cycle from the not-yet-committed source tail; lock the in-flight
+        // packet, keep the rest editable, re-slice future text just-in-time.
+        const int committed = ui->extFreeTextMsgEdit->cnLockedChars();
+        const QString src = ui->extFreeTextMsgEdit->toPlainText();
+        const QString remaining = src.mid(committed);
+        if (m_txFrameQueue.isEmpty() && !remaining.isEmpty()) {
+            // each packet is an independent ILC message: reset the frame
+            // counter so its first frame keeps JS8CallFirst (wire pattern ==
+            // the proven single-packet case).
+            m_txFrameCountSent = 0;
+            const QStringList chunks = Varicode::chunkCnText(remaining);
+            const QString chunk = chunks.isEmpty() ? remaining : chunks.first();
+            m_txFrameQueue.clear();
+            m_txFrameCount = 0;
+            bool cnDisable = false;
+            appendMessage(chunk, shouldForceDataForTypeahead, &cnDisable);
+            // whole text stays in the box (CN faithful; no replaceUnsentText);
+            // advance the commit/lock pointer over this packet's source span.
+            ui->extFreeTextMsgEdit->setCnLockedChars(committed + chunk.length());
+            ui->extFreeTextMsgEdit->setReadOnly(false);
+            ui->extFreeTextMsgEdit->setClean();
+        }
+    } else if (ui->extFreeTextMsgEdit->isDirty() &&
         !ui->extFreeTextMsgEdit->isEmpty()) {
         // block edit events while computing next frame
         QString newText;

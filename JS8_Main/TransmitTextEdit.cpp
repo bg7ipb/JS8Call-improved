@@ -178,6 +178,11 @@ void TransmitTextEdit::setCharsSent(int n) {
     highlight();
 }
 
+void TransmitTextEdit::setCnLockedChars(int n) {
+    m_cnLockedChars = qBound(0, n, m_sourceMirror->plainText().size());
+    highlight();
+}
+
 // override
 QString TransmitTextEdit::toPlainText() const {
     return m_sourceMirror->plainText();
@@ -187,6 +192,7 @@ QString TransmitTextEdit::toPlainText() const {
 void TransmitTextEdit::setPlainText(const QString &text) {
     m_textSent.clear();
     m_sent = 0;
+    m_cnLockedChars = 0; // JS8CALL-CN: reset packet-commit pointer on full set
     const QString normalized = normalizeText(text.toUpper(), m_cnMode);
     if (QTextEdit::toPlainText() == normalized) {
         m_sourceMirror->syncDocument(normalized);
@@ -309,6 +315,7 @@ void TransmitTextEdit::redo() {
 void TransmitTextEdit::clear() {
     m_textSent.clear();
     m_sent = 0;
+    m_cnLockedChars = 0; // JS8CALL-CN: reset packet-commit pointer on clear
     if (QTextEdit::toPlainText().isEmpty()) {
         m_sourceMirror->syncDocument(QString());
         m_sourceMirror->updateSentCache();
@@ -338,9 +345,10 @@ bool TransmitTextEdit::cursorShouldBeProtected(QTextCursor c) {
 
     // qCDebug(transmittextedit_js8) << "selection" << start << end << m_sent;
 
-    if (m_sent && start <= m_sent) {
+    const int prot = lockBoundary(); // JS8CALL-CN: CN locks to packet-commit pointer
+    if (prot && start <= prot) {
         qCDebug(transmittextedit_js8)
-            << "cursor in protected zone" << start << "<=" << m_sent;
+            << "cursor in protected zone" << start << "<=" << prot;
         return true;
     } else {
         return false;
@@ -357,11 +365,12 @@ void TransmitTextEdit::on_selectionChanged() {
         blockSignals(true);
         {
             int end = c.selectionEnd();
+            const int prot = lockBoundary(); // JS8CALL-CN
             c.movePosition(QTextCursor::Start);
             c.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor,
-                           m_sent);
+                           prot);
             c.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor,
-                           qMax(0, end - m_sent));
+                           qMax(0, end - prot));
             setTextCursor(c);
         }
         blockSignals(false);
@@ -429,7 +438,8 @@ void TransmitTextEdit::highlightBase() {
 void TransmitTextEdit::highlightCharsSent() {
     Q_ASSERT(isInternalDocumentMutationActive());
 
-    if (!m_sent) {
+    const int prot = lockBoundary(); // JS8CALL-CN: CN strikes the committed packet region
+    if (!prot) {
         return;
     }
 
@@ -444,7 +454,7 @@ void TransmitTextEdit::highlightCharsSent() {
         return;
     }
     c.movePosition(QTextCursor::Start);
-    c.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, m_sent);
+    c.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, prot);
 
     QTextCharFormat defaultFormat;
     auto ch = c.charFormat();
@@ -657,14 +667,15 @@ bool TransmitTextEdit::eventFilter(QObject * /*o*/, QEvent *e) {
 
     // 2. if on the edge, do not filter if not a backspace
     int start = qMin(c.selectionStart(), c.selectionEnd());
-    if (start == m_sent && k->key() != Qt::Key_Backspace) {
+    const int prot = lockBoundary(); // JS8CALL-CN
+    if (start == prot && k->key() != Qt::Key_Backspace) {
         return false;
     }
 
     // 3. if on the edge, do not filter if a backspace and there is text
     // selected
     int end = qMax(c.selectionStart(), c.selectionEnd());
-    if (start == m_sent && start != end && k->key() == Qt::Key_Backspace) {
+    if (start == prot && start != end && k->key() == Qt::Key_Backspace) {
         return false;
     }
 

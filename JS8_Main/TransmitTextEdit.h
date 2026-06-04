@@ -42,6 +42,10 @@ class TransmitTextEdit : public QTextEdit {
     int charsSent() const { return m_sent; }
     void setCharsSent(int n);
 
+    // JS8CALL-CN: source position committed to packets; CN lock/strike boundary.
+    int cnLockedChars() const { return m_cnLockedChars; }
+    void setCnLockedChars(int n);
+
     QString sentText() const { return m_textSent; }
 
     QString unsentText() const { return toPlainText().mid(charsSent()); }
@@ -87,12 +91,17 @@ class TransmitTextEdit : public QTextEdit {
   private:
     class source_mirror;
 
+    // JS8CALL-CN: effective protected/struck boundary. CN uses the packet-commit
+    // pointer (charsSent is unreliable in CN: decoded length != source length).
+    int lockBoundary() const { return m_cnMode ? m_cnLockedChars : m_sent; }
+
     void beginInternalDocumentMutation();
     void endInternalDocumentMutation();
     bool isInternalDocumentMutationActive() const;
 
     QString m_lastText;
     int m_sent;
+    int m_cnLockedChars = 0; // JS8CALL-CN: source chars committed to packets (CN lock/strike boundary)
     QString m_textSent;
     bool m_protected;
     bool m_dirty = false;
