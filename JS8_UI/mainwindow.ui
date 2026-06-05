@@ -1099,20 +1099,20 @@ QTextEdit[transmitting=&quot;true&quot;] {
          </widget>
         </item>
         <item row="1" column="7">
-         <spacer name="horizontalSpacer_11">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Policy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
+         <widget class="QPushButton" name="cnModeMacroButton">
+          <property name="minimumSize">
            <size>
-            <width>20</width>
-            <height>10</height>
+            <width>0</width>
+            <height>30</height>
            </size>
           </property>
-         </spacer>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>EN</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="hbMacroButton">

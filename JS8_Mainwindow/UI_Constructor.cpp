@@ -70,6 +70,29 @@ UI_Constructor::UI_Constructor(QString const &program_info,
       m_aprsClient{new APRSISClient{"rotate.aprs2.net", 14580}},
       m_aprsInboundRelay{nullptr} {
     ui->setupUi(this);
+
+    // JS8CALL-CN (phase-cn-ui/A): one-click CN/EN toggle on the macro-button strip.
+    // actionModeJS8CN stays the single source of truth; this button mirrors it both
+    // ways and reflects the active mode in its label. No manual re-entrancy guard is
+    // needed: QAction/QAbstractButton::setChecked only emits toggled() on an actual
+    // state change, so the mutual connections settle after one hop. The existing
+    // auto-connected on_actionModeJS8CN_toggled() still drives setCnMode(); we only
+    // add UI mirroring here. ([loc])
+    connect(ui->cnModeMacroButton, &QPushButton::toggled,
+            ui->actionModeJS8CN, &QAction::setChecked);
+    connect(ui->actionModeJS8CN, &QAction::toggled,
+            ui->cnModeMacroButton, &QPushButton::setChecked);
+    connect(ui->actionModeJS8CN, &QAction::toggled, this,
+            [this](bool const on) {
+                ui->cnModeMacroButton->setText(
+                    on ? QString::fromUtf8("中文") : QString::fromUtf8("EN"));
+            });
+    {
+        bool const cnOn = ui->actionModeJS8CN->isChecked();
+        ui->cnModeMacroButton->setChecked(cnOn);
+        ui->cnModeMacroButton->setText(
+            cnOn ? QString::fromUtf8("中文") : QString::fromUtf8("EN"));
+    }
     ui->frame->setStyleSheet(logFrameStyle());
     ui->logWidget->setStyleSheet(Styles::LogWidgetStyle);
     ui->dialFreqUpButton->setStyleSheet(Styles::DialFreqUpDownButtonStyle);
