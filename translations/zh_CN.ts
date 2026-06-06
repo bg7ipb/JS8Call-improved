@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>UI_Constructor</name>
     <message>
@@ -347,72 +347,72 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1593"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>文件(&amp;F)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1602"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1613"/>
         <source>&amp;Configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>配置(&amp;C)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1618"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>视图(&amp;V)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1645"/>
         <source>&amp;Log</source>
-        <translation type="unfinished"></translation>
+        <translation>日志(&amp;L)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1656"/>
         <source>C&amp;ontrol</source>
-        <translation type="unfinished"></translation>
+        <translation>控制(&amp;O)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1660"/>
         <source>Set Fo&amp;cus...</source>
-        <translation type="unfinished"></translation>
+        <translation>设置焦点(&amp;C)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1669"/>
         <source>Clear &amp;Activity...</source>
-        <translation type="unfinished"></translation>
+        <translation>清除活动(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1693"/>
         <source>&amp;Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>模式(&amp;M)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1720"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>退出(&amp;X)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1731"/>
         <source>About &amp;JS8Call</source>
-        <translation type="unfinished"></translation>
+        <translation>关于 JS8Call(&amp;J)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1736"/>
         <source>&amp;Erase ALL.TXT</source>
-        <translation type="unfinished"></translation>
+        <translation>清除 ALL.TXT(&amp;E)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1741"/>
         <source>Erase &amp;js8call_log.adi</source>
-        <translation type="unfinished"></translation>
+        <translation>清除 js8call_log.adi(&amp;J)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1746"/>
         <source>&amp;Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>设置(&amp;S)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1749"/>
@@ -422,22 +422,22 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1754"/>
         <source>&amp;Open Log Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>打开日志目录(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1759"/>
         <source>&amp;Copyright notice</source>
-        <translation type="unfinished"></translation>
+        <translation>版权声明(&amp;C)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1764"/>
         <source>JS8Call User Guide</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8Call 用户指南</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1775"/>
         <source>Show &amp;Band Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>显示频段活动(&amp;B)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1778"/>
@@ -447,7 +447,7 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1789"/>
         <source>Show &amp;Call Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>显示呼叫活动(&amp;C)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1792"/>
@@ -457,7 +457,7 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1803"/>
         <source>Show &amp;Waterfall</source>
-        <translation type="unfinished"></translation>
+        <translation>显示瀑布图(&amp;W)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1806"/>
@@ -467,22 +467,22 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1811"/>
         <source>Reset Frame Si&amp;zes</source>
-        <translation type="unfinished"></translation>
+        <translation>重置窗口大小(&amp;Z)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1816"/>
         <source>Sort Band Activity By...</source>
-        <translation type="unfinished"></translation>
+        <translation>频段活动排序...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1821"/>
         <source>Sort Call Activity By...</source>
-        <translation type="unfinished"></translation>
+        <translation>呼叫活动排序...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1832"/>
         <source>Show Wa&amp;terfall Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>显示瀑布图控件(&amp;T)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1835"/>
@@ -492,17 +492,17 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1840"/>
         <source>Show Band Activity Columns...</source>
-        <translation type="unfinished"></translation>
+        <translation>显示频段活动列...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1845"/>
         <source>Show Call Activity Columns...</source>
-        <translation type="unfinished"></translation>
+        <translation>显示呼叫活动列...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1850"/>
         <source>&amp;Add Log Entry...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加日志条目(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1853"/>
@@ -512,7 +512,7 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1867"/>
         <source>Show &amp;Frequency &amp;&amp; Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>显示频率和时钟(&amp;F)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1870"/>
@@ -522,12 +522,12 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1881"/>
         <source>Show Toolti&amp;ps</source>
-        <translation type="unfinished"></translation>
+        <translation>显示工具提示(&amp;P)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1889"/>
         <source>Show Full&amp;screen</source>
-        <translation type="unfinished"></translation>
+        <translation>显示全屏(&amp;S)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1892"/>
@@ -537,47 +537,47 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1897"/>
         <source>Send &amp;Heartbeat...</source>
-        <translation type="unfinished"></translation>
+        <translation>发送心跳(&amp;H)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1902"/>
         <source>Send C&amp;Q Message...</source>
-        <translation type="unfinished"></translation>
+        <translation>发送 CQ 消息(&amp;Q)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1910"/>
         <source>Show Band &amp;Heartbeats and ACKs</source>
-        <translation type="unfinished"></translation>
+        <translation>显示频段心跳和确认(&amp;H)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1918"/>
         <source>Show Statusba&amp;r</source>
-        <translation type="unfinished"></translation>
+        <translation>显示状态栏(&amp;R)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1923"/>
         <source>Set &amp;Frequency...</source>
-        <translation type="unfinished"></translation>
+        <translation>设置频率(&amp;F)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1928"/>
         <source>Set &amp;Offset...</source>
-        <translation type="unfinished"></translation>
+        <translation>设置偏移(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1933"/>
         <source>Show Message &amp;Inbox...</source>
-        <translation type="unfinished"></translation>
+        <translation>显示消息收件箱(&amp;I)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1938"/>
         <source>Check for &amp;Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>检查更新(&amp;U)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1943"/>
         <source>Message Reply Area</source>
-        <translation type="unfinished"></translation>
+        <translation>消息回复区</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1946"/>
@@ -587,7 +587,7 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1951"/>
         <source>Band Activity Table</source>
-        <translation type="unfinished"></translation>
+        <translation>频段活动表</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1954"/>
@@ -597,7 +597,7 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1959"/>
         <source>Call Activity Table</source>
-        <translation type="unfinished"></translation>
+        <translation>呼叫活动表</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1962"/>
@@ -642,7 +642,7 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2026"/>
         <source>Message Receive Area</source>
-        <translation type="unfinished"></translation>
+        <translation>消息接收区</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2029"/>
@@ -667,47 +667,47 @@
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2064"/>
         <source>Enable Receiver (&amp;RX)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用接收机(&amp;RX)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2072"/>
         <source>Enable Transmitter (&amp;TX)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用发射机(&amp;TX)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2080"/>
         <source>Enable Reporting (&amp;SPOT)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用上报(&amp;SPOT)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2088"/>
         <source>Enable Tuning Tone (T&amp;UNE)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用调谐音(T&amp;UNE)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2099"/>
         <source>Show Time &amp;Drift Controls...</source>
-        <translation type="unfinished"></translation>
+        <translation>显示时间漂移控件(&amp;D)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2104"/>
         <source>Clear &amp;All Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>清除所有活动(&amp;A)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2109"/>
         <source>Clear &amp;Band Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>清除频段活动(&amp;B)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2114"/>
         <source>Clear &amp;RX Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>清除接收活动(&amp;R)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2119"/>
         <source>Clear &amp;Call Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>清除呼叫活动(&amp;C)</translation>
     </message>
 </context>
 </TS>
