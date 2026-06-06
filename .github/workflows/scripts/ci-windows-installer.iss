@@ -1,12 +1,12 @@
-#define MyAppName "JS8Call"
-#define MyAppVersion "3.0.0"
-#define MyAppPublisher "JS8Call-improved"
-#define MyAppURL "https://www.js8call-improved.com/"
+#define MyAppName "JS8Call-CN"
+#define MyAppVersion "1.0.0-beta1"
+#define MyAppPublisher "BG7IPB"
+#define MyAppURL "https://github.com/bg7ipb/JS8Call-improved/"
 #define MyAppExeName "JS8Call.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
-AppId={{B5281957-28FD-4BAE-8D06-FC59898D850E}
+AppId={{67820EE0-ABE4-4386-8DC4-0637D0B94601}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
