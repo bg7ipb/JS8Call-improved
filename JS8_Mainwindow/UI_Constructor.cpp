@@ -69,7 +69,38 @@ UI_Constructor::UI_Constructor(QString const &program_info,
       m_spotClient{new SpotClient{"spot.js8call.com", 50000, program_info}},
       m_aprsClient{new APRSISClient{"rotate.aprs2.net", 14580}},
       m_aprsInboundRelay{nullptr} {
+    // i18n (W3): apply persisted UI language before setupUi so its retranslateUi
+    // emits the chosen language directly. Independent of cnMode.
+    if (m_settings->value(QStringLiteral("Configuration/LanguageUi"),
+                          QStringLiteral("en")).toString() ==
+        QLatin1String("zh_CN")) {
+        if (m_uiTranslator.load(QStringLiteral("zh_CN"),
+                                QStringLiteral(":/i18n"))) {
+            qApp->installTranslator(&m_uiTranslator);
+        }
+    }
     ui->setupUi(this);
+
+    // i18n (W3): build Language menu actions and wire to changeEvent flow.
+    {
+        QString const cur =
+            m_settings->value(QStringLiteral("Configuration/LanguageUi"),
+                              QStringLiteral("en")).toString();
+        auto *group = new QActionGroup(this);
+        group->setExclusive(true);
+        m_actionLangZh = ui->menuLanguage->addAction(QStringLiteral("中文"));
+        m_actionLangEn = ui->menuLanguage->addAction(QStringLiteral("English"));
+        m_actionLangZh->setCheckable(true);
+        m_actionLangEn->setCheckable(true);
+        m_actionLangZh->setData(QStringLiteral("zh_CN"));
+        m_actionLangEn->setData(QStringLiteral("en"));
+        group->addAction(m_actionLangZh);
+        group->addAction(m_actionLangEn);
+        m_actionLangZh->setChecked(cur == QLatin1String("zh_CN"));
+        m_actionLangEn->setChecked(cur != QLatin1String("zh_CN"));
+        connect(group, &QActionGroup::triggered, this,
+                &UI_Constructor::onLanguageActionTriggered);
+    }
 
     // JS8CALL-CN (phase-cn-ui/A): one-click CN/EN toggle on the macro-button strip.
     // actionModeJS8CN stays the single source of truth; this button mirrors it both
@@ -1472,4 +1503,35 @@ UI_Constructor::UI_Constructor(QString const &program_info,
     // this must be the last statement of constructor
     if (!m_valid)
         throw std::runtime_error{"Fatal initialization exception"};
+}
+
+void UI_Constructor::changeEvent(QEvent *e) {
+    if (e->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+        if (m_settings) {
+            QString const cur =
+                m_settings->value(QStringLiteral("Configuration/LanguageUi"),
+                                  QStringLiteral("en")).toString();
+            if (m_actionLangZh)
+                m_actionLangZh->setChecked(cur == QLatin1String("zh_CN"));
+            if (m_actionLangEn)
+                m_actionLangEn->setChecked(cur != QLatin1String("zh_CN"));
+        }
+    }
+    QMainWindow::changeEvent(e);
+}
+
+void UI_Constructor::onLanguageActionTriggered(QAction *action) {
+    if (!action) return;
+    QString const lang = action->data().toString();
+    if (lang == QLatin1String("zh_CN")) {
+        if (m_uiTranslator.isEmpty()) {
+            m_uiTranslator.load(QStringLiteral("zh_CN"),
+                                QStringLiteral(":/i18n"));
+        }
+        qApp->installTranslator(&m_uiTranslator);
+    } else {
+        qApp->removeTranslator(&m_uiTranslator);
+    }
+    m_settings->setValue(QStringLiteral("Configuration/LanguageUi"), lang);
 }
