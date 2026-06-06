@@ -32,4 +32,6 @@ docs/html/
 *.po
 *.qph
 *.ts
+# Qt Linguist translation sources live under translations/ and must be tracked
+!translations/*.ts
 *.qm

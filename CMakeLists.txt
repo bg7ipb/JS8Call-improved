@@ -166,6 +166,9 @@ set(TARGET ${PROJECT_NAME})
 
 qt_add_executable(${TARGET} MACOSX_BUNDLE WIN32 ${ICON_FILE})
 
+# JS8CALL-CN (phase-cn-ui/B): build translations/zh_CN.ts -> zh_CN.qm, embed under :/i18n
+qt_add_translations(${TARGET} TS_FILES translations/zh_CN.ts RESOURCE_PREFIX "/i18n")
+
 #------------------------------------------------------------------------------#
 # OSX requires a number of settings in the plist file.
 #------------------------------------------------------------------------------#
