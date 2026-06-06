@@ -108,6 +108,7 @@
 #include <QTimeZone>
 #include <QTimer>
 #include <QToolTip>
+#include <QTranslator>
 #include <QUdpSocket>
 #include <QUrl>
 #include <QVariant>
@@ -294,8 +295,10 @@ class UI_Constructor : public QMainWindow {
     void closeEvent(QCloseEvent *) override;
     void childEvent(QChildEvent *) override;
     bool eventFilter(QObject *, QEvent *) override;
+    void changeEvent(QEvent *) override;
 
   private slots:
+    void onLanguageActionTriggered(QAction *action);
     void initialize_fonts();
     void on_menuModeJS8_aboutToShow();
     void on_menuControl_aboutToShow();
@@ -565,6 +568,9 @@ class UI_Constructor : public QMainWindow {
     QPushButton *m_configurations_button;
     QSettings *m_settings;
     bool m_settings_read;
+    QTranslator m_uiTranslator;
+    QAction *m_actionLangZh = nullptr;
+    QAction *m_actionLangEn = nullptr;
     QScopedPointer<Ui::UI_Constructor> ui;
 
     // other windows
