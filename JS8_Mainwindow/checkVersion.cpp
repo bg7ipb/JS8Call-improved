@@ -9,6 +9,11 @@
 #include "JS8_UI/mainwindow.h"
 
 void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
+    QString updateUrl = QStringLiteral(JS8CALL_UPDATE_URL);
+    if (updateUrl.isEmpty()) {
+        qCDebug(mainwindow_js8) << "Update URL empty, skipping check";
+        return;
+    }
     auto m = new QNetworkAccessManager(this);
     connect(m, &QNetworkAccessManager::finished, this,
             [this, alertOnUpToDate](QNetworkReply *reply) {
@@ -33,7 +38,7 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                         60, "New Updates Available",
                         QString("A new version (%1) of JS8Call is now "
                                 "available. Please see the <a "
-                                "href='https://github.com/JS8Call-improved/"
+                                "href='https://github.com/bg7ipb/"
                                 "JS8Call-improved/releases'>GitHub "
                                 "Releases</a> for more details.")
                             .arg(content),
@@ -56,8 +61,7 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
             });
 
     qCDebug(mainwindow_js8) << "Checking for Updates...";
-    QUrl url("https://github.com/JS8Call-improved/JS8Call-improved/releases/"
-             "latest/download/version.txt");
+    QUrl url(JS8CALL_UPDATE_URL);
     QNetworkRequest r(url);
     m->get(r);
 }

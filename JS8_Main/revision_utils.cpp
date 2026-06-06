@@ -13,7 +13,7 @@ QString version() {
     if (v == ("0.0.0")) {
         v = QStringLiteral("Development Build %1").arg(QLatin1String(GITSHORT));
     }
-    return v;
+    return v + JS8CALL_VERSION_SUFFIX;
 #else
     QString v{QStringLiteral("Not for Release")};
 #endif
