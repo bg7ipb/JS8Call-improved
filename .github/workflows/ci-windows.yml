@@ -70,6 +70,7 @@ jobs:
           qt6-serialport:p
           qt6-tools:p
           qt6-multimedia-ffmpeg:p
+          ntldd-git:p
 
     - name: Setup build directory
       shell: msys2 {0}
@@ -146,9 +147,37 @@ jobs:
         cp /mingw64/bin/libfftw3f-3.dll JS8Call/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libhamlib-4.dll' JS8Call/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libusb-1.0.dll' JS8Call/
-        cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libwinpthread-1.dll' JS8Call/
+        cp /mingw64/bin/libwinpthread-1.dll JS8Call/
         cp /mingw64/bin/libstdc++-6.dll JS8Call/
         cp /mingw64/bin/libgcc_s_seh-1.dll JS8Call/
+
+    - name: Walk transitive deps via ntldd
+      shell: msys2 {0}
+      run: |
+        set -e
+        cd ./build/JS8Call/
+        seeds=$(ls *.exe *.dll 2>/dev/null)
+        for d in iconengines imageformats multimedia networkinformation platforms styles tls generic; do
+          [ -d "$d" ] || continue
+          for f in "$d"/*.dll; do
+            [ -f "$f" ] && seeds="$seeds $f"
+          done
+        done
+        echo "ntldd seeds: $(echo $seeds | tr ' ' '\n' | wc -l)"
+        for f in $seeds; do
+          ntldd -R "$f" 2>/dev/null | \
+            sed -nE 's|.*=> *([^ ]+).*|\1|p' | \
+            grep -iE 'mingw64' | \
+            while read -r dep; do
+              bn=$(basename "$dep")
+              src="/mingw64/bin/$bn"
+              if [ ! -f "$bn" ] && [ -f "$src" ]; then
+                cp "$src" .
+                echo "  + $bn"
+              fi
+            done
+        done
+        echo "ntldd walk done. Top-level DLL count: $(ls *.dll | wc -l)"
 
     - name: DIAG list build tree (temp, remove after green)
       shell: msys2 {0}
