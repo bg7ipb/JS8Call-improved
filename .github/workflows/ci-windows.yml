@@ -138,6 +138,8 @@ jobs:
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libhamlib-4.dll' JS8Call/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libusb-1.0.dll' JS8Call/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libwinpthread-1.dll' JS8Call/
+        cp /mingw64/bin/libstdc++-6.dll JS8Call/
+        cp /mingw64/bin/libgcc_s_seh-1.dll JS8Call/
 
     - name: Get secrets (CI)
       if: ${{ !(inputs.environment) || (inputs.environment == 'CI') }}
