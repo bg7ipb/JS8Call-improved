@@ -65,20 +65,15 @@ jobs:
           fftw:p
           sqlite3:p
           python:p
+          qt6-base:p
+          qt6-multimedia:p
+          qt6-serialport:p
+          qt6-tools:p
+          qt6-multimedia-ffmpeg:p
 
     - name: Setup build directory
       shell: msys2 {0}
       run: mkdir -p build
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '6.9.3'
-        target: 'desktop'
-        arch: 'win64_mingw'
-        modules: 'qtmultimedia qtserialport'
-        cache: true
-        dir: 'D:/a/JS8Call-improved/JS8Call-improved/local/qt693'
 
 # hamlib
     - name: Cache Check Hamlib 4.7.1
@@ -103,12 +98,21 @@ jobs:
       with:
         key: ${{ runner.os }}-${{ runner.arch }}-hamlib471
         path: 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib'
-        
+
+    - name: Verify Qt6 toolchain (B-plan guard)
+      shell: msys2 {0}
+      run: |
+        set -e
+        pacman -Q mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-multimedia mingw-w64-x86_64-qt6-multimedia-ffmpeg mingw-w64-x86_64-qt6-serialport mingw-w64-x86_64-qt6-tools
+        ls /mingw64/bin/Qt6Core.dll /mingw64/bin/Qt6Multimedia.dll /mingw64/bin/Qt6SerialPort.dll
+        ls /mingw64/bin/lrelease.exe /mingw64/bin/windeployqt.exe
+        /mingw64/bin/qmake6.exe --version || /mingw64/bin/qmake.exe --version
+
     - name: Configure JS8Call
       shell: msys2 {0}
       run: |
         cd ./build
-        cmake -DCMAKE_PREFIX_PATH='D:/a/JS8Call-improved/JS8Call-improved/local/hamlib;D:/a/JS8Call-improved/JS8Call-improved/local/qt693/Qt/6.9.3/mingw_64' ..
+        cmake -DCMAKE_PREFIX_PATH='D:/a/JS8Call-improved/JS8Call-improved/local/hamlib' ..
 
     - name: Build JS8Call (CI build)
       if: ${{ !(inputs.environment) || (inputs.environment == 'CI') }}
