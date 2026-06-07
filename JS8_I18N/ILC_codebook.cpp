@@ -7,6 +7,42 @@
 #include <QFile>
 #include <QStringList>
 
+namespace {
+// Minimal RFC4180-style CSV row parser: handles `"..."` quoted fields so a
+// token can itself be `,` or `"`. Mirrors the csv.reader the MVP relied on.
+// No embedded-newline support (codebook rows are single-line by convention).
+QStringList splitCsvRow(const QString &line)
+{
+    QStringList out;
+    QString cur;
+    bool inQuotes = false;
+    for (int i = 0; i < line.size(); ++i) {
+        const QChar c = line.at(i);
+        if (inQuotes) {
+            if (c == QLatin1Char('"')) {
+                if (i + 1 < line.size() && line.at(i + 1) == QLatin1Char('"')) {
+                    cur.append(QLatin1Char('"'));   // "" -> literal "
+                    ++i;
+                } else {
+                    inQuotes = false;               // closing quote
+                }
+            } else {
+                cur.append(c);
+            }
+        } else if (c == QLatin1Char(',')) {
+            out.append(cur);
+            cur.clear();
+        } else if (c == QLatin1Char('"') && cur.isEmpty()) {
+            inQuotes = true;                        // opening quote (only at field start)
+        } else {
+            cur.append(c);
+        }
+    }
+    out.append(cur);
+    return out;
+}
+} // namespace
+
 bool ILCCodebook::load(const QString &path, QString *err)
 {
     enc.clear();
@@ -36,8 +72,9 @@ bool ILCCodebook::load(const QString &path, QString *err)
             headerSeen = true;
             continue;
         }
-        // tokens are comma- and quote-free (matches the csv.reader the MVP used)
-        const QStringList r = line.split(QLatin1Char(','));
+        // RFC4180-style split so a token can be `,` or `"` (matches the
+        // csv.reader the MVP used; previous naive split mis-parsed `","`).
+        const QStringList r = splitCsvRow(line);
         if (r.size() < 4)
             continue;
         bool okT = false, okI = false;
