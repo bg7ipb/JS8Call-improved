@@ -154,8 +154,8 @@ jobs:
     - name: Walk transitive deps via ntldd
       shell: msys2 {0}
       run: |
-        set -e
         cd ./build/JS8Call/
+        command -v ntldd >/dev/null 2>&1 || { echo "ERROR: ntldd not installed"; exit 1; }
         seeds=$(ls *.exe *.dll 2>/dev/null)
         for d in iconengines imageformats multimedia networkinformation platforms styles tls generic; do
           [ -d "$d" ] || continue
@@ -165,17 +165,17 @@ jobs:
         done
         echo "ntldd seeds: $(echo $seeds | tr ' ' '\n' | wc -l)"
         for f in $seeds; do
-          ntldd -R "$f" 2>/dev/null | \
-            sed -nE 's|.*=> *([^ ]+).*|\1|p' | \
-            grep -iE 'mingw64' | \
-            while read -r dep; do
-              bn=$(basename "$dep")
-              src="/mingw64/bin/$bn"
-              if [ ! -f "$bn" ] && [ -f "$src" ]; then
-                cp "$src" .
-                echo "  + $bn"
-              fi
-            done
+          ntldd -R "$f" 2>/dev/null \
+            | sed -nE 's|.*=> *([^ ]+).*|\1|p' \
+            | { grep -iE 'mingw64' || true; } \
+            | while read -r dep; do
+                bn=$(basename "$dep")
+                src="/mingw64/bin/$bn"
+                if [ ! -f "$bn" ] && [ -f "$src" ]; then
+                  cp "$src" .
+                  echo "  + $bn"
+                fi
+              done
         done
         echo "ntldd walk done. Top-level DLL count: $(ls *.dll | wc -l)"
 
