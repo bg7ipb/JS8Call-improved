@@ -30,6 +30,20 @@ inline quint32 readBits(const Codeword &bs, int p, int width)
         v = (v << 1) | (bs.at(p + b) ? 1u : 0u);
     return v;
 }
+
+// Bit length of the ILC token beginning at bs[p]; -1 if the buffer ends before
+// a complete token (i.e. trailing all-1s frame padding). Mirrors decompress()'s
+// parser so chunk() (encode) and frame-aware decode share one boundary source.
+inline int tokenLenAt(const Codeword &bs, int p)
+{
+    const int n = bs.size();
+    int k = 0;
+    while (p + k < n && bs.at(p + k) && k < 5) ++k;
+    if (k == 5) return (p + 21 <= n) ? 21 : -1;       // ESC = 11111 + 16
+    if (p + k >= n || bs.at(p + k)) return -1;          // need '0' terminator
+    const int total = k + 1 + IDXBITS[k];               // tier == k
+    return (p + total <= n) ? total : -1;
+}
 } // namespace
 
 Codeword ILC::compress(const QString &text, ILCStats *stats, bool *ok) const
@@ -119,15 +133,32 @@ QList<Codeword> ILC::chunk(const Codeword &bs, int width)
 {
     QList<Codeword> frames;
     if (width <= 0) return frames;
-    if (bs.isEmpty()) {                              // empty -> one padded frame
-        frames.append(Codeword(width, false));
-        return frames;
+    // Token-aware: never split a token across frames. Pack whole tokens until
+    // the next would overflow `width`, then seal the frame with all-1s padding
+    // (Q2' D2). All-1s self-terminates -- no '0' for a low-tier token, and a
+    // non-final frame's remainder is < 21 bit so it cannot start an ESC; the
+    // final frame is protected by the EOM token (decode breaks before the pad).
+    // Lets a receiver decode any frame run that begins on a frame boundary.
+    Codeword cur;
+    int p = 0;
+    const int n = bs.size();
+    while (p < n) {
+        const int L = tokenLenAt(bs, p);             // compress output is well-formed
+        if (L <= 0) break;                            // defensive: bad input
+        if (cur.size() + L > width) {                 // next token overflows -> seal
+            while (cur.size() < width) cur.append(true);   // all-1s padding
+            frames.append(cur);
+            cur.clear();
+        }
+        cur += bs.mid(p, L);                           // whole token into frame
+        p += L;
     }
-    for (int i = 0; i < bs.size(); i += width) {
-        Codeword f = bs.mid(i, width);
-        while (f.size() < width) f.append(false);    // pad last with 0
-        frames.append(f);
+    if (!cur.isEmpty()) {
+        while (cur.size() < width) cur.append(true);
+        frames.append(cur);
     }
+    if (frames.isEmpty())                              // empty payload (unreachable: EOM)
+        frames.append(Codeword(width, true));
     return frames;
 }
 

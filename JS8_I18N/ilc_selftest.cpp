@@ -66,7 +66,9 @@ int runIlcSelftest()
         bool ok = true;
         const Codeword bs = ilc.compress(m, &st, &ok);
         const QList<Codeword> frames = ILC::chunk(bs, FRAME);
-        const QString rt = ilc.decompress(ILC::dechunk(frames));
+        QString rt;
+        for (const Codeword &fr : frames)
+            rt += ilc.decompress(ILC::dechunk(QList<Codeword>{fr}));
         const bool pass = ok && (rt == m);
         allpass = allpass && pass;
 
@@ -291,8 +293,8 @@ int runIlcSelftest()
         if (!p1) ++fails;
 
         int e2 = Varicode::estimateCnFrames(canon);
-        bool p2 = (e2 == 3);
-        out << "[V12.2] estimateCnFrames(canonical)=" << e2 << " exp=3"
+        bool p2 = (e2 == 4);
+        out << "[V12.2] estimateCnFrames(canonical)=" << e2 << " exp=4"
             << (p2 ? " PASS" : " FAIL") << "\n";
         if (!p2) ++fails;
 

@@ -235,11 +235,12 @@ DecodeResult decode(const ILC &codec, const QList<QString> &frames)
         return r;
     }
 
-    QList<Bits> assembled;
-    for (const Slot &s : rxSlots) assembled.append(s.payload);
-    const Bits joined = ILC::dechunk(assembled);
-
-    r.text       = codec.decompress(joined);
+    // T1 token-aware framing: every frame self-terminates at its all-1s
+    // padding / EOM, so decompress each frame separately and concatenate.
+    // The old whole-list dechunk spliced padding into the bitstream and
+    // corrupted tokens straddling a frame boundary (seq102 multi-frame bug).
+    for (const Slot &s : rxSlots)
+        r.text += codec.decompress(ILC::dechunk(QList<Bits>{s.payload}));
     r.langID     = langID;
     r.frameCount = rxSlots.size();
     r.ok         = true;
@@ -321,11 +322,12 @@ QString StreamAccumulator::feed(const ILC &codec, const QString &frame,
     payloads_.insert(seq, v.payload);
 
     // Decode the contiguous prefix from seq 0; stop at the first gap.
-    QList<Codeword> prefix;
+    // T1 token-aware framing: decompress each frame separately and
+    // concatenate -- each self-terminates at padding/EOM, so the old
+    // whole-prefix dechunk spliced padding mid-stream (seq102 multi-frame bug).
+    QString full;
     for (int s = 0; payloads_.contains(s); ++s)
-        prefix.append(payloads_.value(s));
-    const Codeword joined = ILC::dechunk(prefix);
-    const QString  full   = codec.decompress(joined);
+        full += codec.decompress(ILC::dechunk(QList<Codeword>{payloads_.value(s)}));
 
     QString delta;
     if (full.size() > shownChars_) {
