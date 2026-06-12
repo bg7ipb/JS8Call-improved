@@ -2200,6 +2200,10 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
         }
 #endif
 
+        // JS8CALL-CN (D1 owner=B): track the first ILC content frame within
+        // lineFrames so the post-loop First-bit set lands on it, not on the
+        // prepended compound callsign frame.
+        int cnFirstIlcIdx = -1;
         while (line.size() > 0) {
             // JS8CALL-CN: CJK ILC path. If the i18n codec is loaded and the
             // line contains CJK, encode the whole line into 1..8 Compound
@@ -2237,15 +2241,17 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
                 auto const enc = ILCFramer::encode(*ilc, encLine,
                                                    ILCFramer::kLangIdCn);
                 if (enc.ok) {
-                    // JS8CALL-CN multi-frame + callsign prepend (D3=B, D5). RX
-                    // attributes via the prepended compound callsign frame; the
-                    // 1..8 ILC content frames follow. First/Last set downstream
-                    // by prepareNextMessageFrame.
+                    // JS8CALL-CN multi-frame + callsign prepend (D1 owner=B,
+                    // D2 full-1s padding, D3 frame-aware decode). RX attributes
+                    // via the prepended compound callsign frame; the 1..8 ILC
+                    // content frames follow. JS8CallFirst lands on the first
+                    // ILC content frame (post-loop wrap-up reads cnFirstIlcIdx).
                     QString cmpMsg = QString("`%1 %2").arg(mycall).arg(mygrid);
                     QString cmpFrame = Varicode::packCompoundMessage(cmpMsg, nullptr);
                     if (!cmpFrame.isEmpty()) {
                         lineFrames.append({cmpFrame, Varicode::JS8Call});
                     }
+                    cnFirstIlcIdx = lineFrames.size();
                     for (auto const &f : enc.frames) {
                         lineFrames.append({f, Varicode::JS8Call});
                     }
@@ -2461,8 +2467,12 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
         }
 
         if (!lineFrames.isEmpty()) {
-            lineFrames.first().second |= Varicode::JS8CallFirst;
-            lineFrames.last().second |= Varicode::JS8CallLast;
+            // JS8CALL-CN D1: cnFirstIlcIdx points at the first ILC content frame
+            // (compound is at index 0); fall back to 0 for the EN pack* path.
+            const int firstIdx = (cnFirstIlcIdx >= 0 && cnFirstIlcIdx < lineFrames.size())
+                                     ? cnFirstIlcIdx : 0;
+            lineFrames[firstIdx].second |= Varicode::JS8CallFirst;
+            lineFrames.last().second    |= Varicode::JS8CallLast;
         }
 
         allFrames.append(lineFrames);

@@ -3738,11 +3738,6 @@ bool UI_Constructor::prepareNextMessageFrame() {
     auto frame = f.first;
     auto bits = f.second;
 
-    // if not the first frame, ensure first bit is not set
-    if (m_txFrameCountSent > 0) {
-        bits &= ~Varicode::JS8CallFirst;
-    }
-
     // if last frame, ensure the last bit is set
     if (m_txFrameQueue.isEmpty()) {
         bits |= Varicode::JS8CallLast;

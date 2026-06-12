@@ -89,10 +89,11 @@ QString accumulate(int offset, const QString &frame,
         return {};
     }
     State &s = state();
-    // JS8CALL-CN: callsign-prepend takes the i3bit JS8CallFirst on the first ILC
-    // frame, so synthesize isFirst when this offset slot is fresh; otherwise the
-    // opening Compound frame never lands in seq 0 and decode returns empty.
-    const bool firstForSlot = isFirst || !s.accs.contains(offset);
+    // JS8CALL-CN: isFirst comes from the outer i3bit JS8CallFirst, which the
+    // TX side (Varicode buildMessageFrames + cnFirstIlcIdx) plants on the first
+    // ILC content frame. No synthesis needed; mid-join works because the
+    // accumulator's decode run starts from the lowest received seq.
+    const bool firstForSlot = isFirst;
     const QString delta =
         s.accs[offset].feed(*c, frame, firstForSlot, isLast, ok);
     if (isLast) s.accs.remove(offset);
