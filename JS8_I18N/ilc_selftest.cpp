@@ -222,6 +222,55 @@ int runIlcSelftest()
     }
     out << ">>> stream accumulator PASS\n";
 
+    // ---- T3b mid-join: a late joiner that missed frame 0 decodes from
+    // the lowest received seq (not hard-wired 0). Feed frames[1..n-1] as
+    // mid frames; expect the suffix a full receive shows after frame 0. ----
+    out << QString(76, QLatin1Char('-')) << "\n";
+    {
+        const QString joinMsg =
+            QString::fromUtf8("我的天线是八木，收到你信号很强，今天天气很好");
+        ILCFramer::EncodeResult jenc = ILCFramer::encode(ilc, joinMsg);
+        if (!jenc.ok || jenc.frames.size() < 2) {
+            out << "mid-join setup FAIL (need multi-frame): " << jenc.err << "\n";
+            return 5;
+        }
+        const int n = jenc.frames.size();
+
+        // Reference full receive: capture the prefix shown by frame 0 (what the
+        // late joiner missed).
+        ILCFramer::StreamAccumulator full;
+        const QString prefix =
+            full.feed(ilc, jenc.frames.at(0), true, n == 1, nullptr);
+        QString fullText = prefix;
+        for (int i = 1; i < n; ++i)
+            fullText += full.feed(ilc, jenc.frames.at(i), false, i == n - 1, nullptr);
+
+        // Mid-join: fresh accumulator, skip frame 0, feed frames[1..n-1] as mid
+        // frames (isFirst=false). firstKey() must start the run at seq 1.
+        ILCFramer::StreamAccumulator joined;
+        QString joinText;
+        for (int i = 1; i < n; ++i) {
+            bool fok = false;
+            joinText += joined.feed(ilc, jenc.frames.at(i), false, i == n - 1, &fok);
+            if (!fok) {
+                out << QString::asprintf("mid-join frame %d/%d FAIL\n", i + 1, n);
+                return 5;
+            }
+        }
+
+        const bool pass =
+            !joinText.isEmpty() && joinText == fullText.mid(prefix.size());
+        out << "mid-join (skip frame 0) "
+            << QString::asprintf("frames=%d ", n)
+            << (pass ? "PASS" : "FAIL") << "\n";
+        if (!pass) {
+            out << "    got='"  << joinText << "'\n"
+                << "    want='" << fullText.mid(prefix.size()) << "'\n";
+            return 5;
+        }
+    }
+    out << ">>> mid-join accumulator PASS\n";
+
     // ---- V10: real CN frame -> Varicode::unpackCompoundMessage compat ----
     out << QString(76, QLatin1Char('-')) << "\n";
     {

@@ -321,12 +321,15 @@ QString StreamAccumulator::feed(const ILC &codec, const QString &frame,
     if (isFirst || isLast) declaredTotal_ = v.totalSeqField + 1;
     payloads_.insert(seq, v.payload);
 
-    // Decode the contiguous prefix from seq 0; stop at the first gap.
+    // T3b mid-join: decode the contiguous run from the lowest received seq
+    // (not hard-wired 0) -- a late joiner never sees seq 0. payloads_ is
+    // non-empty here (just inserted), so firstKey() is safe. Forward arrival
+    // assumed (no retransmission, D5 parked) keeps the run start stable.
     // T1 token-aware framing: decompress each frame separately and
     // concatenate -- each self-terminates at padding/EOM, so the old
     // whole-prefix dechunk spliced padding mid-stream (seq102 multi-frame bug).
     QString full;
-    for (int s = 0; payloads_.contains(s); ++s)
+    for (int s = payloads_.firstKey(); payloads_.contains(s); ++s)
         full += codec.decompress(ILC::dechunk(QList<Codeword>{payloads_.value(s)}));
 
     QString delta;
