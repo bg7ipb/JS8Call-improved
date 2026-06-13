@@ -2213,6 +2213,17 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
             // pack* path, which would mojibake CJK).
             if (auto const *ilc = ILCRuntime::instance();
                 ilc && cnMode && shouldCnRoute(line)) {
+                // JS8CALL-CN (PARK-085 hybrid step1): peel directed prefix BEFORE
+                // ILC-encoding the body. Mirrors EN :2290 + useDir CASE 0-3 (:2360).
+                // n>0 => directed prefix consumed; line.mid(n) is the CJK body.
+                QString dirCmd, dirTo, dirNum;
+                bool dirToCompound = false;
+                int n = 0;
+                QString dirFrame = Varicode::packDirectedMessage(
+                    line, mycall, &dirTo, &dirToCompound, &dirCmd, &dirNum, &n);
+                if (n > 0) {
+                    line = line.mid(n);
+                }
                 // JS8CALL-CN (Slice B2, E2/R5): pre-encode sanitization -- replace each code
                 // point the codec cannot encode (super-BMP/surrogate) with a single
                 // '?', iterating by code point so a surrogate pair collapses to ONE
@@ -2241,6 +2252,29 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
                 auto const enc = ILCFramer::encode(*ilc, encLine,
                                                    ILCFramer::kLangIdCn);
                 if (enc.ok) {
+                    // JS8CALL-CN (PARK-085 hybrid step2): emit directed addressing
+                    // frame(s) first when n>0. Mirrors EN useDir CASE 0-3 (:2388-
+                    // 2416). The compound sender prepend below continues to fire
+                    // unchanged for ILC RX attribution (per seq112 step 4: n==0
+                    // 现行不变; n>0 retains it for symmetric ILC accumulate path).
+                    if (n > 0) {
+                        if (mycallCompound || dirToCompound) {
+                            // CASE 1/2/3: compound sender + (compound-)directed.
+                            QString deCompoundMessage = QString("`%1 %2").arg(mycall).arg(mygrid);
+                            QString deCompoundFrame = Varicode::packCompoundMessage(deCompoundMessage, nullptr);
+                            if (!deCompoundFrame.isEmpty()) {
+                                lineFrames.append({deCompoundFrame, Varicode::JS8Call});
+                            }
+                            QString dirCompoundMessage = QString("`%1%2%3").arg(dirTo).arg(dirCmd).arg(dirNum);
+                            QString dirCompoundFrame = Varicode::packCompoundMessage(dirCompoundMessage, nullptr);
+                            if (!dirCompoundFrame.isEmpty()) {
+                                lineFrames.append({dirCompoundFrame, Varicode::JS8Call});
+                            }
+                        } else {
+                            // CASE 0: standard directed frame.
+                            lineFrames.append({dirFrame, Varicode::JS8Call});
+                        }
+                    }
                     // JS8CALL-CN multi-frame + callsign prepend (D1 owner=B,
                     // D2 full-1s padding, D3 frame-aware decode). RX attributes
                     // via the prepended compound callsign frame; the 1..8 ILC
