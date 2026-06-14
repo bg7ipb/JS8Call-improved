@@ -2276,14 +2276,16 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
                         }
                     }
                     // JS8CALL-CN multi-frame + callsign prepend (D1 owner=B,
-                    // D2 full-1s padding, D3 frame-aware decode). RX attributes
-                    // via the prepended compound callsign frame; the 1..8 ILC
-                    // content frames follow. JS8CallFirst lands on the first
-                    // ILC content frame (post-loop wrap-up reads cnFirstIlcIdx).
-                    QString cmpMsg = QString("`%1 %2").arg(mycall).arg(mygrid);
-                    QString cmpFrame = Varicode::packCompoundMessage(cmpMsg, nullptr);
-                    if (!cmpFrame.isEmpty()) {
-                        lineFrames.append({cmpFrame, Varicode::JS8Call});
+                    // D2 full-1s padding, D3 frame-aware decode). The compound
+                    // callsign prepend is emitted on the first frame only (n==0).
+                    // The 1..8 ILC content frames follow. JS8CallFirst lands on
+                    // the first ILC content frame (post-loop reads cnFirstIlcIdx).
+                    if (n == 0) {
+                        QString cmpMsg = QString("`%1 %2").arg(mycall).arg(mygrid);
+                        QString cmpFrame = Varicode::packCompoundMessage(cmpMsg, nullptr);
+                        if (!cmpFrame.isEmpty()) {
+                            lineFrames.append({cmpFrame, Varicode::JS8Call});
+                        }
                     }
                     cnFirstIlcIdx = lineFrames.size();
                     for (auto const &f : enc.frames) {
