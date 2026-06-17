@@ -2212,7 +2212,7 @@ Varicode::buildMessageFrames(QString const &mycall, QString const &mygrid,
             // langID) the line is dropped (NOT passed to the English
             // pack* path, which would mojibake CJK).
             if (auto const *ilc = ILCRuntime::instance();
-                ilc && cnMode && shouldCnRoute(line)) {
+                ilc && cnMode && lineFrames.isEmpty() && shouldCnRoute(line)) {  // [loc] PARK-new-N: CN only at line start; block EN->CN mid-line re-route (dup cmpFrame + double-colon)
                 // JS8CALL-CN (PARK-085 hybrid step1): peel directed prefix BEFORE
                 // ILC-encoding the body. Mirrors EN :2290 + useDir CASE 0-3 (:2360).
                 // n>0 => directed prefix consumed; line.mid(n) is the CJK body.
