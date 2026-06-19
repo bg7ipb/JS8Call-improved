@@ -7,6 +7,7 @@
 #include "ILC_codebook.h"
 #include "ILC_framer.h"
 #include "ilc_selftest.h"
+#include "ILC_runtime.h"
 
 #include "../JS8_Main/Varicode.h"
 
@@ -369,6 +370,96 @@ int runIlcSelftest()
 
         out << ">>> V12 4-assertion " << (fails ? "FAIL" : "PASS") << "\n";
         if (fails) { out << "[V12] " << fails << " FAILED\n"; return 8; }
+    }
+
+    // ===== V13: deterministic ILCRuntime::accumulate drift-merge assertions (return 9) =====
+    // Validates freq-tolerance fix 95a9aad8 (driftRange + move-to-newest + isFirst-no-hijack)
+    // straight through the singleton accumulator, which selftest (return 1-8) bypasses.
+    {
+        // CRITICAL singleton gotcha: selftest short-circuits at main.cpp:168 BEFORE the normal
+        // ILCRuntime::init(@main.cpp:111). Without this call, accumulate() hits !instance() and
+        // early-returns -> every V13 assertion silently no-ops. init is call_once-guarded
+        // (reentrant-safe). path/err are reused from the runIlcSelftest scope.
+        ILCRuntime::init(path, &err);
+
+        int v13fails = 0;
+
+        const QString msgA = QStringLiteral("你好今天我们一起测试中文长消息的收发");
+        auto erA = ILCFramer::encode(ilc, msgA);
+        const int nA = erA.frames.size();
+
+        if (!erA.ok || nA < 2) {
+            out << "[V13] setup FAIL: msgA encode ok=" << int(erA.ok)
+                << " frames=" << nA << " (need ok && >=2)\n";
+            ++v13fails;
+        } else {
+            // ---- V13.1: +/-driftRange merges drifted continuations into ONE bucket ----
+            // frame0 @1000 (isFirst -> new bucket); continuations @1003 (+3Hz, within +/-10):
+            // first continuation probes [993,1013], finds 1000, move-to-newest -> key 1003;
+            // later ones contains(1003) direct-hit. All frames -> one logical message.
+            {
+                QString acc1;
+                bool allOk1 = true;
+                for (int i = 0; i < nA; ++i) {
+                    bool ok = false;
+                    const int off = (i == 0) ? 1000 : 1003;
+                    acc1 += ILCRuntime::accumulate(off, 10, erA.frames[i],
+                                                   (i == 0), (i == nA - 1), &ok);
+                    if (!ok) allOk1 = false;
+                }
+                const bool p1 = (acc1 == msgA) && allOk1;
+                out << "[V13.1] drift-merge @1000/1003: rebuilt==msgA=" << int(acc1 == msgA)
+                    << " allOk=" << int(allOk1) << (p1 ? " PASS" : " FAIL") << "\n";
+                if (!p1) ++v13fails;
+            }
+
+            // ---- V13.2: drift beyond +/-driftRange must NOT merge (separate buckets) ----
+            // f0 @2000 (isFirst); f1 @2100 (+100Hz > +/-10) probes [2090,2110], misses 2000,
+            // strands in its own bucket with no seq-0 -> d1 empty. ok0 && ok1 confirms both
+            // frames VALID (distinguishes "no merge" from "corrupt frame").
+            {
+                bool ok0 = false, ok1 = false;
+                const QString d0 = ILCRuntime::accumulate(2000, 10, erA.frames[0], true,  false, &ok0);
+                const QString d1 = ILCRuntime::accumulate(2100, 10, erA.frames[1], false, true,  &ok1);
+                const bool p2 = ok0 && ok1 && ((d0 + d1) != msgA);
+                out << "[V13.2] out-of-range split @2000/2100: ok0=" << int(ok0)
+                    << " ok1=" << int(ok1) << " d1empty=" << int(d1.isEmpty())
+                    << " sum!=msgA=" << int((d0 + d1) != msgA) << (p2 ? " PASS" : " FAIL") << "\n";
+                if (!p2) ++v13fails;
+            }
+
+            // ---- V13.3: an isFirst frame at a NEARBY offset must NOT hijack an open bucket ----
+            // seed bucket@3000 with msgA frame0 (isFirst); msgB single-frame @3005 (within +/-10)
+            // but isFirst -> no probe -> opens its OWN bucket, leaves 3000 intact; isLast releases
+            // 3005. msgA continuations @3000 then contains() direct-hit -> msgA rebuilt in full.
+            {
+                auto erB = ILCFramer::encode(ilc, QStringLiteral("你好73"));
+                bool okSeed = false, okB = false, okRest = true;
+                QString acc3, dB;
+                acc3 += ILCRuntime::accumulate(3000, 10, erA.frames[0], true, false, &okSeed);
+                if (erB.ok && erB.frames.size() == 1) {
+                    dB = ILCRuntime::accumulate(3005, 10, erB.frames[0], true, true, &okB);
+                } else {
+                    out << "[V13.3] setup: msgB encode ok=" << int(erB.ok)
+                        << " frames=" << erB.frames.size() << " (need ok && ==1)\n";
+                }
+                for (int i = 1; i < nA; ++i) {
+                    bool ok = false;
+                    acc3 += ILCRuntime::accumulate(3000, 10, erA.frames[i],
+                                                   false, (i == nA - 1), &ok);
+                    if (!ok) okRest = false;
+                }
+                const bool p3 = (acc3 == msgA) && !dB.isEmpty() && okSeed && okB && okRest;
+                out << "[V13.3] isFirst-no-hijack @3000 (msgB@3005): msgA_rebuilt==full="
+                    << int(acc3 == msgA) << " msgB_delta_nonempty=" << int(!dB.isEmpty())
+                    << " okSeed=" << int(okSeed) << " okB=" << int(okB)
+                    << " okRest=" << int(okRest) << (p3 ? " PASS" : " FAIL") << "\n";
+                if (!p3) ++v13fails;
+            }
+        }
+
+        out << ">>> V13 3-assertion " << (v13fails ? "FAIL" : "PASS") << "\n";
+        if (v13fails) { out << "[V13] " << v13fails << " FAILED\n"; return 9; }
     }
 
     return 0;
