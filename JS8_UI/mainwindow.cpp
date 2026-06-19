@@ -3512,7 +3512,7 @@ QString UI_Constructor::createMessageTransmitQueue(QString const &text,
     foreach (auto frame, frames) {
         bool ilcOk = false;
         const QString ilcDelta = ILCRuntime::accumulate(
-            kTxQueuePreviewOffset, frame.first,
+            kTxQueuePreviewOffset, 0, frame.first,
             (frame.second & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
             (frame.second & Varicode::JS8CallLast)  == Varicode::JS8CallLast, &ilcOk);
         if (ilcOk) {
@@ -3756,7 +3756,7 @@ bool UI_Constructor::prepareNextMessageFrame() {
     // per-offset accumulator the RX path uses (clean Chinese on TX self-display).
     bool ilcOk = false;
     const QString ilcDelta = ILCRuntime::accumulate(
-        kTxSendOffset, frame,
+        kTxSendOffset, 0, frame,
         (bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
         (bits & Varicode::JS8CallLast)  == Varicode::JS8CallLast, &ilcOk);
     const QString shownText = ilcOk ? ilcDelta : dt.message();

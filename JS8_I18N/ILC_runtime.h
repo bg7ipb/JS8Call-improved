@@ -28,10 +28,14 @@ bool isReady();
 // RX streaming reassembler for the per-offset receive path. Feeds one wire
 // `frame` (with its outer i3bit First/Last) into the accumulator keyed by
 // `offset`, returning the newly decodable text (delta) for that frame --
-// decoding only the contiguous prefix from seq 0. *ok=false when `frame` is
-// not a valid ILC frame or i18n is off, in which case the caller leaves its
-// text unchanged. The per-offset accumulator is released after the Last frame.
-QString accumulate(int offset, const QString &frame,
+// decoding only the contiguous prefix from seq 0. `driftRange` is the +/-Hz
+// frequency tolerance (the caller's rxThreshold(submode); 0 disables): a
+// continuation frame within +/-driftRange of an existing bucket is merged onto
+// it (move-to-newest), so physical-channel drift does not fragment a
+// multi-frame message. *ok=false when `frame` is not a valid ILC frame or
+// i18n is off, in which case the caller leaves its text unchanged. The
+// per-offset accumulator is released after the Last frame or a 90s idle TTL.
+QString accumulate(int offset, int driftRange, const QString &frame,
                    bool isFirst, bool isLast, bool *ok = nullptr);
 
 // True when `text` contains ≥1 CJK Unified Ideograph (U+4E00..U+9FFF

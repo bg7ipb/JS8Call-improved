@@ -312,7 +312,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                     // non-ILC frames are a no-op (ilcOk=false leaves d.text as message()).
                     bool ilcOk = false;
                     const QString ilcDelta = ILCRuntime::accumulate(
-                        d.offset, decodedtext.frame(),
+                        d.offset, JS8::Submode::rxThreshold(decodedtext.submode()), decodedtext.frame(),
                         (d.bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
                         (d.bits & Varicode::JS8CallLast) == Varicode::JS8CallLast, &ilcOk);
                     if (ilcOk) d.text = ilcDelta;
