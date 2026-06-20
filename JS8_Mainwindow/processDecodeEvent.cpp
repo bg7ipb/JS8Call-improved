@@ -316,6 +316,53 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                         (d.bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst,
                         (d.bits & Varicode::JS8CallLast) == Varicode::JS8CallLast, &ilcOk);
                     if (ilcOk) d.text = ilcDelta;
+
+                    // JS8CALL-CN directed-msg-echo: accumulate per-offset ILC deltas;
+                    // on the last frame, emit a blue echo line to textEditRX.
+                    if (ilcOk) {
+                        const bool ilcFirst =
+                            (d.bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst;
+                        const bool ilcLast =
+                            (d.bits & Varicode::JS8CallLast) == Varicode::JS8CallLast;
+                        DirectedCnCapture &cap = m_directedCnCapture[d.offset];
+                        if (ilcFirst || cap.accumulated.isEmpty()) {
+                            cap.accumulated.clear();
+                            cap.firstSeen = DriftingDateTime::currentDateTimeUtc();
+                            cap.firstOffset = d.offset;
+                            cap.snr = decodedtext.snr();
+                            cap.committed = false;
+                        }
+                        cap.accumulated += ilcDelta;
+                        if (ilcLast && !cap.committed && !cap.accumulated.isEmpty()) {
+                            const QString frameLit = decodedtext.frame();
+                            const QDateTime nowUtc =
+                                DriftingDateTime::currentDateTimeUtc();
+                            const QDateTime lastSeen =
+                                m_directedCnFrameSeen.value(frameLit);
+                            if (!lastSeen.isValid() ||
+                                lastSeen.msecsTo(nowUtc) > 30000) {
+                                const QString fmtLine =
+                                    QString("[Off:%1 Age:%2 SNR:%3] %4")
+                                        .arg(cap.firstOffset)
+                                        .arg(cap.firstSeen.secsTo(nowUtc))
+                                        .arg(cap.snr)
+                                        .arg(cap.accumulated);
+                                writeMessageTextToUI(nowUtc, fmtLine, cap.firstOffset,
+                                                     false, -1, true);
+                                m_directedCnFrameSeen.insert(frameLit, nowUtc);
+                            }
+                            cap.committed = true;
+                            for (auto it = m_directedCnFrameSeen.begin();
+                                 it != m_directedCnFrameSeen.end();) {
+                                if (it.value().msecsTo(nowUtc) > 30000) {
+                                    it = m_directedCnFrameSeen.erase(it);
+                                } else {
+                                    ++it;
+                                }
+                            }
+                            m_directedCnCapture.remove(d.offset);
+                        }
+                    }
                     d.utcTimestamp = DriftingDateTime::currentDateTimeUtc();
                     d.snr = decodedtext.snr();
                     d.isBuffered = false;
