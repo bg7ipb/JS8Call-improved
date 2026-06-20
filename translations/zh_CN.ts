@@ -2290,6 +2290,141 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <source>File Open Error</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="22"/>
+        <source>Send a directed message to selected callsign</source>
+        <translation>向选中呼号发送定向消息</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="35"/>
+        <source>Send reply message to selected callsign</source>
+        <translation>向选中呼号发送回复消息</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="48"/>
+        <source>Send a signal report to the selected callsign</source>
+        <translation>向选中呼号发送信号报告</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="71"/>
+        <source>Send my station information</source>
+        <translation>发送本台信息</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="88"/>
+        <source>Send my current station Maidenhead grid locator</source>
+        <translation>发送本台当前 Maidenhead 网格</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="107"/>
+        <source>What is my signal report?</source>
+        <translation>我的信号报告是多少？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="122"/>
+        <source>What is your station information?</source>
+        <translation>你的台站信息是什么？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="137"/>
+        <source>What is your current grid locator?</source>
+        <translation>你当前的网格是多少？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="152"/>
+        <source>What is your station status message?</source>
+        <translation>你的台站状态消息是什么？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="167"/>
+        <source>What are the stations are you hearing? (Top 4 ranked by most recently heard)</source>
+        <translation>你正在收到哪些台站？(按最近收听时间排前 4 名)</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="196"/>
+        <source>Please relay this message to its destination</source>
+        <translation>请将此消息转发至目标</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="208"/>
+        <source>Please store this message in your inbox</source>
+        <translation>请将此消息存入你的收件箱</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="221"/>
+        <source>Please store this message at your station for later retreival by [CALLSIGN]</source>
+        <translation>请将此消息存于你的台站，供 [CALLSIGN] 稍后取回</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="235"/>
+        <source>Please acknowledge you can communicate directly with [CALLSIGN]</source>
+        <translation>请确认你能与 [CALLSIGN] 直接通联</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="247"/>
+        <source>Do you have any messages for me?</source>
+        <translation>你有发给我的消息吗？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="258"/>
+        <source>Please deliver the complete message identified by ID</source>
+        <translation>请发送由 ID 标识的完整消息</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="272"/>
+        <source>Please repeat your last transmission</source>
+        <translation>请重发你的上一次发射</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="286"/>
+        <source>Did you receive my last transmission?</source>
+        <translation>你收到我上一次的发射了吗？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="300"/>
+        <source>I confirm I received your last transmission</source>
+        <translation>我确认收到你上一次的发射</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="314"/>
+        <source>I confirm your last inquiry</source>
+        <translation>我确认你的上一次询问</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="328"/>
+        <source>I do not confirm your last inquiry</source>
+        <translation>我不确认你的上一次询问</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="342"/>
+        <source>How do you copy?</source>
+        <translation>收信如何？</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="356"/>
+        <source>Roger. Received. I copy.</source>
+        <translation>收到。明白。</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="370"/>
+        <source>Fine Business</source>
+        <translation>好极了</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="384"/>
+        <source>I send my best regards</source>
+        <translation>致以最诚挚的问候</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="398"/>
+        <source>End of contact</source>
+        <translation>通联结束</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/buildQueryMenu.cpp" line="412"/>
+        <source>End of contact / Two bits</source>
+        <translation>通联结束 / 双点</translation>
+    </message>
 </context>
 <context>
     <name>WideGraph</name>

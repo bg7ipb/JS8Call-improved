@@ -19,7 +19,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     bool emptyGrid = m_config.my_grid().isEmpty();
 
     auto callAction = menu->addAction(
-        QString("Send a directed message to selected callsign"));
+        tr("Send a directed message to selected callsign"));
     connect(callAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -32,9 +32,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     menu->addSeparator();
 
     auto sendReplyAction = menu->addAction(
-        QString("%1 Reply - Send reply message to selected callsign")
-            .arg(call)
-            .trimmed());
+        QString("%1 Reply - %2").arg(call).arg(tr("Send reply message to selected callsign")).trimmed());
     connect(sendReplyAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -47,9 +45,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto sendSNRAction = menu->addAction(
-        QString("%1 SNR - Send a signal report to the selected callsign")
-            .arg(call)
-            .trimmed());
+        QString("%1 SNR - %2").arg(call).arg(tr("Send a signal report to the selected callsign")).trimmed());
     sendSNRAction->setEnabled(m_callActivity.contains(callsignSelected()));
     connect(sendSNRAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -72,7 +68,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto infoAction = menu->addAction(
-        QString("%1 INFO - Send my station information").arg(call).trimmed());
+        QString("%1 INFO - %2").arg(call).arg(tr("Send my station information")).trimmed());
     infoAction->setDisabled(emptyInfo);
     connect(infoAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -89,10 +85,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto gridAction = menu->addAction(
-        QString("%1 GRID %2 - Send my current station Maidenhead grid locator")
-            .arg(call)
-            .arg(grid)
-            .trimmed());
+        QString("%1 GRID %2 - %3").arg(call).arg(grid).arg(tr("Send my current station Maidenhead grid locator")).trimmed());
     gridAction->setDisabled(emptyGrid);
     connect(gridAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -111,7 +104,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     menu->addSeparator();
 
     auto snrQueryAction = menu->addAction(
-        QString("%1 SNR? - What is my signal report?").arg(call).trimmed());
+        QString("%1 SNR? - %2").arg(call).arg(tr("What is my signal report?")).trimmed());
     snrQueryAction->setDisabled(isAllCall);
     connect(snrQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -126,9 +119,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto infoQueryAction =
-        menu->addAction(QString("%1 INFO? - What is your station information?")
-                            .arg(call)
-                            .trimmed());
+        menu->addAction(QString("%1 INFO? - %2").arg(call).arg(tr("What is your station information?")).trimmed());
     infoQueryAction->setDisabled(isAllCall);
     connect(infoQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -143,9 +134,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto gridQueryAction =
-        menu->addAction(QString("%1 GRID? - What is your current grid locator?")
-                            .arg(call)
-                            .trimmed());
+        menu->addAction(QString("%1 GRID? - %2").arg(call).arg(tr("What is your current grid locator?")).trimmed());
     gridQueryAction->setDisabled(isAllCall);
     connect(gridQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -160,9 +149,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto stationIdleQueryAction = menu->addAction(
-        QString("%1 STATUS? - What is your station status message?")
-            .arg(call)
-            .trimmed());
+        QString("%1 STATUS? - %2").arg(call).arg(tr("What is your station status message?")).trimmed());
     stationIdleQueryAction->setDisabled(isAllCall);
     connect(stationIdleQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -177,10 +164,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto heardQueryAction = menu->addAction(
-        QString("%1 HEARING? - What are the stations are you hearing? (Top 4 "
-                "ranked by most recently heard)")
-            .arg(call)
-            .trimmed());
+        QString("%1 HEARING? - %2").arg(call).arg(tr("What are the stations are you hearing? (Top 4 ranked by most recently heard)")).trimmed());
     heardQueryAction->setDisabled(isAllCall);
     connect(heardQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -209,9 +193,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
 #endif
 
     auto alertAction = menu->addAction(
-        QString("%1>[MESSAGE] - Please relay this message to its destination")
-            .arg(call)
-            .trimmed());
+        QString("%1>[MESSAGE] - %2").arg(call).arg(tr("Please relay this message to its destination")).trimmed());
     alertAction->setDisabled(isAllCall);
     connect(alertAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -223,9 +205,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto msgAction = menu->addAction(
-        QString("%1 MSG [MESSAGE] - Please store this message in your inbox")
-            .arg(call)
-            .trimmed());
+        QString("%1 MSG [MESSAGE] - %2").arg(call).arg(tr("Please store this message in your inbox")).trimmed());
     msgAction->setDisabled(isAllCall);
     connect(msgAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -238,10 +218,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto msgToAction = menu->addAction(
-        QString("%1 MSG TO:[CALLSIGN] [MESSAGE] - Please store this message at "
-                "your station for later retreival by [CALLSIGN]")
-            .arg(call)
-            .trimmed());
+        QString("%1 MSG TO:[CALLSIGN] [MESSAGE] - %2").arg(call).arg(tr("Please store this message at your station for later retreival by [CALLSIGN]")).trimmed());
     msgToAction->setDisabled(isAllCall);
     connect(msgToAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
@@ -255,10 +232,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto qsoQueryAction = menu->addAction(
-        QString("%1 QUERY CALL [CALLSIGN]? - Please acknowledge you can "
-                "communicate directly with [CALLSIGN]")
-            .arg(call)
-            .trimmed());
+        QString("%1 QUERY CALL [CALLSIGN]? - %2").arg(call).arg(tr("Please acknowledge you can communicate directly with [CALLSIGN]")).trimmed());
     connect(qsoQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -270,9 +244,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto qsoQueryMsgsAction = menu->addAction(
-        QString("%1 QUERY MSGS - Do you have any messages for me?")
-            .arg(call)
-            .trimmed());
+        QString("%1 QUERY MSGS - %2").arg(call).arg(tr("Do you have any messages for me?")).trimmed());
     connect(qsoQueryMsgsAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -283,10 +255,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto qsoQueryMsgAction =
-        menu->addAction(QString("%1 QUERY MSG [ID] - Please deliver the "
-                                "complete message identified by ID")
-                            .arg(call)
-                            .trimmed());
+        menu->addAction(QString("%1 QUERY MSG [ID] - %2").arg(call).arg(tr("Please deliver the complete message identified by ID")).trimmed());
     connect(qsoQueryMsgAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -300,9 +269,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     menu->addSeparator();
 
     auto agnAction = menu->addAction(
-        QString("%1 AGN? - Please repeat your last transmission")
-            .arg(call)
-            .trimmed());
+        QString("%1 AGN? - %2").arg(call).arg(tr("Please repeat your last transmission")).trimmed());
     connect(agnAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -316,9 +283,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto qslQueryAction = menu->addAction(
-        QString("%1 QSL? - Did you receive my last transmission?")
-            .arg(call)
-            .trimmed());
+        QString("%1 QSL? - %2").arg(call).arg(tr("Did you receive my last transmission?")).trimmed());
     connect(qslQueryAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -332,9 +297,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto qslAction = menu->addAction(
-        QString("%1 QSL - I confirm I received your last transmission")
-            .arg(call)
-            .trimmed());
+        QString("%1 QSL - %2").arg(call).arg(tr("I confirm I received your last transmission")).trimmed());
     connect(qslAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -348,7 +311,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto yesAction = menu->addAction(
-        QString("%1 YES - I confirm your last inquiry").arg(call).trimmed());
+        QString("%1 YES - %2").arg(call).arg(tr("I confirm your last inquiry")).trimmed());
     connect(yesAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -362,9 +325,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto noAction =
-        menu->addAction(QString("%1 NO - I do not confirm your last inquiry")
-                            .arg(call)
-                            .trimmed());
+        menu->addAction(QString("%1 NO - %2").arg(call).arg(tr("I do not confirm your last inquiry")).trimmed());
     connect(noAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -378,7 +339,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto hwAction = menu->addAction(
-        QString("%1 HW CPY? - How do you copy?").arg(call).trimmed());
+        QString("%1 HW CPY? - %2").arg(call).arg(tr("How do you copy?")).trimmed());
     connect(hwAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -392,7 +353,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto rrAction = menu->addAction(
-        QString("%1 RR - Roger. Received. I copy.").arg(call).trimmed());
+        QString("%1 RR - %2").arg(call).arg(tr("Roger. Received. I copy.")).trimmed());
     connect(rrAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -406,7 +367,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto fbAction =
-        menu->addAction(QString("%1 FB - Fine Business").arg(call).trimmed());
+        menu->addAction(QString("%1 FB - %2").arg(call).arg(tr("Fine Business")).trimmed());
     connect(fbAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -420,7 +381,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto sevenThreeAction = menu->addAction(
-        QString("%1 73 - I send my best regards").arg(call).trimmed());
+        QString("%1 73 - %2").arg(call).arg(tr("I send my best regards")).trimmed());
     connect(sevenThreeAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -434,7 +395,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto skAction =
-        menu->addAction(QString("%1 SK - End of contact").arg(call).trimmed());
+        menu->addAction(QString("%1 SK - %2").arg(call).arg(tr("End of contact")).trimmed());
     connect(skAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
@@ -448,7 +409,7 @@ void UI_Constructor::buildQueryMenu(QMenu *menu, QString call) {
     });
 
     auto ditDitAction = menu->addAction(
-        QString("%1 DIT DIT - End of contact / Two bits").arg(call).trimmed());
+        QString("%1 DIT DIT - %2").arg(call).arg(tr("End of contact / Two bits")).trimmed());
     connect(ditDitAction, &QAction::triggered, this, [this]() {
         QString selectedCall = callsignSelected();
         if (selectedCall.isEmpty()) {
