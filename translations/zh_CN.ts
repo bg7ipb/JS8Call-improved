@@ -39,12 +39,12 @@
     <message>
         <location filename="../JS8_UI/About.ui" line="17"/>
         <source>About JS8Call</source>
-        <translation type="unfinished"></translation>
+        <translation>关于 JS8Call</translation>
     </message>
     <message>
         <location filename="../JS8_UI/About.ui" line="68"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -925,52 +925,52 @@ Format:
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="14"/>
         <source>Message History</source>
-        <translation type="unfinished"></translation>
+        <translation>消息历史</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="108"/>
         <source>⚑</source>
-        <translation type="unfinished"></translation>
+        <translation>⚑</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="111"/>
         <source>Read / Unread Status</source>
-        <translation type="unfinished"></translation>
+        <translation>已读 / 未读状态</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="116"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="121"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>日期</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="126"/>
         <source>Frequency</source>
-        <translation type="unfinished"></translation>
+        <translation>频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="131"/>
         <source>From</source>
-        <translation type="unfinished"></translation>
+        <translation>来自</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="136"/>
         <source>To</source>
-        <translation type="unfinished"></translation>
+        <translation>发往</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="141"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>消息</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessagePanel.ui" line="214"/>
         <source>Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>回复</translation>
     </message>
 </context>
 <context>
@@ -978,12 +978,12 @@ Format:
     <message>
         <location filename="../JS8_UI/MessageReplyDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>对话框</translation>
     </message>
     <message>
         <location filename="../JS8_UI/MessageReplyDialog.ui" line="20"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>文本标签</translation>
     </message>
 </context>
 <context>
@@ -1410,343 +1410,343 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="14"/>
         <source>JS8Call</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8Call</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="183"/>
         <source>1234567890</source>
-        <translation type="unfinished"></translation>
+        <translation>1234567890</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="201"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adjust VFO frequency up&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;上调 VFO 频率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="207"/>
         <source>▲</source>
-        <translation type="unfinished"></translation>
+        <translation>▲</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="217"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adjust VFO frequency down&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;下调 VFO 频率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="223"/>
         <source>▼</source>
-        <translation type="unfinished"></translation>
+        <translation>▼</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="243"/>
         <source>Set Current Frequency Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>设置当前频率偏移</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="246"/>
         <source>1500 Hz</source>
-        <translation type="unfinished"></translation>
+        <translation>1500 Hz</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="314"/>
         <source>Set Callsign and Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>设置呼号和网格</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="317"/>
         <source>Callsign</source>
-        <translation type="unfinished"></translation>
+        <translation>呼号</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="350"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;01:23:45 2015 Jun 17&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;01:23:45 2015 Jun 17&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="450"/>
         <source>Enable or disable the transmitter</source>
-        <translation type="unfinished"></translation>
+        <translation>启用或禁用发射器</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="453"/>
         <source>TX</source>
-        <translation type="unfinished"></translation>
+        <translation>TX</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="496"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable the receiver&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用接收器&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="499"/>
         <source>RX</source>
-        <translation type="unfinished"></translation>
+        <translation>RX</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="545"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Insert a new entry into the log&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在日志中插入一条新条目&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="548"/>
         <source>LOG</source>
-        <translation type="unfinished"></translation>
+        <translation>LOG</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="585"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Transmit a tuning tone&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;发射调谐音&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="588"/>
         <source>TUNE</source>
-        <translation type="unfinished"></translation>
+        <translation>TUNE</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="627"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the JS8 mode settings&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置 JS8 模式选项&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="630"/>
         <source>JS8</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="670"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Spot to reporting networks&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;上报至点报网络&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="673"/>
         <source>SPOT</source>
-        <translation type="unfinished"></translation>
+        <translation>SPOT</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="784"/>
         <location filename="../JS8_UI/mainwindow.ui" line="985"/>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>偏移</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="789"/>
         <location filename="../JS8_UI/mainwindow.ui" line="975"/>
         <source>Age</source>
-        <translation type="unfinished"></translation>
+        <translation>时长</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="794"/>
         <location filename="../JS8_UI/mainwindow.ui" line="980"/>
         <location filename="../JS8_UI/mainwindow.ui" line="1097"/>
         <source>SNR</source>
-        <translation type="unfinished"></translation>
+        <translation>SNR</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="799"/>
         <location filename="../JS8_UI/mainwindow.ui" line="990"/>
         <source>Time Delta</source>
-        <translation type="unfinished"></translation>
+        <translation>时间偏差</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="804"/>
         <location filename="../JS8_UI/mainwindow.ui" line="995"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>速率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="809"/>
         <source>Message(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>消息</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="852"/>
         <source>INCOMING AND OUTGOING MESSAGES WILL APPEAR HERE.</source>
-        <translation type="unfinished"></translation>
+        <translation>收发消息将在此显示。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="884"/>
         <source>TYPE YOUR OUTGOING MESSAGES HERE.</source>
-        <translation type="unfinished"></translation>
+        <translation>在此输入要发送的消息。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="965"/>
         <source>★</source>
-        <translation type="unfinished"></translation>
+        <translation>★</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="970"/>
         <source>Callsigns</source>
-        <translation type="unfinished"></translation>
+        <translation>呼号列表</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1000"/>
         <source>Grid</source>
-        <translation type="unfinished"></translation>
+        <translation>网格</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1005"/>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>距离</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1010"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation>°</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1013"/>
         <source>Azimuth</source>
-        <translation type="unfinished"></translation>
+        <translation>方位</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1018"/>
         <source>✓</source>
-        <translation type="unfinished"></translation>
+        <translation>✓</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1021"/>
         <source>Worked Before</source>
-        <translation type="unfinished"></translation>
+        <translation>通联过</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1026"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1031"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>备注</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1078"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send a directed message to another station&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;向其他台站发送定向消息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1081"/>
         <source>Directed</source>
-        <translation type="unfinished"></translation>
+        <translation>定向</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1094"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send an signal report&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;发送信号报告&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1113"/>
         <source>EN</source>
-        <translation type="unfinished"></translation>
+        <translation>EN</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Send a Heartbeat message&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;发送心跳消息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1138"/>
         <source>HB</source>
-        <translation type="unfinished"></translation>
+        <translation>HB</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1154"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send a saved message&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;发送已保存的消息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1157"/>
         <source>Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>已保存</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1170"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send your station information message&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;发送本台信息消息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1173"/>
         <source>INFO</source>
-        <translation type="unfinished"></translation>
+        <translation>INFO</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Send a CQ message&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;发送 CQ 消息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1198"/>
         <source>CQ</source>
-        <translation type="unfinished"></translation>
+        <translation>CQ</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1220"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start transmitting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;开始发射&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1236"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>发送</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1258"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Deselect the current callsign for directed messaging&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;取消当前定向消息的呼号选择&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1261"/>
         <source>Deselect</source>
-        <translation type="unfinished"></translation>
+        <translation>取消选择</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1306"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reply to a CQ&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;回应 CQ&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1309"/>
         <source>REPLY</source>
-        <translation type="unfinished"></translation>
+        <translation>REPLY</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1322"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stop transmitting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;停止发射&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1325"/>
         <source>Halt</source>
-        <translation type="unfinished"></translation>
+        <translation>中止</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1338"/>
         <source>Send your station status message</source>
-        <translation type="unfinished"></translation>
+        <translation>发送本台状态消息</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1341"/>
         <source>STATUS</source>
-        <translation type="unfinished"></translation>
+        <translation>STATUS</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1467"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If orange or red there has been a rig control failure, click to reset and read the dial frequency.  S implies split mode.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;橙色或红色表示电台控制失败，点击重置并读取频率。S 表示分离模式。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1493"/>
         <source>CAT</source>
-        <translation type="unfinished"></translation>
+        <translation>CAT</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1518"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;30dB recommended when only noise present&lt;br/&gt;Green when good&lt;br/&gt;Red when clipping may occur&lt;br/&gt;Yellow when too low&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;仅噪声时建议 30dB&lt;br/&gt;绿色: 正常&lt;br/&gt;红色: 可能削波&lt;br/&gt;黄色: 过低&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1548"/>
         <source>Adjust Tx audio level</source>
-        <translation type="unfinished"></translation>
+        <translation>调节发射音频电平</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1593"/>
@@ -1821,7 +1821,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1755"/>
         <source>F2</source>
-        <translation type="unfinished"></translation>
+        <translation>F2</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1760"/>
@@ -1846,7 +1846,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1784"/>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation>F7</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1795"/>
@@ -1856,7 +1856,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1798"/>
         <source>F8</source>
-        <translation type="unfinished"></translation>
+        <translation>F8</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1809"/>
@@ -1866,7 +1866,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1812"/>
         <source>F4</source>
-        <translation type="unfinished"></translation>
+        <translation>F4</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1817"/>
@@ -1891,7 +1891,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1841"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1846"/>
@@ -1911,7 +1911,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1859"/>
         <source>F5</source>
-        <translation type="unfinished"></translation>
+        <translation>F5</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1873"/>
@@ -1921,7 +1921,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1876"/>
         <source>F3</source>
-        <translation type="unfinished"></translation>
+        <translation>F3</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1887"/>
@@ -1936,7 +1936,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1898"/>
         <source>F11</source>
-        <translation type="unfinished"></translation>
+        <translation>F11</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1903"/>
@@ -1986,7 +1986,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1952"/>
         <source>Ctrl+Alt+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+M</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1957"/>
@@ -1996,7 +1996,7 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1960"/>
         <source>Ctrl+Alt+B</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+B</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1965"/>
@@ -2006,42 +2006,42 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1968"/>
         <source>Ctrl+Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+A</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1979"/>
         <source>JS8 Normal (&amp;~16 wpm, best for most conditions)</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8 标准 (&amp;~16 wpm，多数场景最佳)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1987"/>
         <source>JS8 Fast (&amp;~24 wpm, reduced decoder sensitivity)</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8 快速 (&amp;~24 wpm，降低解码灵敏度)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="1995"/>
         <source>JS8 40 (&amp;~40 wpm, only use in good conditions)</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8 40 (&amp;~40 wpm，仅良好条件下使用)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2003"/>
         <source>JS8 60 (&amp;~60 wpm, fast but experimental mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8 60 (&amp;~60 wpm，快速但为实验模式)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2011"/>
         <source>Enable Heartbeat Networking (&amp;HB)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用心跳联网 (&amp;HB)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2019"/>
         <source>中文模式 / Chinese Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>中文模式</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2027"/>
         <source>Enable Heartbeat Acknowledgments (AC&amp;K)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用心跳应答 (AC&amp;K)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2032"/>
@@ -2051,22 +2051,22 @@ Enter a new line to return to original or other frequency.</source>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2035"/>
         <source>Ctrl+Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+R</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2046"/>
         <source>Enable Simultaneous Decoding of All Speeds (&amp;MULTI)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用所有速率同时解码 (&amp;MULTI)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2054"/>
         <source>Enable Autoreply (&amp;AUTO)</source>
-        <translation type="unfinished"></translation>
+        <translation>启用自动回复 (&amp;AUTO)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2062"/>
         <source>JS8 Slow (&amp;~8 wpm, best decoder sensitivity)</source>
-        <translation type="unfinished"></translation>
+        <translation>JS8 慢速 (&amp;~8 wpm，最佳解码灵敏度)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="2070"/>
