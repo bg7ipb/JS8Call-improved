@@ -354,6 +354,14 @@ target_sources(
   JS8_UI/WideGraph.cpp
   JS8_Widgets/CheckableItemComboBox.cpp
   JS8_Widgets/LazyFillComboBox.cpp
+  # JS8CALL-CN (i18n): .ui in target SOURCES so lupdate scans them (AUTOUIC + lupdate same source)
+  JS8_UI/About.ui
+  JS8_UI/Configuration.ui
+  JS8_UI/LogQSO.ui
+  JS8_UI/MessagePanel.ui
+  JS8_UI/MessageReplyDialog.ui
+  JS8_UI/WideGraph.ui
+  JS8_UI/mainwindow.ui
 )
 
 #------------------------------------------------------------------------------#
