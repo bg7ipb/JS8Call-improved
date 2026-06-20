@@ -324,6 +324,25 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                             (d.bits & Varicode::JS8CallFirst) == Varicode::JS8CallFirst;
                         const bool ilcLast =
                             (d.bits & Varicode::JS8CallLast) == Varicode::JS8CallLast;
+                        // Bug 1: mirror ILC_runtime drift-merge (move-to-newest). A
+                        // frequency-drifting multi-frame message shifts its per-frame
+                        // offset within +/-driftRange; without this, continuation frames
+                        // land in a fresh empty bucket and only the last frame survives.
+                        // Skip on first frame so a new transmission cannot hijack a
+                        // nearby in-progress bucket.
+                        if (!ilcFirst && !m_directedCnCapture.contains(d.offset)) {
+                            const int driftRange =
+                                JS8::Submode::rxThreshold(decodedtext.submode());
+                            for (int probe = d.offset - driftRange;
+                                 probe <= d.offset + driftRange; ++probe) {
+                                if (probe == d.offset) continue;
+                                if (m_directedCnCapture.contains(probe)) {
+                                    m_directedCnCapture[d.offset] =
+                                        m_directedCnCapture.take(probe);
+                                    break;
+                                }
+                            }
+                        }
                         DirectedCnCapture &cap = m_directedCnCapture[d.offset];
                         if (ilcFirst || cap.accumulated.isEmpty()) {
                             cap.accumulated.clear();
@@ -331,25 +350,53 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                             cap.firstOffset = d.offset;
                             cap.snr = decodedtext.snr();
                             cap.committed = false;
+                            // Snapshot directed-prepend cmd at first frame. PDE :457-466
+                            // (first-frame buffer clear) wipes m_messageBuffer BEFORE our
+                            // ilcLast emit on multi-frame messages, so emit-time lookup
+                            // is destroyed. drift=false: m_messageBuffer is intact here;
+                            // range search still scans ±rxThreshold to bridge offset drift
+                            // between directed prepend frame and first ILC content frame.
+                            cap.fromCall.clear();
+                            cap.toCall.clear();
+                            int prevInitOffset = d.offset;
+                            const bool initLookupOK = hasExistingMessageBuffer(
+                                decodedtext.submode(), d.offset, false, &prevInitOffset);
+                            if (initLookupOK) {
+                                const auto &cmd = m_messageBuffer[prevInitOffset].cmd;
+                                cap.fromCall = cmd.from;
+                                cap.toCall = cmd.to;
+                            }
                         }
                         cap.accumulated += ilcDelta;
                         if (ilcLast && !cap.committed && !cap.accumulated.isEmpty()) {
                             const QString frameLit = decodedtext.frame();
                             const QDateTime nowUtc =
                                 DriftingDateTime::currentDateTimeUtc();
-                            const QDateTime lastSeen =
-                                m_directedCnFrameSeen.value(frameLit);
-                            if (!lastSeen.isValid() ||
-                                lastSeen.msecsTo(nowUtc) > 30000) {
-                                const QString fmtLine =
-                                    QString("[Off:%1 Age:%2 SNR:%3] %4")
-                                        .arg(cap.firstOffset)
-                                        .arg(cap.firstSeen.secsTo(nowUtc))
-                                        .arg(cap.snr)
-                                        .arg(cap.accumulated);
-                                writeMessageTextToUI(nowUtc, fmtLine, cap.firstOffset,
-                                                     false, -1, true);
-                                m_directedCnFrameSeen.insert(frameLit, nowUtc);
+                            // Bug 3 (gate-beta): use cap-saved from/to (snapshot at
+                            // first frame init). Echo only when addressed to me/group.
+                            const bool echoThis = !cap.fromCall.isEmpty() &&
+                                                  (cap.toCall == m_config.my_callsign() ||
+                                                   isGroupCallIncluded(cap.toCall));
+                            if (echoThis) {
+                                const QDateTime lastSeen =
+                                    m_directedCnFrameSeen.value(frameLit);
+                                if (!lastSeen.isValid() ||
+                                    lastSeen.msecsTo(nowUtc) > 30000) {
+                                    // Bug 2: from/to cross-frame (cap snapshot);
+                                    // timestamp = now; Age dropped per design.
+                                    const QString fmtLine =
+                                        QString("[%1 → %2 @ %3 Off:%4 SNR:%5] %6")
+                                            .arg(cap.fromCall)
+                                            .arg(cap.toCall)
+                                            .arg(nowUtc.toString(
+                                                "yyyy-MM-dd hh:mm:ss"))
+                                            .arg(cap.firstOffset)
+                                            .arg(cap.snr)
+                                            .arg(cap.accumulated);
+                                    writeMessageTextToUI(nowUtc, fmtLine, cap.firstOffset,
+                                                         false, -1, true);
+                                    m_directedCnFrameSeen.insert(frameLit, nowUtc);
+                                }
                             }
                             cap.committed = true;
                             for (auto it = m_directedCnFrameSeen.begin();

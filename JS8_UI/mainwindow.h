@@ -761,6 +761,8 @@ class UI_Constructor : public QMainWindow {
         int firstOffset = 0;
         int snr = 0;
         bool committed = false;
+        QString fromCall;
+        QString toCall;
     };
 
     QString m_prevSelectedCallsign;
