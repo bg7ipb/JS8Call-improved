@@ -502,7 +502,7 @@ Format:
         <location filename="../JS8_Main/FrequencyList.cpp" line="364"/>
         <location filename="../JS8_Main/FrequencyList.cpp" line="500"/>
         <source>Frequency</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">频率</translation>
     </message>
     <message>
         <location filename="../JS8_Main/FrequencyList.cpp" line="390"/>
@@ -1352,7 +1352,7 @@ Format:
     <message>
         <location filename="../JS8_Main/StationList.cpp" line="286"/>
         <source>Frequency</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">频率</translation>
     </message>
     <message>
         <location filename="../JS8_Main/StationList.cpp" line="307"/>
@@ -1575,6 +1575,7 @@ Enter a new line to return to original or other frequency.</source>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.ui" line="970"/>
+        <location filename="../JS8_UI/mainwindow.cpp" line="3065"/>
         <source>Callsigns</source>
         <translation>呼号列表</translation>
     </message>
@@ -2188,6 +2189,11 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="3066"/>
+        <source>Callsigns (%1)</source>
+        <translation>呼号列表 (%1)</translation>
+    </message>
+    <message>
         <location filename="../JS8_UI/mainwindow.cpp" line="3415"/>
         <source>Please enter your callsign in the settings.</source>
         <translation type="unfinished"></translation>
@@ -2290,7 +2296,7 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="20"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">对话框</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="132"/>
@@ -2300,7 +2306,7 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="165"/>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">偏移</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="174"/>
@@ -3584,7 +3590,7 @@ transmitting periods.</source>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2096"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本标签</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2103"/>

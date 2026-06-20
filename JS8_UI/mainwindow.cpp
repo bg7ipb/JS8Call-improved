@@ -3062,8 +3062,8 @@ void UI_Constructor::createGroupCallsignTableRows(QTableWidget *table,
     }
 
     table->horizontalHeaderItem(startCol)->setText(
-        count == 0 ? columnLabel("Callsigns")
-                   : QString(columnLabel("Callsigns (%1)")).arg(count));
+        count == 0 ? tr("Callsigns")
+                   : tr("Callsigns (%1)").arg(count));
 
     if (!m_config.avoid_allcall()) {
         table->insertRow(table->rowCount());

@@ -1508,6 +1508,7 @@ UI_Constructor::UI_Constructor(QString const &program_info,
 void UI_Constructor::changeEvent(QEvent *e) {
     if (e->type() == QEvent::LanguageChange) {
         ui->retranslateUi(this);
+        buildColumnLabelMap();
         if (m_settings) {
             QString const cur =
                 m_settings->value(QStringLiteral("Configuration/LanguageUi"),
