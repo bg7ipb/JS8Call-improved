@@ -151,6 +151,7 @@ constexpr auto SUBMODE = Varicode::JS8CallNormal;
 namespace State {
 constexpr auto RX = 1;
 constexpr auto TX = 2;
+constexpr auto DIRECTED_CN = 3;
 } // namespace State
 } // namespace
 
@@ -258,7 +259,7 @@ class UI_Constructor : public QMainWindow {
                             bool isNewLine, bool isLast);
     void writeNoticeTextToUI(QDateTime date, QString text);
     int writeMessageTextToUI(QDateTime date, QString text, int freq, bool isTx,
-                             int block = -1);
+                             int block = -1, bool isDirectedCN = false);
     bool isMessageQueuedForTransmit();
     bool isInDecodeDelayThreshold(int seconds);
     void prependMessageText(QString text);
@@ -754,6 +755,16 @@ class UI_Constructor : public QMainWindow {
         QList<ActivityDetail> msgs;
     };
 
+    struct DirectedCnCapture {
+        QString accumulated;
+        QDateTime firstSeen;
+        int firstOffset = 0;
+        int snr = 0;
+        bool committed = false;
+        QString fromCall;
+        QString toCall;
+    };
+
     QString m_prevSelectedCallsign;
     int m_bandActivityWidth;
     int m_callActivityWidth;
@@ -893,6 +904,8 @@ class UI_Constructor : public QMainWindow {
     QMap<int, int> m_rxFrameBlockNumbers; // freq -> block
     BandActivity m_bandActivity; // freq -> [(text, last timestamp), ...]
     QMap<int, MessageBuffer> m_messageBuffer; // freq -> (cmd, [frames, ...])
+    QMap<int, DirectedCnCapture> m_directedCnCapture; // JS8CALL-CN: offset -> capture
+    QMap<QString, QDateTime> m_directedCnFrameSeen;   // JS8CALL-CN: frame literal -> last seen (TTL guard)
     int m_lastClosedMessageBufferOffset;
     QMap<QString, CallDetail>
         m_callActivity; // call -> (last freq, last timestamp)

@@ -3202,7 +3202,7 @@ void UI_Constructor::writeNoticeTextToUI(QDateTime date, QString text) {
 }
 
 int UI_Constructor::writeMessageTextToUI(QDateTime date, QString text, int freq,
-                                         bool isTx, int block) {
+                                         bool isTx, int block, bool isDirectedCN) {
     auto c = ui->textEditRX->textCursor();
 
     // find an existing block (that does not contain an EOT marker)
@@ -3249,13 +3249,17 @@ int UI_Constructor::writeMessageTextToUI(QDateTime date, QString text, int freq,
         text = text.replace("\n", "<br/>");
         text = text.replace("  ", "&nbsp;&nbsp;");
         c.insertBlock();
-        c.insertHtml(QString("%1 - (%2) - %3")
+        if (isDirectedCN) c.insertHtml(text); else c.insertHtml(QString("%1 - (%2) - %3")
                          .arg(date.time().toString())
                          .arg(freq)
                          .arg(text));
     }
 
-    if (isTx) {
+    if (isDirectedCN) {
+        c.block().setUserState(State::DIRECTED_CN);
+        highlightBlock(c.block(), m_config.rx_text_font(),
+                       QColor(Qt::blue), QColor(Qt::transparent));
+    } else if (isTx) {
         c.block().setUserState(State::TX);
         highlightBlock(c.block(), m_config.tx_text_font(),
                        m_config.color_tx_foreground(), QColor(Qt::transparent));
