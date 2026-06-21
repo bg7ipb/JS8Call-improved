@@ -52,87 +52,87 @@
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1354"/>
         <source>Failed to create data directory</source>
-        <translation type="unfinished"></translation>
+        <translation>无法创建数据目录</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1355"/>
         <location filename="../JS8_UI/Configuration.cpp" line="1378"/>
         <location filename="../JS8_UI/Configuration.cpp" line="1388"/>
         <source>path: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>路径: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1365"/>
         <source>Failed to create save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>无法创建保存目录</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1366"/>
         <source>path: &quot;%1%</source>
-        <translation type="unfinished"></translation>
+        <translation>path: &quot;%1%</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1377"/>
         <source>Failed to create samples directory</source>
-        <translation type="unfinished"></translation>
+        <translation>无法创建采样目录</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1387"/>
         <source>Failed to create messages directory</source>
-        <translation type="unfinished"></translation>
+        <translation>无法创建消息目录</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1623"/>
         <location filename="../JS8_UI/Configuration.cpp" line="1655"/>
         <location filename="../JS8_UI/Configuration.cpp" line="1744"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除(&amp;D)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1666"/>
         <location filename="../JS8_UI/Configuration.cpp" line="1754"/>
         <source>&amp;Insert ...</source>
-        <translation type="unfinished"></translation>
+        <translation>插入...(&amp;I)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1673"/>
         <source>&amp;Load ...</source>
-        <translation type="unfinished"></translation>
+        <translation>加载...(&amp;L)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1680"/>
         <source>&amp;Save as ...</source>
-        <translation type="unfinished"></translation>
+        <translation>另存为...(&amp;S)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1687"/>
         <source>&amp;Merge ...</source>
-        <translation type="unfinished"></translation>
+        <translation>合并...(&amp;M)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1694"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>重置(&amp;R)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="1738"/>
         <source>&amp;Switch to Frequency Now</source>
-        <translation type="unfinished"></translation>
+        <translation>立即切换至该频率(&amp;S)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2856"/>
         <source>Serial Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>串口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2858"/>
         <source>Serial port used for CAT control</source>
-        <translation type="unfinished"></translation>
+        <translation>用于 CAT 控制的串口</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2866"/>
         <source>Network Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>网络服务器:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2868"/>
@@ -142,12 +142,17 @@ Formats:
 	hostname:port
 	IPv4-address:port
 	[IPv6-address]:port</source>
-        <translation type="unfinished"></translation>
+        <translation>网络服务的主机名与端口(可选)。
+留空则使用本机合理默认值。
+格式:
+	主机名:端口
+	IPv4 地址:端口
+	[IPv6 地址]:端口</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2880"/>
         <source>USB Device:</source>
-        <translation type="unfinished"></translation>
+        <translation>USB 设备:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2882"/>
@@ -155,48 +160,51 @@ Formats:
 Leave blank for a sensible default for the rig.
 Format:
 	[VID[:PID[:VENDOR[:PRODUCT]]]]</source>
-        <translation type="unfinished"></translation>
+        <translation>设备标识(可选)。
+留空则为电台使用合理默认值。
+格式:
+	[VID[:PID[:VENDOR[:PRODUCT]]]]</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2949"/>
         <source>Please enter an end of transmission character</source>
-        <translation type="unfinished"></translation>
+        <translation>请输入一个发射结束字符</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2957"/>
         <source>The callsign format you provided is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>所提供的呼号格式不受支持</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2963"/>
         <source>The grid you provided is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>所提供的网格无效</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="3013"/>
         <location filename="../JS8_UI/Configuration.cpp" line="3020"/>
         <source>Invalid audio input device</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的音频输入设备</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="3028"/>
         <source>Invalid audio output device</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的音频输出设备</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="3036"/>
         <source>Invalid notification audio output device</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的通知音频输出设备</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="3041"/>
         <source>Invalid PTT method</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的 PTT 方式</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="3058"/>
         <source>Invalid PTT port</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的 PTT 端口</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="3557"/>
@@ -205,113 +213,113 @@ Format:
         <location filename="../JS8_UI/Configuration.cpp" line="3839"/>
         <location filename="../JS8_UI/Configuration.cpp" line="3853"/>
         <source>Font Chooser</source>
-        <translation type="unfinished"></translation>
+        <translation>字体选择器</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4084"/>
         <source>Load Working Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>加载工作频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4086"/>
         <location filename="../JS8_UI/Configuration.cpp" line="4106"/>
         <location filename="../JS8_UI/Configuration.cpp" line="4178"/>
         <source>Frequency files (*.qrg);;All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>频率文件 (*.qrg);;所有文件 (*.*)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4093"/>
         <source>Replace Working Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>替换工作频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4094"/>
         <source>Are you sure you want to discard your current working frequencies and replace them with the loaded ones?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要放弃当前工作频率并替换为已加载的频率吗?</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4104"/>
         <source>Merge Working Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>合并工作频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4120"/>
         <location filename="../JS8_UI/Configuration.cpp" line="4184"/>
         <source>Unable to open frequencies file</source>
-        <translation type="unfinished"></translation>
+        <translation>无法打开频率文件</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4129"/>
         <location filename="../JS8_UI/Configuration.cpp" line="4138"/>
         <location filename="../JS8_UI/Configuration.cpp" line="4165"/>
         <source>Not a valid frequencies file</source>
-        <translation type="unfinished"></translation>
+        <translation>不是有效的频率文件</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4130"/>
         <source>Incorrect file magic</source>
-        <translation type="unfinished"></translation>
+        <translation>文件 magic 数不正确</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4139"/>
         <source>Version is too new</source>
-        <translation type="unfinished"></translation>
+        <translation>版本过新</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4166"/>
         <source>Contents corrupt</source>
-        <translation type="unfinished"></translation>
+        <translation>内容已损坏</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4176"/>
         <source>Save Working Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>保存工作频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4193"/>
         <source>Only Save Selected  Working Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>仅保存所选的工作频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4194"/>
         <source>Are you sure you want to save only the working frequencies that are currently selected? Click No to save all.</source>
-        <translation type="unfinished"></translation>
+        <translation>确定只保存当前所选的工作频率吗?点击"否"则保存全部。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4213"/>
         <source>Reset Working Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>重置工作频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4214"/>
         <source>Are you sure you want to discard your current working frequencies and replace them with default ones?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要放弃当前工作频率并替换为默认频率吗?</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4317"/>
         <source>Save Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>保存目录</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4340"/>
         <source>Rig control error</source>
-        <translation type="unfinished"></translation>
+        <translation>电台控制错误</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4341"/>
         <source>Failed to open connection to rig</source>
-        <translation type="unfinished"></translation>
+        <translation>无法打开到电台的连接</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4552"/>
         <source>Rig failure</source>
-        <translation type="unfinished"></translation>
+        <translation>电台故障</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4649"/>
         <source>Not found</source>
         <comment>audio device missing</comment>
-        <translation type="unfinished"></translation>
+        <translation>未找到</translation>
     </message>
 </context>
 <context>
@@ -461,27 +469,27 @@ Format:
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="233"/>
         <source>Add Frequency</source>
-        <translation type="unfinished"></translation>
+        <translation>添加频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="238"/>
         <source>IARU &amp;Region:</source>
-        <translation type="unfinished"></translation>
+        <translation>IARU 分区(&amp;R):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="239"/>
         <source>&amp;Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>模式(&amp;M):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="240"/>
         <source>&amp;Frequency (MHz):</source>
-        <translation type="unfinished"></translation>
+        <translation>频率 (MHz)(&amp;F):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="241"/>
         <source>&amp;Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>描述(&amp;D):</translation>
     </message>
 </context>
 <context>
@@ -1319,27 +1327,27 @@ Format:
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="282"/>
         <source>Add Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation>添加计划</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="295"/>
         <source>&amp;Frequency (MHz):</source>
-        <translation type="unfinished"></translation>
+        <translation>频率 (MHz)(&amp;F):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="296"/>
         <source>&amp;Switch at (UTC):</source>
-        <translation type="unfinished"></translation>
+        <translation>切换时刻 (UTC)(&amp;S):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="297"/>
         <source>&amp;Until (UTC):</source>
-        <translation type="unfinished"></translation>
+        <translation>直至 (UTC)(&amp;U):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="298"/>
         <source>&amp;Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>描述(&amp;D):</translation>
     </message>
 </context>
 <context>
@@ -2789,239 +2797,239 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="14"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="26"/>
         <source>Select tab to change configuration parameters.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择标签页以修改配置参数。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="33"/>
         <source>Genera&amp;l</source>
-        <translation type="unfinished"></translation>
+        <translation>常规(&amp;L)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="36"/>
         <source>General station details and settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>通用台站信息与设置。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="46"/>
         <source>Station</source>
-        <translation type="unfinished"></translation>
+        <translation>台站</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="91"/>
         <source>Station Details</source>
-        <translation type="unfinished"></translation>
+        <translation>台站详情</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="97"/>
         <source>My Callsign:</source>
-        <translation type="unfinished"></translation>
+        <translation>我的呼号:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="107"/>
         <source>My Maidenhead Grid Locator:</source>
-        <translation type="unfinished"></translation>
+        <translation>我的梅登黑德网格定位:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="117"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;4 to 12-digit Maidenhead Locator&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;4 至 12 位梅登黑德网格定位&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="127"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter a comma separated list of callsign groups (e.g., @GROUP/1, @ARES, @RACES, etc). &lt;br/&gt;&lt;br/&gt;Each group behaves similarly to @ALLCALL. Messages that are directed to the group are printed at all participating stations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入逗号分隔的呼号群组列表(例如 @GROUP/1、@ARES、@RACES 等)。&lt;br/&gt;&lt;br/&gt;每个群组的行为类似 @ALLCALL,定向至该群组的消息会在所有参与台站打印出来。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="133"/>
         <source>@GROUP1, ...</source>
-        <translation type="unfinished"></translation>
+        <translation>@GROUP1, ...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="140"/>
         <source>Callsign Groups (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>呼号群组(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="147"/>
         <source>Station callsign.</source>
-        <translation type="unfinished"></translation>
+        <translation>台站呼号。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="154"/>
         <source>Do not participate in the @ALLCALL group</source>
-        <translation type="unfinished"></translation>
+        <translation>不加入 @ALLCALL 群组</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="167"/>
         <source>IARU Region</source>
-        <translation type="unfinished"></translation>
+        <translation>IARU 分区</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="177"/>
         <source>IARU Region:</source>
-        <translation type="unfinished"></translation>
+        <translation>IARU 分区:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="190"/>
         <source>Station Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>台站消息</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="196"/>
         <source>IDLE &lt;MYIDLE&gt; VERSION &lt;MYVERSION&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>IDLE &lt;MYIDLE&gt; VERSION &lt;MYVERSION&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="203"/>
         <source>Reply Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>回复消息:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="213"/>
         <source>HB Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>HB 消息:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="220"/>
         <source>HW CPY?</source>
-        <translation type="unfinished"></translation>
+        <translation>HW CPY?</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="230"/>
         <source>HB &lt;MYGRID4&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>HB &lt;MYGRID4&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="237"/>
         <source>CQ CQ CQ &lt;MYGRID4&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>CQ CQ CQ &lt;MYGRID4&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="244"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Station location message&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;台站位置消息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="247"/>
         <source>Station Info (Rig, Antenna, Location, etc):</source>
-        <translation type="unfinished"></translation>
+        <translation>台站信息(电台、天线、位置等):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="254"/>
         <source>Station Status (Weather, Idle Time, Version, etc):</source>
-        <translation type="unfinished"></translation>
+        <translation>台站状态(天气、空闲时间、版本等):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="261"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Station location message that is transmitted in response to &amp;quot;@&amp;quot; directed queries.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;响应 &amp;quot;@&amp;quot; 定向查询时发送的台站位置消息。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="268"/>
         <source>CQ Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>CQ 消息:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="296"/>
         <location filename="../JS8_UI/Configuration.ui" line="338"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>行为</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="347"/>
         <source>Show distance to DX station in miles rather than kilometers.</source>
-        <translation type="unfinished"></translation>
+        <translation>显示与 DX 台距离时使用英里而非公里。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="350"/>
         <source>Display dista&amp;nce in miles</source>
-        <translation type="unfinished"></translation>
+        <translation>距离以英里显示(&amp;N)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="357"/>
         <source>Don&apos;t start decoding until the monitor button is clicked.</source>
-        <translation type="unfinished"></translation>
+        <translation>在点击监听按钮前不开始解码。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="360"/>
         <source>Receiver (RX) off at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时关闭接收器(RX)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="370"/>
         <source>Transmitter (TX) off at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时关闭发射器(TX)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="380"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this if you wish to automatically return to the last monitored frequency when monitor is enabled, leave it unchecked if you wish to have the current rig frequency maintained.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;勾选则启用监听时自动回到上次监听的频率;不勾选则保留电台当前频率不变。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="383"/>
         <source>Monitor returns to last used frequency</source>
-        <translation type="unfinished"></translation>
+        <translation>监听返回上次使用的频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="393"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some rigs are not able to process CAT commands while transmitting. This means that if you are operating in split mode you may have to uncheck this option.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;部分电台在发射时无法处理 CAT 命令。若使用 split 模式,可能需要取消勾选此项。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="396"/>
         <source>Allow Tx frequency changes while transmitting</source>
-        <translation type="unfinished"></translation>
+        <translation>发射时允许更改 Tx 频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="403"/>
         <source>Allow sending standard messages without callsign</source>
-        <translation type="unfinished"></translation>
+        <translation>允许发送不带呼号的标准消息</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="410"/>
         <source>Immediately transmit CQ, Reply, Info, Saved, and Directed messages from the menu</source>
-        <translation type="unfinished"></translation>
+        <translation>从菜单选择 CQ、回复、信息、已保存、定向消息时立即发射</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="417"/>
         <source>Write log files (ALL.TXT, DIRECTED.TXT, etc) of decoded text</source>
-        <translation type="unfinished"></translation>
+        <translation>将已解码文本写入日志文件(ALL.TXT、DIRECTED.TXT 等)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="424"/>
         <source>Suggest alternative word choices for more efficient message transmission</source>
-        <translation type="unfinished"></translation>
+        <translation>建议替代用词以提升消息传输效率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="431"/>
         <source>Reset the Band Activity, Call Activity, and RX history at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时重置频段活动、呼号活动与接收历史</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="438"/>
         <source>Check for software updates at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时检查软件更新</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="448"/>
         <source>Aging</source>
-        <translation type="unfinished"></translation>
+        <translation>老化</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="456"/>
         <source>Remove callsigns from call activity after:</source>
-        <translation type="unfinished"></translation>
+        <translation>此时间后将呼号从呼号活动中移除:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="466"/>
         <location filename="../JS8_UI/Configuration.ui" line="508"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of minutes between unattended pings&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;无人值守 ping 之间的分钟数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="469"/>
@@ -3029,205 +3037,205 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <location filename="../JS8_UI/Configuration.ui" line="637"/>
         <location filename="../JS8_UI/Configuration.ui" line="846"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已禁用</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="472"/>
         <location filename="../JS8_UI/Configuration.ui" line="514"/>
         <location filename="../JS8_UI/Configuration.ui" line="640"/>
         <source> minutes</source>
-        <translation type="unfinished"></translation>
+        <translation> 分钟</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="498"/>
         <source>Remove messages from band activity after:</source>
-        <translation type="unfinished"></translation>
+        <translation>此时间后将消息从频段活动中移除:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="544"/>
         <location filename="../JS8_UI/Configuration.ui" line="613"/>
         <source>Heartbeat (HB)</source>
-        <translation type="unfinished"></translation>
+        <translation>心跳(HB)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="551"/>
         <source>Customization</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="557"/>
         <source>End of Transmission Character Indicator:</source>
-        <translation type="unfinished"></translation>
+        <translation>发射结束字符指示:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="564"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Character to display when a transmission has been detected to have ended. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;检测到一次发射结束时显示的字符。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="567"/>
         <source>♢</source>
-        <translation type="unfinished"></translation>
+        <translation>♢</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="577"/>
         <source>Missing Frame Character Indicator:</source>
-        <translation type="unfinished"></translation>
+        <translation>丢帧字符指示:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="584"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Character sequence to display when a transmission has been detected to have a missing frame. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;检测到一次发射中存在丢帧时显示的字符序列。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="587"/>
         <source>……</source>
-        <translation type="unfinished"></translation>
+        <translation>……</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="624"/>
         <source>Heartbeat interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>心跳间隔:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="634"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of minutes between unattended heartbeat transmissions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;无人值守心跳发射之间的分钟数。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="643"/>
         <source>every </source>
-        <translation type="unfinished"></translation>
+        <translation>每 </translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="685"/>
         <source>Networking &amp;&amp; Autoreply</source>
-        <translation type="unfinished"></translation>
+        <translation>网络与自动回复</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="727"/>
         <source>Heartbeat Network</source>
-        <translation type="unfinished"></translation>
+        <translation>心跳网络</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="733"/>
         <source>Allow heartbeat transmissions outside of heartbeat sub-channel (500Hz - 1000Hz)</source>
-        <translation type="unfinished"></translation>
+        <translation>允许在心跳子信道(500Hz - 1000Hz)以外发射心跳</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="740"/>
         <source>Pause heartbeat transmissions while in a QSO (i.e., callsign is selected)</source>
-        <translation type="unfinished"></translation>
+        <translation>通联(选中呼号)期间暂停发射心跳</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="750"/>
         <source>Send SNR report when acknowledging heartbeats</source>
-        <translation type="unfinished"></translation>
+        <translation>回应心跳时发送 SNR 报告</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="768"/>
         <source>Never acknowledge heartbeats from these callsigns (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>不回应来自以下呼号的心跳(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="780"/>
         <source>Suppress ACK to stations that send heartbeats at less than 55 minute intervals</source>
-        <translation type="unfinished"></translation>
+        <translation>对心跳间隔小于 55 分钟的台站抑制 ACK</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="793"/>
         <source>Autoreply</source>
-        <translation type="unfinished"></translation>
+        <translation>自动回复</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="799"/>
         <source>Turn autoreply on at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时开启自动回复</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="806"/>
         <source>Disable message relay (&gt;) when autoreply is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>启用自动回复时禁用消息中继(&gt;)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="813"/>
         <source>Only autoreply to these callsigns (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>仅自动回复以下呼号(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="823"/>
         <source>Never autoreply to these callsigns (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>从不自动回复以下呼号(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="833"/>
         <source>Idle timeout - disable autoreply after:</source>
-        <translation type="unfinished"></translation>
+        <translation>空闲超时 - 此时间后禁用自动回复:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="843"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of minutes before unattended heartbeat transmissions are aborted.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;无人值守心跳发射中止前的分钟数。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="849"/>
         <source> minutes of inactivity</source>
-        <translation type="unfinished"></translation>
+        <translation> 分钟无活动</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="871"/>
         <source>Ask for confirmation before sending autoreply transmissions</source>
-        <translation type="unfinished"></translation>
+        <translation>发送自动回复前请求确认</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="881"/>
         <source>Callsign Filtering</source>
-        <translation type="unfinished"></translation>
+        <translation>呼号过滤</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="890"/>
         <source>Hide messages from these callsigns in the RX pane (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>在接收面板隐藏来自以下呼号的消息(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="925"/>
         <source>&amp;Radio</source>
-        <translation type="unfinished"></translation>
+        <translation>电台(&amp;R)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="928"/>
         <source>Radio interface configuration settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>电台接口配置设置。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="936"/>
         <source>Rig:</source>
-        <translation type="unfinished"></translation>
+        <translation>电台:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="956"/>
         <source>Poll Interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>轮询间隔:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="966"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interval to poll rig for status. Longer intervals will mean that changes to the rig will take longer to be detected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;轮询电台状态的间隔。间隔越长,检测电台变化的延迟越大。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="969"/>
         <source> s</source>
-        <translation type="unfinished"></translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="983"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Attempt to connect to the radio with these settings.&lt;/p&gt;&lt;p&gt;The button will turn green if the connection is successful or red if there is a problem.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;尝试用当前设置连接电台。&lt;/p&gt;&lt;p&gt;连接成功按钮变绿,出错则变红。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="986"/>
         <source>Test CAT</source>
-        <translation type="unfinished"></translation>
+        <translation>测试 CAT</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1009"/>
@@ -3236,395 +3244,405 @@ Click again to deactivate. Normally no power should be
 output since there is no audio being generated at this time.
 Check that any Tx indication on your radio and/or your
 radio interface behave as expected.</source>
-        <translation type="unfinished"></translation>
+        <translation>尝试激活发射机。
+再次点击则关闭。此时不应有功率输出,
+因为此刻没有音频生成。
+检查电台及/或电台接口上的 Tx 指示
+是否符合预期。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1027"/>
         <source>Test PTT</source>
-        <translation type="unfinished"></translation>
+        <translation>测试 PTT</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1043"/>
         <source>CAT Control</source>
-        <translation type="unfinished"></translation>
+        <translation>CAT 控制</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1087"/>
         <location filename="../JS8_UI/Configuration.ui" line="1583"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>端口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1103"/>
         <source>Serial port used for CAT control.</source>
-        <translation type="unfinished"></translation>
+        <translation>用于 CAT 控制的串口。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1121"/>
         <source>Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>参数</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1129"/>
         <source>Baud Rate:</source>
-        <translation type="unfinished"></translation>
+        <translation>波特率:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1145"/>
         <source>Serial port data rate which must match the setting of your radio.</source>
-        <translation type="unfinished"></translation>
+        <translation>串口数据速率,必须与电台设置一致。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1152"/>
         <source>1200</source>
-        <translation type="unfinished"></translation>
+        <translation>1200</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1157"/>
         <source>2400</source>
-        <translation type="unfinished"></translation>
+        <translation>2400</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1162"/>
         <source>4800</source>
-        <translation type="unfinished"></translation>
+        <translation>4800</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1167"/>
         <source>9600</source>
-        <translation type="unfinished"></translation>
+        <translation>9600</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1172"/>
         <source>19200</source>
-        <translation type="unfinished"></translation>
+        <translation>19200</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1177"/>
         <source>38400</source>
-        <translation type="unfinished"></translation>
+        <translation>38400</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1182"/>
         <source>57600</source>
-        <translation type="unfinished"></translation>
+        <translation>57600</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1187"/>
         <source>115200</source>
-        <translation type="unfinished"></translation>
+        <translation>115200</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1197"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of data bits used to communicate with your radio&apos;s CAT interface (usually eight).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;与电台 CAT 接口通信的数据位数(通常为 8)。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1200"/>
         <source>Data Bits</source>
-        <translation type="unfinished"></translation>
+        <translation>数据位</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1206"/>
         <source>D&amp;efault</source>
-        <translation type="unfinished"></translation>
+        <translation>默认(&amp;E)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1219"/>
         <source>Se&amp;ven</source>
-        <translation type="unfinished"></translation>
+        <translation>七(&amp;V)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1232"/>
         <source>E&amp;ight</source>
-        <translation type="unfinished"></translation>
+        <translation>八(&amp;I)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1248"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Number of stop bits used when communicating with your radio&apos;s CAT interface&lt;/p&gt;&lt;p&gt;(consult you radio&apos;s manual for details).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;与电台 CAT 接口通信使用的停止位数&lt;/p&gt;&lt;p&gt;(详情请查阅电台手册)。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1251"/>
         <source>Stop Bits</source>
-        <translation type="unfinished"></translation>
+        <translation>停止位</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1257"/>
         <location filename="../JS8_UI/Configuration.ui" line="1305"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1270"/>
         <source>On&amp;e</source>
-        <translation type="unfinished"></translation>
+        <translation>一(&amp;E)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1280"/>
         <source>T&amp;wo</source>
-        <translation type="unfinished"></translation>
+        <translation>二(&amp;W)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1296"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Flow control protocol used between this computer and your radio&apos;s CAT interface (usually &amp;quot;None&amp;quot; but some require &amp;quot;Hardware&amp;quot;).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;本机与电台 CAT 接口之间的流控协议(通常为 &amp;quot;无&amp;quot;,部分电台需要 &amp;quot;硬件&amp;quot;)。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1299"/>
         <source>Handshake</source>
-        <translation type="unfinished"></translation>
+        <translation>握手</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1318"/>
         <source>&amp;None</source>
-        <translation type="unfinished"></translation>
+        <translation>无(&amp;N)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1331"/>
         <source>Software flow control (very rare on CAT interfaces).</source>
-        <translation type="unfinished"></translation>
+        <translation>软件流控(CAT 接口极少使用)。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1334"/>
         <source>XON/XOFF</source>
-        <translation type="unfinished"></translation>
+        <translation>XON/XOFF</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1344"/>
         <source>Flow control using the RTS and CTS RS-232 control lines
 not often used but some radios have it as an option and
 a few, particularly some Kenwood rigs, require it).</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 RS-232 的 RTS 与 CTS 控制线进行流控,
+较少使用,但部分电台支持此选项,
+少数(尤其某些 Kenwood 电台)要求使用此项。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1349"/>
         <source>&amp;Hardware</source>
-        <translation type="unfinished"></translation>
+        <translation>硬件(&amp;H)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1362"/>
         <source>Special control of CAT port control lines.</source>
-        <translation type="unfinished"></translation>
+        <translation>对 CAT 端口控制线的特殊控制。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1365"/>
         <source>Force Control Lines</source>
-        <translation type="unfinished"></translation>
+        <translation>强制控制线</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1382"/>
         <location filename="../JS8_UI/Configuration.ui" line="1425"/>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>高</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1387"/>
         <location filename="../JS8_UI/Configuration.ui" line="1430"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>低</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1395"/>
         <source>DTR:</source>
-        <translation type="unfinished"></translation>
+        <translation>DTR:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1409"/>
         <source>RTS:</source>
-        <translation type="unfinished"></translation>
+        <translation>RTS:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1464"/>
         <source>Rig Options</source>
-        <translation type="unfinished"></translation>
+        <translation>电台选项</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1512"/>
         <source>How this program activates the PTT on your radio</source>
-        <translation type="unfinished"></translation>
+        <translation>本程序如何激活电台 PTT</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1515"/>
         <source>PTT Method</source>
-        <translation type="unfinished"></translation>
+        <translation>PTT 方式</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1521"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No PTT activation, instead the radio&apos;s automatic VOX is used to key the transmitter.&lt;/p&gt;&lt;p&gt;Use this if you have no radio interface hardware.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;不主动激活 PTT,而是依靠电台的自动 VOX 触发发射。&lt;/p&gt;&lt;p&gt;如无电台接口硬件请使用此项。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1524"/>
         <source>VO&amp;X</source>
-        <translation type="unfinished"></translation>
+        <translation>VOX(&amp;X)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1534"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use the RS-232 DTR control line to toggle your radio&apos;s PTT, requires hardware to inteface the line.&lt;/p&gt;&lt;p&gt;Some commercial interface units also use this method.&lt;/p&gt;&lt;p&gt;The DTR control line of the CAT serial port may be used for this or a DTR control line on a different serial port may be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;使用 RS-232 DTR 控制线切换电台 PTT,需有硬件接口对接该信号线。&lt;/p&gt;&lt;p&gt;部分商用接口设备亦采用此方式。&lt;/p&gt;&lt;p&gt;可使用 CAT 串口上的 DTR 控制线,或使用其他串口上的 DTR 控制线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1537"/>
         <source>&amp;DTR</source>
-        <translation type="unfinished"></translation>
+        <translation>DTR(&amp;D)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1550"/>
         <source>Some radios support PTT via CAT commands,
 use this option if your radio supports it and you have no
 other hardware interface for PTT.</source>
-        <translation type="unfinished"></translation>
+        <translation>部分电台支持通过 CAT 命令控制 PTT。
+若电台支持且没有其他 PTT 硬件接口,可使用此项。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1555"/>
         <source>C&amp;AT</source>
-        <translation type="unfinished"></translation>
+        <translation>CAT(&amp;A)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1565"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use the RS-232 RTS control line to toggle your radio&apos;s PTT, requires hardware to inteface the line.&lt;/p&gt;&lt;p&gt;Some commercial interface units also use this method.&lt;/p&gt;&lt;p&gt;The RTS control line of the CAT serial port may be used for this or a RTS control line on a different serial port may be used. Note that this option is not available on the CAT serial port when hardware flow control is used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;使用 RS-232 RTS 控制线切换电台 PTT,需有硬件接口对接该信号线。&lt;/p&gt;&lt;p&gt;部分商用接口设备亦采用此方式。&lt;/p&gt;&lt;p&gt;可使用 CAT 串口上的 RTS 控制线,或使用其他串口上的 RTS 控制线。注意:CAT 串口启用硬件流控时此选项不可用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1568"/>
         <source>R&amp;TS</source>
-        <translation type="unfinished"></translation>
+        <translation>RTS(&amp;T)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1599"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select the RS-232 serial port utilised for PTT control, this option is available when DTR or RTS is selected above as a transmit method.&lt;/p&gt;&lt;p&gt;This port can be the same one as the one used for CAT control.&lt;/p&gt;&lt;p&gt;For some interface types the special value CAT may be chosen, this is used for non-serial CAT interfaces that can control serial port control lines remotely (OmniRig for example).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择用于 PTT 控制的 RS-232 串口,仅在上方发射方式选 DTR 或 RTS 时可用。&lt;/p&gt;&lt;p&gt;此端口可与 CAT 控制所用端口相同。&lt;/p&gt;&lt;p&gt;对某些接口类型可选特殊值 CAT,用于可远程控制串口控制线的非串口型 CAT 接口(例如 OmniRig)。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1623"/>
         <source>Modulation mode selected on radio.</source>
-        <translation type="unfinished"></translation>
+        <translation>电台所选调制模式。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1626"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>模式</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1632"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;USB is usually the correct modulation mode,&lt;/p&gt;&lt;p&gt;unless the radio has a special data or packet mode setting&lt;/p&gt;&lt;p&gt;for AFSK operation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;通常使用 USB 即为正确调制模式,&lt;/p&gt;&lt;p&gt;除非电台另有专用于 AFSK 操作的&lt;/p&gt;&lt;p&gt;数据或分组模式设置。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1635"/>
         <source>US&amp;B</source>
-        <translation type="unfinished"></translation>
+        <translation>USB(&amp;B)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1648"/>
         <source>Don&apos;t allow the program to set the radio mode
 (not recommended but use if the wrong mode
 or bandwidth is selected).</source>
-        <translation type="unfinished"></translation>
+        <translation>不允许程序设置电台模式
+(不推荐;若所选模式或带宽错误时可使用)。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1653"/>
         <location filename="../JS8_UI/Configuration.ui" line="1742"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1663"/>
         <source>If this is availabe then it is usually the correct mode for this program.</source>
-        <translation type="unfinished"></translation>
+        <translation>若该项可用,通常即为本程序的正确模式。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1666"/>
         <source>Data/P&amp;kt</source>
-        <translation type="unfinished"></translation>
+        <translation>Data/Pkt(&amp;K)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1679"/>
         <source>Some radios can select the audio input using a CAT command,
 this setting allows you to select which audio input will be used
 (if it is available then generally the Rear/Data option is best).</source>
-        <translation type="unfinished"></translation>
+        <translation>部分电台可通过 CAT 命令选择音频输入。
+此设置用于指定使用哪个音频输入
+(若可用,通常 Rear/Data 选项最佳)。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1684"/>
         <source>Transmit Audio Source</source>
-        <translation type="unfinished"></translation>
+        <translation>发射音频源</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1690"/>
         <source>Rear&amp;/Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Rear/Data(&amp;/)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1700"/>
         <source>&amp;Front/Mic</source>
-        <translation type="unfinished"></translation>
+        <translation>Front/Mic(&amp;F)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1716"/>
         <source>Split Operation</source>
-        <translation type="unfinished"></translation>
+        <translation>Split 操作</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1722"/>
         <source>Fake It</source>
-        <translation type="unfinished"></translation>
+        <translation>模拟 Split</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1732"/>
         <source>Rig</source>
-        <translation type="unfinished"></translation>
+        <translation>电台</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1758"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>高级</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1788"/>
         <source>Tx delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tx 延迟:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1798"/>
         <source>Minimum delay between assertion of PTT and start of Tx audio.</source>
-        <translation type="unfinished"></translation>
+        <translation>PTT 触发与 Tx 音频开始之间的最小延迟。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1801"/>
         <source>  s</source>
-        <translation type="unfinished"></translation>
+        <translation>  秒</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1820"/>
         <source>PTT command:</source>
-        <translation type="unfinished"></translation>
+        <translation>PTT 命令:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1833"/>
         <source>Hold PTT between frames while there are more to be transmitted</source>
-        <translation type="unfinished"></translation>
+        <translation>在还有后续帧待发时,在帧间保持 PTT</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1865"/>
         <source>&amp;Audio</source>
-        <translation type="unfinished"></translation>
+        <translation>音频(&amp;A)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1868"/>
         <source>Audio interface settings</source>
-        <translation type="unfinished"></translation>
+        <translation>音频接口设置</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1910"/>
         <source>Soundcard</source>
-        <translation type="unfinished"></translation>
+        <translation>声卡</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1913"/>
         <source>Modulation Soundcard</source>
-        <translation type="unfinished"></translation>
+        <translation>调制声卡</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1925"/>
@@ -3633,46 +3651,50 @@ If this is your default device for system sounds then
 ensure that all system sounds are disabled otherwise
 you will broadcast any systems sounds generated during
 transmitting periods.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择用于发射的音频编解码设备。
+若此设备为系统声音的默认设备,
+须确保关闭所有系统声音,
+否则发射期间产生的系统声音
+将被广播出去。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1942"/>
         <source>Select the audio CODEC to use for receiving.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择用于接收的音频编解码设备。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1949"/>
         <source>&amp;Input:</source>
-        <translation type="unfinished"></translation>
+        <translation>输入(&amp;I):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1959"/>
         <source>Select the channel to use for receiving.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择用于接收的声道。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1963"/>
         <location filename="../JS8_UI/Configuration.ui" line="1993"/>
         <source>Mono</source>
-        <translation type="unfinished"></translation>
+        <translation>单声道</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1968"/>
         <location filename="../JS8_UI/Configuration.ui" line="1998"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>左</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1973"/>
         <location filename="../JS8_UI/Configuration.ui" line="2003"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>右</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1978"/>
         <location filename="../JS8_UI/Configuration.ui" line="2008"/>
         <source>Both</source>
-        <translation type="unfinished"></translation>
+        <translation>双声道</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="1986"/>
@@ -3680,22 +3702,24 @@ transmitting periods.</source>
 Unless you have multiple radios connected on different
 channels; then you will usually want to select mono or
 both here.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择用于发射的音频声道。
+除非有多台电台连接到不同声道,
+通常在此选择单声道或双声道。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2016"/>
         <source>Ou&amp;tput:</source>
-        <translation type="unfinished"></translation>
+        <translation>输出(&amp;T):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2029"/>
         <source>Notification Soundcard</source>
-        <translation type="unfinished"></translation>
+        <translation>通知声卡</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2035"/>
         <source>O&amp;utput:</source>
-        <translation type="unfinished"></translation>
+        <translation>输出(&amp;U):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2051"/>
@@ -3704,532 +3728,539 @@ If this is your default device for system sounds and transmission then
 ensure that all system sounds are disabled otherwise
 you will broadcast any systems sounds and notifications generated during
 transmitting periods.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择用于通知的音频编解码设备。
+若此设备同时为系统声音与发射的默认设备,
+须确保关闭所有系统声音,
+否则发射期间产生的系统声音与通知
+将被广播出去。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2065"/>
         <location filename="../JS8_UI/Configuration.ui" line="2068"/>
         <source>Save Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>保存目录</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2074"/>
         <source>Loc&amp;ation:</source>
-        <translation type="unfinished"></translation>
+        <translation>位置(&amp;A):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2090"/>
         <source>Path to which .WAV files are saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>保存 .WAV 文件的路径。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2096"/>
         <source>TextLabel</source>
-        <translation type="unfinished">文本标签</translation>
+        <translation>文本标签</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2103"/>
         <source>Click to select a different save directory for .WAV files.</source>
-        <translation type="unfinished"></translation>
+        <translation>点击以为 .WAV 文件选择其他保存目录。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2106"/>
         <source>S&amp;elect</source>
-        <translation type="unfinished"></translation>
+        <translation>选择(&amp;E)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2116"/>
         <source>Power Memory By Band</source>
-        <translation type="unfinished"></translation>
+        <translation>按频段记忆功率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2119"/>
         <source>Remember power settings by band</source>
-        <translation type="unfinished"></translation>
+        <translation>按频段记忆功率设置</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2125"/>
         <source>Enable power memory during transmit</source>
-        <translation type="unfinished"></translation>
+        <translation>发射时启用功率记忆</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2128"/>
         <source>Transmit</source>
-        <translation type="unfinished"></translation>
+        <translation>发射</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2135"/>
         <source>Enable power memory during tuning</source>
-        <translation type="unfinished"></translation>
+        <translation>调谐时启用功率记忆</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2138"/>
         <source>Tune</source>
-        <translation type="unfinished"></translation>
+        <translation>调谐</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2166"/>
         <source>Reportin&amp;g</source>
-        <translation type="unfinished"></translation>
+        <translation>上报(&amp;G)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2169"/>
         <source>Reporting and logging settings</source>
-        <translation type="unfinished"></translation>
+        <translation>上报与日志设置</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2175"/>
         <source>Logging</source>
-        <translation type="unfinished"></translation>
+        <translation>日志</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2183"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The callsign of the operator, if different from the station callsign.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;操作员呼号(若与台站呼号不同)。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2190"/>
         <source>Operator Callsign (if different than Station Callsign):</source>
-        <translation type="unfinished"></translation>
+        <translation>操作员呼号(若与台站呼号不同):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2238"/>
         <source>Network Services</source>
-        <translation type="unfinished"></translation>
+        <translation>网络服务</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2244"/>
         <source>APRS Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>APRS 服务器:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2257"/>
         <source>APRS Server Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>APRS 服务器端口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2279"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional hostname of APRS server to send spots to.&lt;/p&gt;&lt;p&gt;Formats:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;hostname&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 multicast group address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 multicast group address&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Clearing this field will disable the spotting to APRS.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;APRS 服务器主机名(可选),用于发送 spot。&lt;/p&gt;&lt;p&gt;格式:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;主机名&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 组播组地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 组播组地址&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;清空此字段将禁用 APRS spot 上报。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2285"/>
         <source>rotate.aprs2.net</source>
-        <translation type="unfinished"></translation>
+        <translation>rotate.aprs2.net</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2292"/>
         <source>Enable spotting @APRSIS messages to the APRS-IS network</source>
-        <translation type="unfinished"></translation>
+        <translation>允许将 @APRSIS 消息上报至 APRS-IS 网络</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2302"/>
         <source>When enabled, messages received from APRS-IS destined for stations in your Heard List will be relayed via JS8 (Group @APRSIS).</source>
-        <translation type="unfinished"></translation>
+        <translation>启用后,从 APRS-IS 收到的、目的地为已听到列表中台站的消息将通过 JS8 中继(群组 @APRSIS)。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2305"/>
         <source>Enable relaying inbound APRS messages to Heard List stations</source>
-        <translation type="unfinished"></translation>
+        <translation>允许将入站 APRS 消息中继至已听到列表中的台站</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2315"/>
         <source>Never send spotting reports from these callsigns (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>从不为以下呼号发送 spot 报告(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2322"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the service port number of the APRS server that should receive updates. If this is zero no updates will be broadcast.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入接收更新的 APRS 服务器服务端口号。设为 0 则不广播更新。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2338"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The program can send your station details and all decoded signals with grid squares as spots to the http://pskreporter.info web site.&lt;/p&gt;&lt;p&gt;This is used for reverse beacon analysis which is very useful for assessing propagation and system performance.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;本程序可将台站信息及所有带网格定位的已解码信号以 spot 形式发送至 http://pskreporter.info 网站。&lt;/p&gt;&lt;p&gt;这用于反向信标分析,对评估传播条件与系统性能很有帮助。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2341"/>
         <source>Enable spotting to reporting networks (JS8NET, PSKReporter, etc)</source>
-        <translation type="unfinished"></translation>
+        <translation>允许向上报网络(JS8NET、PSKReporter 等)上报 spot</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2354"/>
         <source>API</source>
-        <translation type="unfinished"></translation>
+        <translation>API</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2369"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional hostname of network service to receive decodes.&lt;/p&gt;&lt;p&gt;Formats:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;hostname&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 multicast group address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 multicast group address&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Clearing this field will disable the broadcasting of UDP status updates.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;接收解码结果的网络服务主机名(可选)。&lt;/p&gt;&lt;p&gt;格式:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;主机名&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 组播组地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 组播组地址&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;清空此字段将禁用 UDP 状态更新广播。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2379"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable the application to send API information over a TCP Server&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;允许程序通过 TCP 服务器发送 API 信息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2382"/>
         <source>Enable TCP Server API</source>
-        <translation type="unfinished"></translation>
+        <translation>启用 TCP 服务器 API</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2389"/>
         <source>TCP Server Hostname:</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP 服务器主机名:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2399"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the service port number of the UDP server that should receive updates. If this is zero no updates will be broadcast.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入接收更新的 UDP 服务器服务端口号。设为 0 则不广播更新。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2412"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;With this enabled the app will accept certain requests back from a TCP client that receives decode messages.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用后,程序将接受来自接收解码消息的 TCP 客户端的某些回请求。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2415"/>
         <source>Accept TCP Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>接受 TCP 请求</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2422"/>
         <source>UDP Server Hostname:</source>
-        <translation type="unfinished"></translation>
+        <translation>UDP 服务器主机名:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2435"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the service port number of the TCP server. If this is zero then TCP server will not be started.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入 TCP 服务器服务端口号。设为 0 则不启动 TCP 服务器。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2445"/>
         <source>TCP Server Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP 服务器端口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2455"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the maximum number of API connections allowed to the TCP server&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入 TCP 服务器允许的最大 API 连接数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2468"/>
         <source>UDP Server Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>UDP 服务器端口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2481"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check to allow changes to grid, qtc, etc from external programs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;勾选以允许从外部程序修改网格、qtc 等信息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2484"/>
         <source>Allow setting station information (Grid, Info, Status, etc) from the APIs</source>
-        <translation type="unfinished"></translation>
+        <translation>允许通过 API 设置台站信息(网格、信息、状态等)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2491"/>
         <source>TCP Max Connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP 最大连接数:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2501"/>
         <source>WSJT-X Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>WSJT-X 服务器:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2520"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional hostname of network service to receive WSJT-X protocol messages.&lt;/p&gt;&lt;p&gt;Formats:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;hostname&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 multicast group address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 multicast group address&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Clearing this field will disable the broadcasting of WSJT-X protocol messages.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;接收 WSJT-X 协议消息的网络服务主机名(可选)。&lt;/p&gt;&lt;p&gt;格式:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;主机名&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 组播组地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 组播组地址&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;清空此字段将禁用 WSJT-X 协议消息广播。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2530"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable the application to send WSJT-X protocol information to UDP Servers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;允许程序向 UDP 服务器发送 WSJT-X 协议信息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2533"/>
         <source>Enable WSJT-X UDP Server API</source>
-        <translation type="unfinished"></translation>
+        <translation>启用 WSJT-X UDP 服务器 API</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2540"/>
         <source>WSJT-X Server Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>WSJT-X 服务器端口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2553"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the service port number of the WSJT-X UDP server that should receive updates. If this is zero no updates will be sent. Default is 2237.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入接收更新的 WSJT-X UDP 服务器服务端口号。设为 0 则不发送更新。默认为 2237。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2569"/>
         <source>Multicast TTL:</source>
-        <translation type="unfinished"></translation>
+        <translation>组播 TTL:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2582"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sets the number of router hops that multicast datagrams are allowed to make. Almost everyone should set this to 1 to keep outgoing multicast traffic within the local subnet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置组播数据报允许经过的路由器跳数。几乎所有用户都应设为 1,以将外发组播流量保持在本地子网内。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2598"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;With this enabled JS8Call will accept certain requests from a UDP client sending WSJT-X protocol messages.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用后,JS8Call 将接受来自发送 WSJT-X 协议消息的 UDP 客户端的某些请求。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2601"/>
         <location filename="../JS8_UI/Configuration.ui" line="2660"/>
         <source>Accept UDP Requests</source>
-        <translation type="unfinished"></translation>
+        <translation>接受 UDP 请求</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2608"/>
         <source>Outgoing interfaces:</source>
-        <translation type="unfinished"></translation>
+        <translation>外发接口:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2618"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When sending updates to a multicast group address it is necessary to specify which network interface(s) to send them to. If the loop-back interface is multicast capable then at least that one will be selected.&lt;/p&gt;&lt;p&gt;For most users the loop-back interface is all that is needed, that will allow multiple other applications on the same machine to interoperate with JS8Call. If applications running on other hosts are to receive status updates then a suitable network interface should be used.&lt;/p&gt;&lt;p&gt;On some Linux systems it may be necessary to enable multicast on the loop-back network interface.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;向组播组地址发送更新时,需指定要发送到哪一(些)网络接口。若回环接口支持组播,则至少会选中该接口。&lt;/p&gt;&lt;p&gt;对多数用户而言只需回环接口即可,此设置允许同机上的多个其他应用与 JS8Call 互操作。若其他主机上的应用也要接收状态更新,则应使用合适的网络接口。&lt;/p&gt;&lt;p&gt;在部分 Linux 系统上,可能需要在回环网络接口上启用组播。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2657"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;With this enabled the app will accept certain requests back from a UDP server that receives decode messages.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用后,程序将接受来自接收解码消息的 UDP 服务器的某些回请求。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2667"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable the application to send API information to UDP Servers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;允许程序向 UDP 服务器发送 API 信息&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2670"/>
         <source>Enable UDP Server API</source>
-        <translation type="unfinished"></translation>
+        <translation>启用 UDP 服务器 API</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2680"/>
         <source>N3FJP Logger</source>
-        <translation type="unfinished"></translation>
+        <translation>N3FJP 日志程序</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2686"/>
         <source>Enable sending logged contacts to N3FJP logging software</source>
-        <translation type="unfinished"></translation>
+        <translation>允许向 N3FJP 日志软件发送已记录的通联</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2695"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N3FJP Server:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N3FJP 服务器:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2702"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional host name of N3FJP software to receive logged contacts. This is usually &apos;localhost&apos; or ip address 127.0.0.1&lt;/p&gt;&lt;p&gt;Formats:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;hostname&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 multicast group address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 multicast group address&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Clearing this field will disable broadcasting of ADIF information via UDP.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;接收已记录通联的 N3FJP 软件主机名(可选)。通常为 &apos;localhost&apos; 或 IP 地址 127.0.0.1&lt;/p&gt;&lt;p&gt;格式:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;主机名&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 组播组地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 组播组地址&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;清空此字段将禁用通过 UDP 广播 ADIF 信息。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2709"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N3FJP Server Port:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N3FJP 服务器端口:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2716"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the port number that should be used for N3FJP log information. For N3FJP, this value should be 1100. If this is zero, no contacts will be sent.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入 N3FJP 日志信息使用的端口号。对 N3FJP 应为 1100。设为 0 则不发送通联。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2728"/>
         <source>N1MM Logger</source>
-        <translation type="unfinished"></translation>
+        <translation>N1MM 日志程序</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2737"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When checked, the app will broadcast a logged contact in ADIF format to the configured hostname and port. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;勾选后,程序将以 ADIF 格式将已记录的通联广播至配置的主机名与端口。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2740"/>
         <source>Enable sending logged contacts to N1MM logging software</source>
-        <translation type="unfinished"></translation>
+        <translation>允许向 N1MM 日志软件发送已记录的通联</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2749"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N1MM Server:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N1MM 服务器:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2756"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Optional host name of N1MM Logger+ program to receive ADIF UDP broadcasts. This is usually &apos;localhost&apos; or ip address 127.0.0.1&lt;/p&gt;&lt;p&gt;Formats:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;hostname&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 multicast group address&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 multicast group address&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Clearing this field will disable broadcasting of ADIF information via UDP.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;接收 ADIF UDP 广播的 N1MM Logger+ 程序主机名(可选)。通常为 &apos;localhost&apos; 或 IP 地址 127.0.0.1&lt;/p&gt;&lt;p&gt;格式:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;主机名&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv4 组播组地址&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IPv6 组播组地址&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;清空此字段将禁用通过 UDP 广播 ADIF 信息。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2763"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N1MM Server Port:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N1MM 服务器端口:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2770"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the port number that should be used for UDP broadcasts of ADIF log information. For N1MM Logger+, this value should be 2333. If this is zero, no updates will be broadcast.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入用于 UDP 广播 ADIF 日志信息的端口号。对 N1MM Logger+ 应为 2333。设为 0 则不广播更新。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2840"/>
         <source>&amp;Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>频率(&amp;F)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2843"/>
         <source>Default frequencies and band specific station details setup</source>
-        <translation type="unfinished"></translation>
+        <translation>默认频率与特定频段台站详情设置</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2885"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;See &amp;quot;Frequency Calibration&amp;quot; in the User Guide for details of how to determine these parameters for your radio.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;请参阅用户指南中的 &amp;quot;频率校准&amp;quot; 章节,了解如何为电台确定这些参数。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2888"/>
         <source>Frequency Calibration</source>
-        <translation type="unfinished"></translation>
+        <translation>频率校准</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2896"/>
         <source>Slope:</source>
-        <translation type="unfinished"></translation>
+        <translation>斜率:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2909"/>
         <source> ppm</source>
-        <translation type="unfinished"></translation>
+        <translation> ppm</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2935"/>
         <source>Intercept:</source>
-        <translation type="unfinished"></translation>
+        <translation>截距:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2948"/>
         <source> Hz</source>
-        <translation type="unfinished"></translation>
+        <translation> Hz</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2972"/>
         <source>Frequencies</source>
-        <translation type="unfinished"></translation>
+        <translation>频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="2987"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Right click to maintain the working frequencies list.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;右键点击可维护工作频率列表。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3015"/>
         <source>Frequency Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation>频率计划</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3021"/>
         <source>Automatically switch bands / frequencies at specific times of day</source>
-        <translation type="unfinished"></translation>
+        <translation>在每日特定时刻自动切换频段/频率</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3037"/>
         <source>Items may be edited.
 Right click for insert and delete options.</source>
-        <translation type="unfinished"></translation>
+        <translation>条目可编辑。
+右键点击以获取插入与删除选项。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3101"/>
         <source>Saved &amp;Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>已保存消息(&amp;M)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3104"/>
         <source>Canned free text messages setup</source>
-        <translation type="unfinished"></translation>
+        <translation>预设自由文本消息设置</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3110"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>添加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3120"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除(&amp;D)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3130"/>
         <source>Drag and drop items to rearrange order
 Right click for item specific actions
 Click, SHIFT+Click and, CRTL+Click to select items</source>
-        <translation type="unfinished"></translation>
+        <translation>拖放条目以重排顺序
+右键点击获取条目特定操作
+使用单击、SHIFT+单击与 CTRL+单击选择条目</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3162"/>
         <source>&amp;Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>通知(&amp;N)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3201"/>
         <source>Enable Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>启用通知</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3233"/>
         <source>Event</source>
-        <translation type="unfinished"></translation>
+        <translation>事件</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3238"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已启用</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3243"/>
         <source>Sound File</source>
-        <translation type="unfinished"></translation>
+        <translation>声音文件</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3261"/>
         <source>&amp;UI</source>
-        <translation type="unfinished"></translation>
+        <translation>界面(&amp;U)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3267"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>全局</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3273"/>
         <source>Loads a new qss stylefile</source>
-        <translation type="unfinished"></translation>
+        <translation>加载新的 qss 样式表文件</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3276"/>
         <source>Application stylesheet</source>
-        <translation type="unfinished"></translation>
+        <translation>应用样式表</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3286"/>
         <source>Set the font characteristics for the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>设置应用的字体属性。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3289"/>
         <source>Application Font</source>
-        <translation type="unfinished"></translation>
+        <translation>应用字体</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3306"/>
         <source>Band &amp;&amp; Call Activity</source>
-        <translation type="unfinished"></translation>
+        <translation>频段与呼号活动</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3371"/>
         <source>Primary Highlight Background</source>
-        <translation type="unfinished"></translation>
+        <translation>主高亮背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3391"/>
@@ -4237,12 +4268,12 @@ Click, SHIFT+Click and, CRTL+Click to select items</source>
         <location filename="../JS8_UI/Configuration.ui" line="3909"/>
         <location filename="../JS8_UI/Configuration.ui" line="4040"/>
         <source>Foreground Color</source>
-        <translation type="unfinished"></translation>
+        <translation>前景色</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3398"/>
         <source>Highlight these words or callsigns with the primary background color (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>使用主背景色高亮以下词或呼号(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3448"/>
@@ -4257,17 +4288,17 @@ Click, SHIFT+Click and, CRTL+Click to select items</source>
         <location filename="../JS8_UI/Configuration.ui" line="3932"/>
         <location filename="../JS8_UI/Configuration.ui" line="4023"/>
         <source>K1ABC</source>
-        <translation type="unfinished"></translation>
+        <translation>K1ABC</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3496"/>
         <source>Secondary Highlight Background</source>
-        <translation type="unfinished"></translation>
+        <translation>次高亮背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3506"/>
         <source>Table Background</source>
-        <translation type="unfinished"></translation>
+        <translation>表格背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3613"/>
@@ -4275,165 +4306,167 @@ Click, SHIFT+Click and, CRTL+Click to select items</source>
         <location filename="../JS8_UI/Configuration.ui" line="3827"/>
         <location filename="../JS8_UI/Configuration.ui" line="4047"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>字体</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3664"/>
         <source>Directed Messages Background</source>
-        <translation type="unfinished"></translation>
+        <translation>定向消息背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3677"/>
         <source>CQ Messages Background</source>
-        <translation type="unfinished"></translation>
+        <translation>CQ 消息背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3684"/>
         <source>Highlight these words or callsigns with the secondary background color (comma separated):</source>
-        <translation type="unfinished"></translation>
+        <translation>使用次背景色高亮以下词或呼号(逗号分隔):</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3697"/>
         <source>Selected Row Background</source>
-        <translation type="unfinished"></translation>
+        <translation>选中行背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3759"/>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>消息</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3841"/>
         <source>Transmitted:</source>
-        <translation type="unfinished"></translation>
+        <translation>已发送:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3886"/>
         <source>Received:</source>
-        <translation type="unfinished"></translation>
+        <translation>已接收:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3902"/>
         <source>Textbox Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation>文本框背景色</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="3963"/>
         <source>Composition</source>
-        <translation type="unfinished"></translation>
+        <translation>撰写</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4033"/>
         <source> Textbox Background Color</source>
-        <translation type="unfinished"></translation>
+        <translation> 文本框背景色</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4054"/>
         <source>Display callsigns and commands as pills</source>
-        <translation type="unfinished"></translation>
+        <translation>将呼号与命令显示为胶囊样式</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4061"/>
         <source>Pill Colors:</source>
-        <translation type="unfinished"></translation>
+        <translation>胶囊颜色:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4082"/>
         <source>Recipient</source>
-        <translation type="unfinished"></translation>
+        <translation>收件方</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4092"/>
         <source>Recipient Background</source>
-        <translation type="unfinished"></translation>
+        <translation>收件方背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4099"/>
         <source>Recipient Foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>收件方前景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4115"/>
         <source>Command</source>
-        <translation type="unfinished"></translation>
+        <translation>命令</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4125"/>
         <source>Command Background</source>
-        <translation type="unfinished"></translation>
+        <translation>命令背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4132"/>
         <source>Command Foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>命令前景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4148"/>
         <source>Group</source>
-        <translation type="unfinished"></translation>
+        <translation>群组</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4158"/>
         <source>Group Background</source>
-        <translation type="unfinished"></translation>
+        <translation>群组背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4165"/>
         <source>Group Foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>群组前景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4181"/>
         <source>Sender</source>
-        <translation type="unfinished"></translation>
+        <translation>发件方</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4191"/>
         <source>Sender Background</source>
-        <translation type="unfinished"></translation>
+        <translation>发件方背景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4198"/>
         <source>Sender Foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>发件方前景</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4227"/>
         <source>&amp;Diagnostics</source>
-        <translation type="unfinished"></translation>
+        <translation>诊断(&amp;D)</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4230"/>
         <source>System and application details</source>
-        <translation type="unfinished"></translation>
+        <translation>系统与应用详情</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4278"/>
         <location filename="../JS8_UI/Configuration.ui" line="4281"/>
         <source>System, Device, and Application Diagnostics</source>
-        <translation type="unfinished"></translation>
+        <translation>系统、设备与应用诊断</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4287"/>
         <source>Run Diagnostics</source>
-        <translation type="unfinished"></translation>
+        <translation>运行诊断</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4297"/>
         <source>Copy to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>复制到剪贴板</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4317"/>
         <source>Audio device details</source>
-        <translation type="unfinished"></translation>
+        <translation>音频设备详情</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.ui" line="4341"/>
         <source>Discard or apply configuration changes including
 resetting the radio interface and applying any
 soundcard changes</source>
-        <translation type="unfinished"></translation>
+        <translation>放弃或应用配置更改,包括
+重置电台接口与应用任何
+声卡更改</translation>
     </message>
 </context>
 <context>
