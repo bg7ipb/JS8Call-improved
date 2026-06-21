@@ -2146,32 +2146,32 @@ Enter a new line to return to original or other frequency.</source>
         <translation>清除呼叫活动(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="29"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="43"/>
         <source>Rig Control Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="152"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="156"/>
         <source>Do you want to reconfigure the radio interface?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="572"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="576"/>
         <source>Enumerating audio devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="586"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="590"/>
         <source>Configurations...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1118"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1122"/>
         <source>Add New Station or Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1119"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1123"/>
         <source>Station or Group Callsign:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2462,17 +2462,17 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="20"/>
         <source>Dialog</source>
-        <translation type="unfinished">对话框</translation>
+        <translation>对话框</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="132"/>
         <source>Control</source>
-        <translation type="unfinished"></translation>
+        <translation>控制</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="165"/>
         <source>Offset</source>
-        <translation type="unfinished">偏移</translation>
+        <translation>频偏</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="174"/>
@@ -2481,338 +2481,338 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <location filename="../JS8_UI/WideGraph.ui" line="313"/>
         <location filename="../JS8_UI/WideGraph.ui" line="409"/>
         <source> Hz</source>
-        <translation type="unfinished"> Hz</translation>
+        <translation> Hz</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="177"/>
         <source>Offset: </source>
-        <translation type="unfinished"></translation>
+        <translation>频偏:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="196"/>
         <location filename="../JS8_UI/WideGraph.ui" line="205"/>
         <source>QSY</source>
-        <translation type="unfinished"></translation>
+        <translation>QSY</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="202"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adjust the dial frequency to center the current offset at the center of the bandpass (position defined below).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;调整度盘频率，使当前频偏居于通带中央（位置见下方设定）。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="221"/>
         <location filename="../JS8_UI/WideGraph.ui" line="286"/>
         <source>Center: </source>
-        <translation type="unfinished"></translation>
+        <translation>中心:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="240"/>
         <location filename="../JS8_UI/WideGraph.ui" line="845"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>滤波器</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="251"/>
         <source>Enable the software filter</source>
-        <translation type="unfinished"></translation>
+        <translation>启用软件滤波器</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="254"/>
         <source>Enable Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>启用滤波器</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="264"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Synchronize the filter center to the audio offset&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将滤波器中心同步到音频频偏&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="267"/>
         <source>Sync</source>
-        <translation type="unfinished"></translation>
+        <translation>同步</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="316"/>
         <source>Width: </source>
-        <translation type="unfinished"></translation>
+        <translation>宽度:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="364"/>
         <source>Display</source>
-        <translation type="unfinished"></translation>
+        <translation>显示</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="397"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>大小</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="403"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Frequency at left edge of waterfall&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;瀑布图左边缘对应的频率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="412"/>
         <source>Start: </source>
-        <translation type="unfinished"></translation>
+        <translation>起始:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="428"/>
         <source>Compression factor for frequency scale</source>
-        <translation type="unfinished"></translation>
+        <translation>频率刻度的压缩系数</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="437"/>
         <source>Bins Per Pixel: </source>
-        <translation type="unfinished"></translation>
+        <translation>每像素频点数:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="459"/>
         <source>Palette</source>
-        <translation type="unfinished"></translation>
+        <translation>调色板</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="465"/>
         <source>Select waterfall palette</source>
-        <translation type="unfinished"></translation>
+        <translation>选择瀑布图调色板</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="472"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter definition for a new color palette.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;输入新调色板的定义。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="475"/>
         <source>Adjust...</source>
-        <translation type="unfinished"></translation>
+        <translation>调整…</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="488"/>
         <source>Scrolling &amp;&amp; Averaging</source>
-        <translation type="unfinished"></translation>
+        <translation>滚动与平均</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="494"/>
         <source> fps</source>
-        <translation type="unfinished"></translation>
+        <translation> fps</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="497"/>
         <source>Scroll Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>滚动速度:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="515"/>
         <source>Number of FFTs averaged (controls waterfall scrolling rate)</source>
-        <translation type="unfinished"></translation>
+        <translation>参与平均的 FFT 数量（控制瀑布图滚动速率）</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="521"/>
         <source>Avg N: </source>
-        <translation type="unfinished"></translation>
+        <translation>平均数 N:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="534"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Flatten spectral baseline over the full displayed interval.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在整个显示区间内展平频谱基线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="537"/>
         <source>Flatten</source>
-        <translation type="unfinished"></translation>
+        <translation>展平</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="546"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select data for spectral display&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择用于频谱显示的数据&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="553"/>
         <source>Current</source>
-        <translation type="unfinished"></translation>
+        <translation>当前</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="558"/>
         <source>Cumulative</source>
-        <translation type="unfinished"></translation>
+        <translation>累积</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="563"/>
         <source>Linear Avg</source>
-        <translation type="unfinished"></translation>
+        <translation>线性平均</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="574"/>
         <source>Smoothing of Linear Average spectrum</source>
-        <translation type="unfinished"></translation>
+        <translation>线性平均频谱的平滑度</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="586"/>
         <source>Smooth:  </source>
-        <translation type="unfinished"></translation>
+        <translation>平滑:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="602"/>
         <source>Waterfall</source>
-        <translation type="unfinished"></translation>
+        <translation>瀑布图</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="613"/>
         <location filename="../JS8_UI/WideGraph.ui" line="754"/>
         <source>Gain:</source>
-        <translation type="unfinished"></translation>
+        <translation>增益:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="638"/>
         <source>Waterfall gain</source>
-        <translation type="unfinished"></translation>
+        <translation>瀑布图增益</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="657"/>
         <location filename="../JS8_UI/WideGraph.ui" line="798"/>
         <source>Zero:</source>
-        <translation type="unfinished"></translation>
+        <translation>零点:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="682"/>
         <source>Waterfall zero</source>
-        <translation type="unfinished"></translation>
+        <translation>瀑布图零点</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="703"/>
         <source>Display Decode Attempts</source>
-        <translation type="unfinished"></translation>
+        <translation>显示解码尝试</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="713"/>
         <source>Spectrum</source>
-        <translation type="unfinished"></translation>
+        <translation>频谱</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="719"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>高度:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="726"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set fractional size of spectrum in this window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;设置频谱在本窗口中所占的比例大小。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="735"/>
         <source> %</source>
-        <translation type="unfinished"></translation>
+        <translation> %</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="779"/>
         <source>Spectrum gain</source>
-        <translation type="unfinished"></translation>
+        <translation>频谱增益</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="823"/>
         <source>Spectrum zero</source>
-        <translation type="unfinished"></translation>
+        <translation>频谱零点</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="851"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>不透明度:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="864"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="898"/>
         <source>Timing</source>
-        <translation type="unfinished"></translation>
+        <translation>时序</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="952"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="955"/>
         <source>Time Drift: </source>
-        <translation type="unfinished"></translation>
+        <translation>时间漂移:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="971"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="977"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically synchronize time drift every second to decodes of NORMAL and SLOW signals observed.&lt;/p&gt;&lt;p&gt;This process is CPU intensive and may cause abnormal decoder behavior if run for extended periods of time. Default operation should be paired with stopping automatic time drift after signals have been decoded. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;每秒根据观测到的 NORMAL 与 SLOW 信号的解码自动同步时间漂移。&lt;/p&gt;&lt;p&gt;此过程占用大量 CPU，长时间运行可能导致解码器行为异常。默认操作应配合在信号解码完成后停止自动时间漂移。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="986"/>
         <source>Start Automatic Time Drift</source>
-        <translation type="unfinished"></translation>
+        <translation>开始自动时间漂移</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="998"/>
         <source>Stop After:</source>
-        <translation type="unfinished"></translation>
+        <translation>停止于:</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1008"/>
         <source> decode(s)</source>
-        <translation type="unfinished"></translation>
+        <translation> 次解码</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1026"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>手动</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1032"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Observe signals in the waterfall and click this to synchronize your time drift with the start of a minute.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在瀑布图中观察信号，点击此处可将时间漂移同步到整分钟的起点。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1035"/>
         <source>Set Time Drift to Now (Minute Start)</source>
-        <translation type="unfinished"></translation>
+        <translation>将时间漂移设为当前（分钟起点）</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1042"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Observe signals in the waterfall and click this to synchronize your time drift with the end of a TX cycle in the current transmission speed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在瀑布图中观察信号，点击此处可将时间漂移同步到当前传输速率下发射周期的结束。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1045"/>
         <source>Set Time Drift to Now (TX End)</source>
-        <translation type="unfinished"></translation>
+        <translation>将时间漂移设为当前（发射结束）</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1052"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Observe signals in the waterfall and click this to synchronize your time drift with the start of a TX cycle in the current transmission speed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在瀑布图中观察信号，点击此处可将时间漂移同步到当前传输速率下发射周期的起点。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1055"/>
         <source>Set Time Drift to Now (TX Start)</source>
-        <translation type="unfinished"></translation>
+        <translation>将时间漂移设为当前（发射起点）</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1062"/>
         <source>Reset your time drift to zero.</source>
-        <translation type="unfinished"></translation>
+        <translation>将时间漂移重置为零。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="1065"/>
         <source>Reset Time Drift</source>
-        <translation type="unfinished"></translation>
+        <translation>重置时间漂移</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.cpp" line="702"/>
         <location filename="../JS8_UI/WideGraph.cpp" line="723"/>
         <source>Read Palette</source>
-        <translation type="unfinished"></translation>
+        <translation>读取调色板</translation>
     </message>
 </context>
 <context>
