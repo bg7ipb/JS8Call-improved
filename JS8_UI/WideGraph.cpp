@@ -153,7 +153,7 @@ WideGraph::WideGraph(QSettings *settings, QWidget *parent)
                 ui->filterCheckBox->setChecked(true);
             });
 
-            auto widthMenu = menu->addMenu("Set Filter &Width to...");
+            auto widthMenu = menu->addMenu(tr("Set Filter &Width to..."));
             auto widths =
                 QList<int>{25, 50, 75, 100, 250, 500, 750, 1000, 1500, 2000};
             foreach (auto width, widths) {

@@ -43,7 +43,7 @@ MessagePanel::MessagePanel(QString inboxPath, QWidget *parent)
       this));
 
   ui->messageTableWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
-  auto deleteAction = new QAction("Delete", ui->messageTableWidget);
+  auto deleteAction = new QAction(tr("Delete"), ui->messageTableWidget);
   deleteAction->setShortcut(QKeySequence(Qt::Key_Delete));
   deleteAction->setShortcutContext(Qt::WidgetWithChildrenShortcut);
   connect(deleteAction, &QAction::triggered, this,

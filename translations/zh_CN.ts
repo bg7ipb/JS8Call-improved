@@ -1003,6 +1003,11 @@ Format:
         <source>Reply</source>
         <translation>回复</translation>
     </message>
+    <message>
+        <location filename="../JS8_UI/MessagePanel.cpp" line="46"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
 </context>
 <context>
     <name>MessageReplyDialog</name>
@@ -2166,6 +2171,30 @@ Enter a new line to return to original or other frequency.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="933"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1076"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1354"/>
+        <source>Saved Messages...</source>
+        <translation>已保存消息...</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="941"/>
+        <source>Relay via...</source>
+        <translation>中继经由...</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="997"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1270"/>
+        <source>Sort By...</source>
+        <translation>排序方式...</translation>
+    </message>
+    <message>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1000"/>
+        <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1273"/>
+        <source>Show Columns...</source>
+        <translation>显示列...</translation>
+    </message>
+    <message>
         <location filename="../JS8_Mainwindow/UI_Constructor.cpp" line="1122"/>
         <source>Add New Station or Group</source>
         <translation type="unfinished"></translation>
@@ -2287,6 +2316,11 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4386"/>
+        <source>Set a Custom Frequency...</source>
+        <translation>设置自定义频率...</translation>
+    </message>
+    <message>
         <location filename="../JS8_UI/mainwindow.cpp" line="4392"/>
         <source>Set a Custom Frequency</source>
         <translation type="unfinished"></translation>
@@ -2295,6 +2329,81 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <location filename="../JS8_UI/mainwindow.cpp" line="4393"/>
         <source>Frequency in MHz:</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4443"/>
+        <source>Send Heartbeat Now</source>
+        <translation>立即发送心跳</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4460"/>
+        <source>Send CQ Now</source>
+        <translation>立即发送 CQ</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4468"/>
+        <source>Repeat every 1 minute</source>
+        <translation>每 1 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4469"/>
+        <source>Repeat every 5 minutes</source>
+        <translation>每 5 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4470"/>
+        <source>Repeat every 10 minutes</source>
+        <translation>每 10 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4471"/>
+        <source>Repeat every 15 minutes</source>
+        <translation>每 15 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4472"/>
+        <source>Repeat every 30 minutes</source>
+        <translation>每 30 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4473"/>
+        <source>Repeat every 60 minutes</source>
+        <translation>每 60 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4474"/>
+        <source>Repeat every N minutes (Custom Interval)</source>
+        <translation>每 N 分钟重复（自定义间隔）</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4486"/>
+        <source>Repeat every %1 minutes (Custom Interval)</source>
+        <translation>每 %1 分钟重复（自定义间隔）</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4521"/>
+        <source>Repeat every N minutes</source>
+        <translation>每 N 分钟重复</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4949"/>
+        <source>Cu&amp;t</source>
+        <translation>剪切(&amp;T)</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4960"/>
+        <source>&amp;Copy</source>
+        <translation>复制(&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="4966"/>
+        <source>&amp;Paste</source>
+        <translation>粘贴(&amp;P)</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/mainwindow.cpp" line="5066"/>
+        <source>No Suggestions</source>
+        <translation>无拼写建议</translation>
     </message>
     <message>
         <location filename="../JS8_UI/mainwindow.cpp" line="6921"/>
@@ -2807,6 +2916,11 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <location filename="../JS8_UI/WideGraph.ui" line="1065"/>
         <source>Reset Time Drift</source>
         <translation>重置时间漂移</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/WideGraph.cpp" line="156"/>
+        <source>Set Filter &amp;Width to...</source>
+        <translation>设置滤波器宽度(&amp;W)...</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.cpp" line="702"/>

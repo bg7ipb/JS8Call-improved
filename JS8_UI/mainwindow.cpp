@@ -4383,7 +4383,7 @@ void UI_Constructor::enable_DXCC_entity(bool /*on*/) {
 }
 
 void UI_Constructor::buildFrequencyMenu(QMenu *menu) {
-    auto custom = menu->addAction("Set a Custom Frequency...");
+    auto custom = menu->addAction(tr("Set a Custom Frequency..."));
 
     connect(custom, &QAction::triggered, this, [this]() {
         bool ok = false;
@@ -4440,7 +4440,7 @@ void UI_Constructor::buildHeartbeatMenu(QMenu *menu) {
     buildRepeatMenu(menu, ui->hbMacroButton, false, &m_hbInterval);
 
     menu->addSeparator();
-    auto now = menu->addAction("Send Heartbeat Now");
+    auto now = menu->addAction(tr("Send Heartbeat Now"));
     connect(now, &QAction::triggered, this, &UI_Constructor::sendHB);
 }
 
@@ -4457,7 +4457,7 @@ void UI_Constructor::buildCQMenu(QMenu *menu) {
     buildRepeatMenu(menu, ui->cqMacroButton, true, &m_cqInterval);
 
     menu->addSeparator();
-    auto now = menu->addAction("Send CQ Now");
+    auto now = menu->addAction(tr("Send CQ Now"));
     connect(now, &QAction::triggered, this, [this]() { sendCQ(false); });
 }
 
@@ -4465,13 +4465,13 @@ void UI_Constructor::buildRepeatMenu(QMenu *menu, QPushButton *button,
                                      bool isLowInterval, int *interval) {
     QList<QPair<QString, int>> items = {
         {"On demand / do not repeat", 0},
-        {"Repeat every 1 minute", 1},
-        {"Repeat every 5 minutes", 5},
-        {"Repeat every 10 minutes", 10},
-        {"Repeat every 15 minutes", 15},
-        {"Repeat every 30 minutes", 30},
-        {"Repeat every 60 minutes", 60},
-        {"Repeat every N minutes (Custom Interval)",
+        {tr("Repeat every 1 minute"), 1},
+        {tr("Repeat every 5 minutes"), 5},
+        {tr("Repeat every 10 minutes"), 10},
+        {tr("Repeat every 15 minutes"), 15},
+        {tr("Repeat every 30 minutes"), 30},
+        {tr("Repeat every 60 minutes"), 60},
+        {tr("Repeat every N minutes (Custom Interval)"),
          -1}, // this needs to be last because of isSet bool
     };
 
@@ -4483,7 +4483,7 @@ void UI_Constructor::buildRepeatMenu(QMenu *menu, QPushButton *button,
         items.removeAt(1); // remove the one minute interval
     }
 
-    auto customFormat = QString("Repeat every %1 minutes (Custom Interval)");
+    auto customFormat = QString(tr("Repeat every %1 minutes (Custom Interval)"));
 
     QActionGroup *group = new QActionGroup(menu);
 
@@ -4518,7 +4518,7 @@ void UI_Constructor::buildRepeatMenu(QMenu *menu, QPushButton *button,
                     if (minutes == -1) {
                         bool ok = false;
                         min =
-                            QInputDialog::getInt(this, "Repeat every N minutes",
+                            QInputDialog::getInt(this, tr("Repeat every N minutes"),
                                                  "Minutes", 0, 1, 1440, 1, &ok);
                         if (!ok) {
                             return;
@@ -4946,7 +4946,7 @@ QAction *UI_Constructor::buildRelayAction(QString call) {
 void UI_Constructor::buildEditMenu(QMenu *menu, QTextEdit *edit) {
     bool hasSelection = !edit->textCursor().selectedText().isEmpty();
 
-    auto cut = menu->addAction("Cu&t");
+    auto cut = menu->addAction(tr("Cu&t"));
     cut->setEnabled(hasSelection && !edit->isReadOnly());
     connect(edit, &QTextEdit::copyAvailable, this,
             [edit, cut](bool copyAvailable) {
@@ -4957,13 +4957,13 @@ void UI_Constructor::buildEditMenu(QMenu *menu, QTextEdit *edit) {
         edit->textCursor().removeSelectedText();
     });
 
-    auto copy = menu->addAction("&Copy");
+    auto copy = menu->addAction(tr("&Copy"));
     copy->setEnabled(hasSelection);
     connect(edit, &QTextEdit::copyAvailable, this,
             [copy](bool copyAvailable) { copy->setEnabled(copyAvailable); });
     connect(copy, &QAction::triggered, edit, &QTextEdit::copy);
 
-    auto paste = menu->addAction("&Paste");
+    auto paste = menu->addAction(tr("&Paste"));
     paste->setEnabled(edit->canPaste());
     connect(paste, &QAction::triggered, edit, &QTextEdit::paste);
 }
@@ -5063,7 +5063,7 @@ void UI_Constructor::buildSuggestionsMenu(QMenu *menu, QTextEdit *edit,
     }
 
     if (suggestions.isEmpty()) {
-        auto a = menu->addAction("No Suggestions");
+        auto a = menu->addAction(tr("No Suggestions"));
         a->setDisabled(true);
     } else {
         foreach (auto suggestion, suggestions) {

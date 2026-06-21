@@ -930,7 +930,7 @@ UI_Constructor::UI_Constructor(QString const &program_info,
             restoreAction->setDisabled(m_lastTxMessage.isEmpty());
             menu->addAction(restoreAction);
 
-            auto savedMenu = menu->addMenu("Saved Messages...");
+            auto savedMenu = menu->addMenu(tr("Saved Messages..."));
             buildSavedMessagesMenu(savedMenu);
 
             auto directedMenu =
@@ -938,7 +938,7 @@ UI_Constructor::UI_Constructor(QString const &program_info,
             directedMenu->setDisabled(missingCallsign);
             buildQueryMenu(directedMenu, selectedCall);
 
-            auto relayMenu = menu->addMenu("Relay via...");
+            auto relayMenu = menu->addMenu(tr("Relay via..."));
             relayMenu->setDisabled(
                 ui->extFreeTextMsgEdit->toPlainText().isEmpty() ||
                 m_callActivity.isEmpty());
@@ -994,10 +994,10 @@ UI_Constructor::UI_Constructor(QString const &program_info,
         [this](QPoint const &point) {
             QMenu *menu = new QMenu(ui->tableWidgetRXAll);
 
-            QMenu *sortByMenu = menu->addMenu("Sort By...");
+            QMenu *sortByMenu = menu->addMenu(tr("Sort By..."));
             buildBandActivitySortByMenu(sortByMenu);
 
-            QMenu *showColumnsMenu = menu->addMenu("Show Columns...");
+            QMenu *showColumnsMenu = menu->addMenu(tr("Show Columns..."));
             buildShowColumnsMenu(showColumnsMenu, "band");
 
             menu->popup(
@@ -1073,7 +1073,7 @@ UI_Constructor::UI_Constructor(QString const &program_info,
 
             menu->addSeparator();
 
-            auto savedMenu = menu->addMenu("Saved Messages...");
+            auto savedMenu = menu->addMenu(tr("Saved Messages..."));
             buildSavedMessagesMenu(savedMenu);
 
             auto directedMenu =
@@ -1267,10 +1267,10 @@ UI_Constructor::UI_Constructor(QString const &program_info,
         [this](QPoint const &point) {
             QMenu *menu = new QMenu(ui->tableWidgetCalls);
 
-            QMenu *sortByMenu = menu->addMenu("Sort By...");
+            QMenu *sortByMenu = menu->addMenu(tr("Sort By..."));
             buildCallActivitySortByMenu(sortByMenu);
 
-            QMenu *showColumnsMenu = menu->addMenu("Show Columns...");
+            QMenu *showColumnsMenu = menu->addMenu(tr("Show Columns..."));
             buildShowColumnsMenu(showColumnsMenu, "call");
 
             menu->popup(
@@ -1351,7 +1351,7 @@ UI_Constructor::UI_Constructor(QString const &program_info,
 
             menu->addSeparator();
 
-            auto savedMenu = menu->addMenu("Saved Messages...");
+            auto savedMenu = menu->addMenu(tr("Saved Messages..."));
             buildSavedMessagesMenu(savedMenu);
 
             auto directedMenu =
