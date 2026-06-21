@@ -25,7 +25,21 @@ UI_Constructor::UI_Constructor(QString const &program_info,
       m_network_manager{this}, m_valid{true}, m_multiple{multiple},
       m_multi_settings{multi_settings}, m_configurations_button{0},
       m_settings{multi_settings->settings()}, m_settings_read{false},
-      ui(new Ui::UI_Constructor), m_config{temp_directory, m_settings, this},
+      // i18n W3 fix: install translator at init-list time (before m_config)
+      // so Configuration's setupUi/retranslateUi emits zh_CN directly. Old
+      // location in ctor body ran AFTER m_config init → dialog cached English.
+      ui(([this]() {
+              if (m_settings->value(QStringLiteral("Configuration/LanguageUi"),
+                                    QStringLiteral("en")).toString() ==
+                  QLatin1String("zh_CN")) {
+                  if (m_uiTranslator.load(QStringLiteral("zh_CN"),
+                                          QStringLiteral(":/i18n"))) {
+                      qApp->installTranslator(&m_uiTranslator);
+                  }
+              }
+              return new Ui::UI_Constructor;
+          })()),
+      m_config{temp_directory, m_settings, this},
       m_rigErrorMessageBox{JS8MessageBox::Critical, tr("Rig Control Error"),
                            JS8MessageBox::Cancel | JS8MessageBox::Ok |
                                JS8MessageBox::Retry},
@@ -69,16 +83,6 @@ UI_Constructor::UI_Constructor(QString const &program_info,
       m_spotClient{new SpotClient{"spot.js8call.com", 50000, program_info}},
       m_aprsClient{new APRSISClient{"rotate.aprs2.net", 14580}},
       m_aprsInboundRelay{nullptr} {
-    // i18n (W3): apply persisted UI language before setupUi so its retranslateUi
-    // emits the chosen language directly. Independent of cnMode.
-    if (m_settings->value(QStringLiteral("Configuration/LanguageUi"),
-                          QStringLiteral("en")).toString() ==
-        QLatin1String("zh_CN")) {
-        if (m_uiTranslator.load(QStringLiteral("zh_CN"),
-                                QStringLiteral(":/i18n"))) {
-            qApp->installTranslator(&m_uiTranslator);
-        }
-    }
     ui->setupUi(this);
 
     // i18n (W3): build Language menu actions and wire to changeEvent flow.
