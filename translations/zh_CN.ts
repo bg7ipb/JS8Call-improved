@@ -120,6 +120,24 @@
         <translation>立即切换至该频率(&amp;S)</translation>
     </message>
     <message>
+        <location filename="../JS8_UI/Configuration.cpp" line="2215"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="3563"/>
+        <source>Application Font (%1 %2)</source>
+        <translation>应用字体 (%1 %2)</translation>
+    </message>
+    <message>
+        <location filename="../JS8_UI/Configuration.cpp" line="2229"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="2243"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="2258"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="2271"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="3595"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="3792"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="3846"/>
+        <location filename="../JS8_UI/Configuration.cpp" line="3860"/>
+        <source>Font (%1 %2)</source>
+        <translation>字体 (%1 %2)</translation>
+    </message>
+    <message>
         <location filename="../JS8_UI/Configuration.cpp" line="2856"/>
         <source>Serial Port:</source>
         <translation>串口:</translation>
@@ -216,6 +234,11 @@ Format:
         <translation>字体选择器</translation>
     </message>
     <message>
+        <location filename="../JS8_UI/Configuration.cpp" line="3582"/>
+        <source>Application Stylesheet (%1)</source>
+        <translation>应用样式表 (%1)</translation>
+    </message>
+    <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4084"/>
         <source>Load Working Frequencies</source>
         <translation>加载工作频率</translation>
@@ -283,7 +306,7 @@ Format:
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4194"/>
         <source>Are you sure you want to save only the working frequencies that are currently selected? Click No to save all.</source>
-        <translation>确定只保存当前所选的工作频率吗?点击"否"则保存全部。</translation>
+        <translation>确定只保存当前所选的工作频率吗?点击&quot;否&quot;则保存全部。</translation>
     </message>
     <message>
         <location filename="../JS8_UI/Configuration.cpp" line="4213"/>
@@ -414,12 +437,12 @@ Format:
     <message>
         <location filename="../JS8_Main/WF.cpp" line="178"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除(&amp;D)</translation>
     </message>
     <message>
         <location filename="../JS8_Main/WF.cpp" line="186"/>
         <source>&amp;Insert ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">插入...(&amp;I)</translation>
     </message>
     <message>
         <location filename="../JS8_Main/WF.cpp" line="194"/>
@@ -498,13 +521,13 @@ Format:
         <location filename="../JS8_Main/FrequencyList.cpp" line="318"/>
         <location filename="../JS8_Main/FrequencyList.cpp" line="494"/>
         <source>IARU Region</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IARU 分区</translation>
     </message>
     <message>
         <location filename="../JS8_Main/FrequencyList.cpp" line="338"/>
         <location filename="../JS8_Main/FrequencyList.cpp" line="497"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模式</translation>
     </message>
     <message>
         <location filename="../JS8_Main/FrequencyList.cpp" line="364"/>
@@ -819,7 +842,7 @@ Format:
         <location filename="../JS8_Main/IARURegions.cpp" line="53"/>
         <location filename="../JS8_Main/IARURegions.cpp" line="79"/>
         <source>IARU Region</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">IARU 分区</translation>
     </message>
 </context>
 <context>
@@ -1000,7 +1023,7 @@ Format:
         <location filename="../JS8_Main/Modes.cpp" line="48"/>
         <location filename="../JS8_Main/Modes.cpp" line="74"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">模式</translation>
     </message>
 </context>
 <context>
@@ -1008,7 +1031,7 @@ Format:
     <message>
         <location filename="../JS8_Main/MultiSettings.cpp" line="40"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认</translation>
     </message>
 </context>
 <context>
@@ -1041,7 +1064,7 @@ Format:
     <message>
         <location filename="../JS8_Main/MultiSettings.cpp" line="509"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除(&amp;D)</translation>
     </message>
     <message>
         <location filename="../JS8_Main/MultiSettings.cpp" line="648"/>
@@ -2458,7 +2481,7 @@ Further, the source code of JS8Call contains material Copyright (C) 2018-2019 by
         <location filename="../JS8_UI/WideGraph.ui" line="313"/>
         <location filename="../JS8_UI/WideGraph.ui" line="409"/>
         <source> Hz</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> Hz</translation>
     </message>
     <message>
         <location filename="../JS8_UI/WideGraph.ui" line="177"/>

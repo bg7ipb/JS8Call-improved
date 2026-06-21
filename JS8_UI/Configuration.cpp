@@ -2212,7 +2212,7 @@ void Configuration::impl::read_settings() {
     } else {
         next_font_ = font_;
     }
-    ui_->font_push_button->setText(QString("Application Font (%1 %2)")
+    ui_->font_push_button->setText(tr("Application Font (%1 %2)")
                                        .arg(next_font_.family())
                                        .arg(next_font_.pointSize()));
 
@@ -2226,7 +2226,7 @@ void Configuration::impl::read_settings() {
         next_tx_text_font_ = tx_text_font_;
     }
 
-    ui_->txFontButton->setText(QString("Font (%1 %2)")
+    ui_->txFontButton->setText(tr("Font (%1 %2)")
                                    .arg(next_tx_text_font_.family())
                                    .arg(next_tx_text_font_.pointSize()));
 
@@ -2240,7 +2240,7 @@ void Configuration::impl::read_settings() {
         next_rx_text_font_ = rx_text_font_;
     }
 
-    ui_->rxFontButton->setText(QString("Font (%1 %2)")
+    ui_->rxFontButton->setText(tr("Font (%1 %2)")
                                    .arg(next_rx_text_font_.family())
                                    .arg(next_rx_text_font_.pointSize()));
 
@@ -2255,7 +2255,7 @@ void Configuration::impl::read_settings() {
         next_compose_text_font_ = compose_text_font_;
     }
     ui_->composeFontButton->setText(
-        QString("Font (%1 %2)")
+        tr("Font (%1 %2)")
             .arg(next_compose_text_font_.family())
             .arg(next_compose_text_font_.pointSize()));
 
@@ -2268,7 +2268,7 @@ void Configuration::impl::read_settings() {
     } else {
         next_table_font_ = table_font_;
     }
-    ui_->tableFontButton->setText(QString("Font (%1 %2)")
+    ui_->tableFontButton->setText(tr("Font (%1 %2)")
                                       .arg(next_table_font_.family())
                                       .arg(next_table_font_.pointSize()));
 
@@ -3560,7 +3560,7 @@ void Configuration::impl::on_font_push_button_clicked() {
                                       QFontDialog::DontUseNativeDialog
 #endif
     );
-    ui_->font_push_button->setText(QString("Application Font (%1 %2)")
+    ui_->font_push_button->setText(tr("Application Font (%1 %2)")
                                        .arg(next_font_.family())
                                        .arg(next_font_.pointSize()));
 }
@@ -3579,7 +3579,7 @@ void Configuration::impl::on_style_push_button_clicked() {
         file.close();
     }
 
-    ui_->style_push_button->setText(QString("Application Stylesheet (%1)")
+    ui_->style_push_button->setText(tr("Application Stylesheet (%1)")
                                             .arg(QFileInfo(fileName).fileName()));
 }
 
@@ -3592,7 +3592,7 @@ void Configuration::impl::on_tableFontButton_clicked() {
 #endif
         );
 
-    ui_->tableFontButton->setText(QString("Font (%1 %2)")
+    ui_->tableFontButton->setText(tr("Font (%1 %2)")
                                       .arg(next_table_font_.family())
                                       .arg(next_table_font_.pointSize()));
 }
@@ -3789,7 +3789,7 @@ void Configuration::impl::on_rxFontButton_clicked() {
                              QFontDialog::DontUseNativeDialog
 #endif
         );
-    ui_->rxFontButton->setText(QString("Font (%1 %2)")
+    ui_->rxFontButton->setText(tr("Font (%1 %2)")
                                    .arg(next_rx_text_font_.family())
                                    .arg(next_rx_text_font_.pointSize()));
 }
@@ -3843,7 +3843,7 @@ void Configuration::impl::on_txFontButton_clicked() {
 #endif
         );
 
-    ui_->txFontButton->setText(QString("Font (%1 %2)")
+    ui_->txFontButton->setText(tr("Font (%1 %2)")
                                    .arg(next_tx_text_font_.family())
                                    .arg(next_tx_text_font_.pointSize()));
 }
@@ -3857,7 +3857,7 @@ void Configuration::impl::on_composeFontButton_clicked() {
 #endif
     );
     ui_->composeFontButton->setText(
-        QString("Font (%1 %2)")
+        tr("Font (%1 %2)")
             .arg(next_compose_text_font_.family())
             .arg(next_compose_text_font_.pointSize()));
 }
