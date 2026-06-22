@@ -145,6 +145,7 @@ jobs:
       run: |
         cd ./build/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/LICENSE' JS8Call/
+        cp 'D:/a/JS8Call-improved/JS8Call-improved/JS8_I18N/codebook_v0.1.csv' JS8Call/
         cp /mingw64/bin/libfftw3f-3.dll JS8Call/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libhamlib-4.dll' JS8Call/
         cp 'D:/a/JS8Call-improved/JS8Call-improved/local/hamlib/bin/libusb-1.0.dll' JS8Call/

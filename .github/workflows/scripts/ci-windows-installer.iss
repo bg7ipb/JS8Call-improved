@@ -59,7 +59,7 @@ Source: "D:\a\JS8Call-improved\JS8Call-improved\build\JS8Call\tls\*"; DestDir: "
 Source: "D:\a\JS8Call-improved\JS8Call-improved\build\JS8Call\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\a\JS8Call-improved\JS8Call-improved\icons\windows-icons\js8call.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; ILC codebook: runtime loads via QFile from applicationDirPath()/codebook_v0.1.csv (JS8_Main/main.cpp); ship next to exe.
-Source: "D:\a\JS8Call-improved\JS8Call-improved\JS8_I18N\codebook_v0.1.csv"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\a\JS8Call-improved\JS8Call-improved\build\JS8Call\codebook_v0.1.csv"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
