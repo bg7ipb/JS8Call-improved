@@ -30,7 +30,7 @@ UI_Constructor::UI_Constructor(QString const &program_info,
       // location in ctor body ran AFTER m_config init → dialog cached English.
       ui(([this]() {
               if (m_settings->value(QStringLiteral("Configuration/LanguageUi"),
-                                    QStringLiteral("en")).toString() ==
+                                    QStringLiteral("zh_CN")).toString() ==
                   QLatin1String("zh_CN")) {
                   if (m_uiTranslator.load(QStringLiteral("zh_CN"),
                                           QStringLiteral(":/i18n"))) {
