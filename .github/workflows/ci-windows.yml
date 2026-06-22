@@ -241,13 +241,13 @@ jobs:
       if: ${{ (inputs.environment == 'Release') && (inputs.release-ver) }}
       run: |
         cd ./build/
-        & 'C:/Program Files (x86)/Inno Setup 6/ISCC.exe' /F"JS8Call-installer-${{ inputs.release-ver }}_${{ runner.arch }}" ../.github/workflows/scripts/ci-windows-installer.iss
+        & 'C:/Program Files (x86)/Inno Setup 6/ISCC.exe' /F"JS8call-CN-improved_${{ inputs.release-ver }}_${{ runner.arch }}" ../.github/workflows/scripts/ci-windows-installer.iss
 
     - name: INNO Setup (CI build)
       if: ${{ !(inputs.environment) || (inputs.environment == 'CI') }}
       run: |
         cd ./build/
-        & 'C:/Program Files (x86)/Inno Setup 6/ISCC.exe' /F"JS8Call-installer-devel_${{ runner.arch }}" ../.github/workflows/scripts/ci-windows-installer.iss
+        & 'C:/Program Files (x86)/Inno Setup 6/ISCC.exe' /F"JS8call-CN-improved_devel_${{ runner.arch }}" ../.github/workflows/scripts/ci-windows-installer.iss
 
     - name: Installer signtool run (CI build)
       if: ${{ !(inputs.environment) || (inputs.environment == 'CI') }}
@@ -255,7 +255,7 @@ jobs:
         PFX_CERTIFICATE_PASSWORD: ${{ secrets.CI_PFX_CERTIFICATE_PASSWORD }}
       run: |
         cd ./build/JS8Call/
-        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/signtool.exe' sign /fd SHA256 /v /f 'D:/a/JS8Call-improved/certificate.pfx' /p "$env:PFX_CERTIFICATE_PASSWORD" JS8Call-installer-*.exe
+        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/signtool.exe' sign /fd SHA256 /v /f 'D:/a/JS8Call-improved/certificate.pfx' /p "$env:PFX_CERTIFICATE_PASSWORD" JS8call-CN-improved_*.exe
       continue-on-error: true
 
     - name: Installer signtool run (Release build)
@@ -264,7 +264,7 @@ jobs:
         PFX_CERTIFICATE_PASSWORD: ${{ secrets.RELEASE_PFX_CERTIFICATE_PASSWORD }}
       run: |
         cd ./build/JS8Call/
-        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/signtool.exe' sign /fd SHA256 /v /f 'D:/a/JS8Call-improved/certificate.pfx' /p "$env:PFX_CERTIFICATE_PASSWORD" JS8Call-installer-*.exe
+        & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/signtool.exe' sign /fd SHA256 /v /f 'D:/a/JS8Call-improved/certificate.pfx' /p "$env:PFX_CERTIFICATE_PASSWORD" JS8call-CN-improved_*.exe
       continue-on-error: false
       
     - name: Attestation (Release Only)
@@ -277,15 +277,15 @@ jobs:
       if: ${{ (inputs.environment == 'Release') && (inputs.release-ver) }}
       uses: actions/upload-artifact@v6
       with:
-        name: "JS8call-improved_${{ inputs.release-ver }}_${{ runner.arch }}_win64"
+        name: "JS8call-CN-improved_${{ inputs.release-ver }}_${{ runner.arch }}_win64"
         path: |
-          ./build/JS8Call/JS8Call-installer*
+          ./build/JS8Call/JS8call-CN-improved_*
 
     - name: Upload Artifact (CI build)
       if: ${{ !(inputs.environment) || (inputs.environment == 'CI') }}
       uses: actions/upload-artifact@v6
       with:
-        name: "JS8call-improved_devel_${{ runner.arch }}_win64"
+        name: "JS8call-CN-improved_devel_${{ runner.arch }}_win64"
         path: |
-          ./build/JS8Call/JS8Call-installer*
+          ./build/JS8Call/JS8call-CN-improved_*
           ./build/JS8Call/
