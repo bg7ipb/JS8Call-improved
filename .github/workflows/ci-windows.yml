@@ -87,6 +87,7 @@ jobs:
     - name: Install Hamlib 4.7.1
       if: steps.cache-hamlib.outputs.cache-hit != 'true'
       run: |
+        New-Item -ItemType Directory -Force -Path 'D:/a/JS8Call-improved/JS8Call-improved/local' | Out-Null
         curl --location --output 'D:/a/_temp/hamlib-w64-4.7.1.zip' https://github.com/Hamlib/Hamlib/releases/download/4.7.1/hamlib-w64-4.7.1.zip
         cd 'D:/a/_temp/'
         unzip hamlib-w64-4.7.1.zip
