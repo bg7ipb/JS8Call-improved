@@ -175,6 +175,7 @@ qt_add_translations(${TARGET} TS_FILES translations/zh_CN.ts RESOURCE_PREFIX "/i
 
 set_target_properties(
   ${TARGET} PROPERTIES
+  OUTPUT_NAME                          "JS8CALL-CN"
   MACOSX_BUNDLE_INFO_PLIST             "${CMAKE_CURRENT_SOURCE_DIR}/resources/MacOS/Info.plist.in"
   MACOSX_BUNDLE_ICON_FILE              "${ICON_FILE}"
   MACOSX_BUNDLE_BUNDLE_VERSION         "${PROJECT_VERSION}"

@@ -133,12 +133,12 @@ jobs:
     - name: Move exe into install directory
       shell: msys2 {0}
       run: |
-        cp ./build/JS8Call.exe ./build/JS8Call/
+        cp ./build/JS8CALL-CN.exe ./build/JS8Call/
 
     - name: Deploy Qt runtime (windeployqt, explicit)
       shell: msys2 {0}
       run: |
-        /mingw64/bin/windeployqt.exe --no-translations ./build/JS8Call/JS8Call.exe
+        /mingw64/bin/windeployqt.exe --no-translations ./build/JS8Call/JS8CALL-CN.exe
 
     - name: Move libraries and License to install directory
       shell: msys2 {0}
