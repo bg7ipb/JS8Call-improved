@@ -538,6 +538,10 @@ void UI_Constructor::readSettings() {
     cnModeStatusLabel.setText(ui->actionModeJS8CN->isChecked()
         ? QString::fromUtf8("现在是中文发送模式")
         : QString::fromUtf8("Now in English send mode"));
+    // @ JS8_UI/mainwindow.cpp:540 之后追加（readSettings 内，紧邻 cnModeStatusLabel setText 簇）
+    ui->cnModeMacroButton->setChecked(ui->actionModeJS8CN->isChecked());
+    ui->cnModeMacroButton->setText(
+        ui->actionModeJS8CN->isChecked() ? QString::fromUtf8("中文") : QString::fromUtf8("EN"));
 
     m_lastMonitoredFrequency =
         m_settings
