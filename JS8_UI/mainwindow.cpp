@@ -535,6 +535,9 @@ void UI_Constructor::readSettings() {
     ui->actionModeJS8CN->setChecked(
         m_settings->value("CnMode", false).toBool());
     ui->extFreeTextMsgEdit->setCnMode(ui->actionModeJS8CN->isChecked());
+    cnModeStatusLabel.setText(ui->actionModeJS8CN->isChecked()
+        ? QString::fromUtf8("现在是中文发送模式")
+        : QString::fromUtf8("Now in English send mode"));
 
     m_lastMonitoredFrequency =
         m_settings
@@ -1465,6 +1468,14 @@ void UI_Constructor::createStatusBar() // createStatusBar
     wpm_label.setMinimumSize(QSize{120, 18});
     wpm_label.setStyleSheet(statusLabelStyle());
     wpm_label.setAlignment(Qt::AlignCenter);
+
+    statusBar()->addPermanentWidget(&cnModeStatusLabel);
+    cnModeStatusLabel.setMinimumSize(QSize{0, 18});
+    cnModeStatusLabel.setStyleSheet("color: red;");
+    cnModeStatusLabel.setAlignment(Qt::AlignCenter);
+    cnModeStatusLabel.setText(ui->actionModeJS8CN->isChecked()
+        ? QString::fromUtf8("现在是中文发送模式")
+        : QString::fromUtf8("Now in English send mode"));
 }
 
 void UI_Constructor::setup_status_bar() { last_tx_label.clear(); }
@@ -4198,6 +4209,9 @@ void UI_Constructor::on_actionModeJS8CN_toggled(bool checked) {
     // to the compose editor so input becomes faithful. Persisted in the "Common"
     // settings group on shutdown.
     ui->extFreeTextMsgEdit->setCnMode(checked);
+    cnModeStatusLabel.setText(checked
+        ? QString::fromUtf8("现在是中文发送模式")
+        : QString::fromUtf8("Now in English send mode"));
 }
 
 void UI_Constructor::on_actionModeMultiDecoder_toggled(bool checked) {

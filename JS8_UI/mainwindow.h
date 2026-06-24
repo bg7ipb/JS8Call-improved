@@ -676,6 +676,7 @@ class UI_Constructor : public QMainWindow {
     QLabel auto_tx_label;
     QProgressBar progressBar;
     QLabel wpm_label;
+    QLabel cnModeStatusLabel;
     Styles::OffsetSliderWidget *freqOffsetWidget = nullptr;
     int m_sliderFreqBeforeHB = 0;
 
