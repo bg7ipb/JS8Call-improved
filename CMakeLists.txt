@@ -155,6 +155,11 @@ if (APPLE)
     COMMENT "Building Icons"
   )
   set_source_files_properties(${ICON_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
+  # JS8CALL-CN: bundle ILC codebook into .app/Contents/MacOS/ to match
+  # main.cpp's applicationDirPath/codebook_v0.1.csv lookup (path ① in main.cpp:105).
+  set(ILC_CODEBOOK_FILE "${CMAKE_CURRENT_SOURCE_DIR}/JS8_I18N/codebook_v0.1.csv")
+  set_source_files_properties("${ILC_CODEBOOK_FILE}" PROPERTIES MACOSX_PACKAGE_LOCATION "MacOS")
 endif (APPLE)
 
 #------------------------------------------------------------------------------#
@@ -164,7 +169,7 @@ endif (APPLE)
 
 set(TARGET ${PROJECT_NAME})
 
-qt_add_executable(${TARGET} MACOSX_BUNDLE WIN32 ${ICON_FILE})
+qt_add_executable(${TARGET} MACOSX_BUNDLE WIN32 ${ICON_FILE} ${ILC_CODEBOOK_FILE})
 
 # JS8CALL-CN (phase-cn-ui/B): build translations/zh_CN.ts -> zh_CN.qm, embed under :/i18n
 qt_add_translations(${TARGET} TS_FILES translations/zh_CN.ts RESOURCE_PREFIX "/i18n")
@@ -176,6 +181,7 @@ qt_add_translations(${TARGET} TS_FILES translations/zh_CN.ts RESOURCE_PREFIX "/i
 set_target_properties(
   ${TARGET} PROPERTIES
   OUTPUT_NAME                          "JS8CALL-CN"
+  MACOSX_BUNDLE_EXECUTABLE_NAME        "JS8CALL-CN"
   MACOSX_BUNDLE_INFO_PLIST             "${CMAKE_CURRENT_SOURCE_DIR}/resources/MacOS/Info.plist.in"
   MACOSX_BUNDLE_ICON_FILE              "${ICON_FILE}"
   MACOSX_BUNDLE_BUNDLE_VERSION         "${PROJECT_VERSION}"
