@@ -399,6 +399,9 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                                     m_directedCnFrameSeen.insert(frameLit, nowUtc);
                                 }
                             }
+                            // [loc] §5路Z broad: tag peer CN on any directed-CN frame (echo-agnostic, AL per-peer langID)
+                            if (!cap.fromCall.isEmpty() && ILCRuntime::containsCJK(cap.accumulated))
+                                m_callActivity[cap.fromCall].peerLangId = ILCFramer::kLangIdCn;
                             cap.committed = true;
                             for (auto it = m_directedCnFrameSeen.begin();
                                  it != m_directedCnFrameSeen.end();) {
