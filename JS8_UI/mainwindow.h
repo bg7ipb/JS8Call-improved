@@ -713,6 +713,7 @@ class UI_Constructor : public QMainWindow {
         int bits;
         float tdrift;
         int submode;
+        int peerLangId = -1;  // [loc] §5路Z: peer wire langID (-1=unknown/未见, 1=CN); flat-additive
     };
 
     struct CommandDetail {

@@ -446,6 +446,7 @@ void UI_Constructor::writeSettings() {
                 {"utcTimestamp", QVariant(cd.utcTimestamp)},
 #endif
                 {"submode", QVariant(cd.submode)},
+                {"peerLangId", QVariant(cd.peerLangId)},  // [loc] §5路Z
             });
     }
     m_settings->endGroup();
@@ -649,6 +650,7 @@ void UI_Constructor::readSettings() {
 #endif
             auto submode =
                 values.value("submode", Varicode::JS8CallNormal).toInt();
+            auto peerLangId = values.value("peerLangId", -1).toInt();  // [loc] §5路Z
 
             CallDetail cd = {};
             cd.call = call;
@@ -660,6 +662,7 @@ void UI_Constructor::readSettings() {
             cd.ackTimestamp = ackTimestamp;
             cd.utcTimestamp = utcTimestamp;
             cd.submode = submode;
+            cd.peerLangId = peerLangId;  // [loc] §5路Z
 
             logCallActivity(cd, false);
         }

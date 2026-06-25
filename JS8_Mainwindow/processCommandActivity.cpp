@@ -7,6 +7,8 @@
 
 #include "JS8_Main/HBBlockingDB.h"
 #include "JS8_UI/mainwindow.h"
+#include "JS8_I18N/ILC_runtime.h"  // [loc] §5路Z: containsCJK
+#include "JS8_I18N/ILC_framer.h"   // [loc] §5路Z: kLangIdCn
 
 void UI_Constructor::processCommandActivity() {
 #if 0
@@ -67,6 +69,7 @@ void UI_Constructor::processCommandActivity() {
         cd.tdrift = d.tdrift;
         cd.submode = d.submode;
         logCallActivity(cd, true);
+        if (ILCRuntime::containsCJK(d.text)) m_callActivity[cd.call].peerLangId = ILCFramer::kLangIdCn;  // [loc] §5路Z sticky
         logHeardGraph(d.from, d.to);
 
         // Placeholder for callbacks to be passed to confirmThenEnqueueMessage

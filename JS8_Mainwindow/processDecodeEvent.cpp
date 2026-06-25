@@ -7,6 +7,7 @@
 
 #include "JS8_UI/mainwindow.h"
 #include "JS8_I18N/ILC_runtime.h"
+#include "JS8_I18N/ILC_framer.h"   // [loc] §5路Z: kLangIdCn
 
 void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
     static QList<qint32> driftQueue;
@@ -595,6 +596,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                             cmdcd.tdrift = cmd.tdrift;
                             cmdcd.submode = cmd.submode;
                             logCallActivity(cmdcd, false);
+                            if (ILCRuntime::containsCJK(cmd.text)) m_callActivity[cmdcd.call].peerLangId = ILCFramer::kLangIdCn;  // [loc] §5路Z sticky
                             logHeardGraph(cmd.from, cmd.to);
                         }
 
