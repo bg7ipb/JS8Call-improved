@@ -49,6 +49,7 @@ bool ILCCodebook::load(const QString &path, QString *err)
     dec.clear();
     eomTier = eomIdx = -1;
     maxLen = 1;
+    version.clear();
 
     QFile f(path);
     if (!f.open(QIODevice::ReadOnly)) {
@@ -77,6 +78,10 @@ bool ILCCodebook::load(const QString &path, QString *err)
         const QStringList r = splitCsvRow(line);
         if (r.size() < 4)
             continue;
+        if (r.at(0) == QLatin1String("version")) {
+            version = r.at(1);              // metadata sentinel row; not a token
+            continue;
+        }
         bool okT = false, okI = false;
         const int t = r.at(0).toInt(&okT);
         const int i = r.at(1).toInt(&okI);

@@ -27,6 +27,7 @@ public:
     int eomTier = -1;
     int eomIdx  = -1;
     int maxLen  = 1;
+    QString version;   // codebook version from sentinel row; empty = unknown (old codebook)
 
     static int key(int tier, int idx) { return tier * 100000 + idx; }
 };
