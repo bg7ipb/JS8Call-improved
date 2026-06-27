@@ -11,6 +11,70 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonParseError>
+#include <QCryptographicHash>
+#include <QSaveFile>
+#include <QStandardPaths>
+#include <QDir>
+#include <QFileInfo>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrl>
+
+// --- step4 (W1-b): download + sha256-verify + atomic stage of updated ILC codebook ---
+// Fire-and-forget: fetch the codebook artifact, verify its SHA-256 against the
+// manifest-declared digest, and (only on match) atomically write it to the user-writable
+// staging location. No UI prompt / no hot-reload here — surfacing + applying is step5.
+static void downloadAndVerifyCodebook(QObject *parent,
+                                      const QString &urlStr,
+                                      const QString &expectedSha256,
+                                      const QString &destPath)
+{
+    const QUrl url(urlStr);
+    if (urlStr.isEmpty() || !url.isValid()) {
+        qCWarning(mainwindow_js8) << "ILC codebook download: invalid/empty URL:" << urlStr;
+        return;
+    }
+
+    auto *nam = new QNetworkAccessManager(parent);
+    QObject::connect(nam, &QNetworkAccessManager::finished, parent,
+                     [nam, expectedSha256, destPath](QNetworkReply *reply) {
+        reply->deleteLater();
+        nam->deleteLater();
+
+        if (reply->error() != QNetworkReply::NoError) {
+            qCWarning(mainwindow_js8) << "ILC codebook download failed:" << reply->errorString();
+            return;
+        }
+
+        const QByteArray payload = reply->readAll();
+        const QByteArray actual =
+            QCryptographicHash::hash(payload, QCryptographicHash::Sha256).toHex();
+        if (actual.compare(expectedSha256.toLatin1(), Qt::CaseInsensitive) != 0) {
+            qCWarning(mainwindow_js8) << "ILC codebook sha256 mismatch; expected"
+                                      << expectedSha256 << "got" << QString::fromLatin1(actual)
+                                      << "- discarding download";
+            return;  // never write a corrupt / mismatched artifact
+        }
+
+        QDir().mkpath(QFileInfo(destPath).absolutePath());
+        QSaveFile out(destPath);
+        if (!out.open(QIODevice::WriteOnly)) {
+            qCWarning(mainwindow_js8) << "ILC codebook: cannot open staging file"
+                                      << destPath << out.errorString();
+            return;
+        }
+        out.write(payload);
+        if (!out.commit()) {
+            qCWarning(mainwindow_js8) << "ILC codebook: commit failed"
+                                      << destPath << out.errorString();
+            return;
+        }
+        qCDebug(mainwindow_js8) << "ILC codebook staged (" << payload.size()
+                                << "bytes, sha256 verified) ->" << destPath;
+    });
+    nam->get(QNetworkRequest(url));
+}
 
 void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
     // --- App manifest check (JSON; independent of codebook check below) ---
@@ -125,11 +189,13 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                     }
                     QJsonObject const obj = doc.object();
                     const QString remoteCbVer = obj.value("version").toString();
+                    const QString cbUrl       = obj.value("url").toString();
+                    const QString cbSha256    = obj.value("sha256").toString();
                     const QString minAppVer   = obj.value("min_app_version").toString();
                     qCDebug(mainwindow_js8)
                         << "Codebook manifest parsed: version=" << remoteCbVer
-                        << "url=" << obj.value("url").toString()
-                        << "sha256=" << obj.value("sha256").toString()
+                        << "url=" << cbUrl
+                        << "sha256=" << cbSha256
                         << "min_app_version=" << minAppVer;
 
                     // --- Codebook version comparison (step-3b) ---
@@ -148,6 +214,10 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                                 qCDebug(mainwindow_js8)
                                     << "Codebook update available:" << remoteCbVer
                                     << "(installed" << installedCbVer << ")";
+                                const QString codebookDest =
+                                    QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)
+                                    + QStringLiteral("/codebook_cn.csv");
+                                downloadAndVerifyCodebook(this, cbUrl, cbSha256, codebookDest);
                                 // TODO(step5): reuse app-update SDMB path to
                                 // prompt the user with download / changelog.
                             }
