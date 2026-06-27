@@ -2,7 +2,7 @@
 // Standalone (links QtCore only). Verifies round-trip + reproduces D8 bit/char.
 // EXEC-22·1: adds CRC-8/AUTOSAR independent check + framer round-trip + V10
 // 3-assertion (real CN frame -> Varicode::unpackCompoundMessage compatibility).
-// Usage: ilc_selftest [path-to-codebook_v0.1.csv]
+// Usage: ilc_selftest [path-to-codebook_cn.csv]
 #include "ILC.h"
 #include "ILC_codebook.h"
 #include "ILC_framer.h"
@@ -33,10 +33,10 @@ int runIlcSelftest()
     QTextStream out(stdout);
 
     QString path = QCoreApplication::applicationDirPath()
-                   + QStringLiteral("/codebook_v0.1.csv");
+                   + QStringLiteral("/codebook_cn.csv");
     if (!QFile::exists(path))
         path = QCoreApplication::applicationDirPath()
-               + QStringLiteral("/../JS8_I18N/codebook_v0.1.csv");
+               + QStringLiteral("/../JS8_I18N/codebook_cn.csv");
 
     ILCCodebook cb;
     QString err;

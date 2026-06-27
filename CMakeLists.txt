@@ -157,8 +157,8 @@ if (APPLE)
   set_source_files_properties(${ICON_FILE} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
   # JS8CALL-CN: bundle ILC codebook into .app/Contents/MacOS/ to match
-  # main.cpp's applicationDirPath/codebook_v0.1.csv lookup (path ① in main.cpp:105).
-  set(ILC_CODEBOOK_FILE "${CMAKE_CURRENT_SOURCE_DIR}/JS8_I18N/codebook_v0.1.csv")
+  # main.cpp's applicationDirPath/codebook_cn.csv lookup (path ① in main.cpp:105).
+  set(ILC_CODEBOOK_FILE "${CMAKE_CURRENT_SOURCE_DIR}/JS8_I18N/codebook_cn.csv")
   set_source_files_properties("${ILC_CODEBOOK_FILE}" PROPERTIES MACOSX_PACKAGE_LOCATION "MacOS")
 endif (APPLE)
 

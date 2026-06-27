@@ -103,10 +103,10 @@ int main(int argc, char *argv[]) {
         {
             QString ilcErr;
             QString ilcPath = QCoreApplication::applicationDirPath()
-                              + QStringLiteral("/codebook_v0.1.csv");
+                              + QStringLiteral("/codebook_cn.csv");
             if (!QFile::exists(ilcPath)) {
                 ilcPath = QCoreApplication::applicationDirPath()
-                          + QStringLiteral("/../JS8_I18N/codebook_v0.1.csv");
+                          + QStringLiteral("/../JS8_I18N/codebook_cn.csv");
             }
             if (!ILCRuntime::init(ilcPath, &ilcErr)) {
                 qWarning() << "JS8CALL-CN: ILC init failed, i18n disabled:"

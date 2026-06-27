@@ -2,6 +2,7 @@
 # tiers T0..T4 sel 0/10/110/1110/11110 codelen 4/8/12/16/20 ; ESC=11111 ; reserved=cap-used
 # used: T0=7(6+EOM,idx6 reserved) T1=50 T2=450 T3=3600 T4=22143  (= v0.1 + T3+100 + T4+5000)
 tier,index,token,type,codelen
+version,0.2.0,,,
 0,0, ,Control,4
 0,1,我,Char,4
 0,2,你,Char,4
