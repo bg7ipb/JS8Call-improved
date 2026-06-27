@@ -15,7 +15,7 @@ CAboutDlg::CAboutDlg(QWidget *parent) : QDialog(parent), ui(new Ui::CAboutDlg) {
     ui->labelTxt->setText(QString(
         "<h3>%1</h3><br/ >"
         "Build %2 on %3 by %4@%5<br />"
-        "<h3>JS8CALL-CN 3.0.1-CN-Beta1（内测版）升级说明</h3>"
+        "<h3>JS8CALL-CN 3.0.1.1-CN-Beta1（内测版）升级说明</h3>"
         "<p align='left'>JS8CALL-CN 是 JS8Call v3.0.1 的中文本地化版本。本内测版面向定向邀约的 HAM，用于实测中文界面在真实环境下的可用性。</p>"
         "<p align='left'><strong>【设计原则】</strong><br/>"
         "原则是尽可能与原版能力共存：仅在 JS8Call 既有能力之上追加中文支持，不替代原版、不改动 JS8 核心协议与帧结构；与原版同频共存、互不干扰，标准（非中文）通联完全互通。</p>"
