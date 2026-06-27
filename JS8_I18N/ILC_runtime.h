@@ -25,6 +25,11 @@ const ILC *instance();
 
 bool isReady();
 
+// Returns the version string of the currently loaded codebook, or an empty
+// QString when no codebook is loaded (e.g. dev build, init failed). Sourced
+// from the `version` sentinel row in the codebook CSV.
+QString codebookVersion();
+
 // RX streaming reassembler for the per-offset receive path. Feeds one wire
 // `frame` (with its outer i3bit First/Last) into the accumulator keyed by
 // `offset`, returning the newly decodable text (delta) for that frame --

@@ -7,6 +7,7 @@
  */
 
 #include "JS8_UI/mainwindow.h"
+#include "JS8_I18N/ILC_runtime.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonParseError>
@@ -123,13 +124,35 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                         return;
                     }
                     QJsonObject const obj = doc.object();
+                    const QString remoteCbVer = obj.value("version").toString();
+                    const QString minAppVer   = obj.value("min_app_version").toString();
                     qCDebug(mainwindow_js8)
-                        << "Codebook manifest parsed: version="
-                        << obj.value("version").toString()
+                        << "Codebook manifest parsed: version=" << remoteCbVer
                         << "url=" << obj.value("url").toString()
                         << "sha256=" << obj.value("sha256").toString()
-                        << "min_app_version="
-                        << obj.value("min_app_version").toString();
+                        << "min_app_version=" << minAppVer;
+
+                    // --- Codebook version comparison (step-3b) ---
+                    const QString installedCbVer = ILCRuntime::codebookVersion();
+                    const QVersionNumber remoteVN    = QVersionNumber::fromString(remoteCbVer);
+                    const QVersionNumber installedVN = QVersionNumber::fromString(installedCbVer);
+
+                    if (installedCbVer.isEmpty() || remoteVN.isNull()) {
+                        // dev build (no codebook loaded) or unparseable remote
+                        // version -> silently skip codebook update prompt
+                    } else {
+                        const QVersionNumber appVN    = QVersionNumber::fromString(version());
+                        const QVersionNumber minAppVN = QVersionNumber::fromString(minAppVer);
+                        if (minAppVN.isNull() || appVN >= minAppVN) {
+                            if (remoteVN > installedVN) {
+                                qCDebug(mainwindow_js8)
+                                    << "Codebook update available:" << remoteCbVer
+                                    << "(installed" << installedCbVer << ")";
+                                // TODO(step5): reuse app-update SDMB path to
+                                // prompt the user with download / changelog.
+                            }
+                        }
+                    }
                 });
 
         qCDebug(mainwindow_js8) << "Checking for Codebook Updates...";

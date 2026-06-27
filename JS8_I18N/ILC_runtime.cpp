@@ -72,6 +72,12 @@ bool isReady()
     return state().ready;
 }
 
+QString codebookVersion()
+{
+    const State &s = state();
+    return s.ready ? s.cb.version : QString();
+}
+
 bool containsCJK(const QString &text)
 {
     for (const QChar c : text) {
