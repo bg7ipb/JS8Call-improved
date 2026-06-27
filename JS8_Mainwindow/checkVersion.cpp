@@ -20,6 +20,8 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QUrl>
+#include <QMessageBox>
+#include <functional>
 
 // --- step4 (W1-b): download + sha256-verify + atomic stage of updated ILC codebook ---
 // Fire-and-forget: fetch the codebook artifact, verify its SHA-256 against the
@@ -28,22 +30,26 @@
 static void downloadAndVerifyCodebook(QObject *parent,
                                       const QString &urlStr,
                                       const QString &expectedSha256,
-                                      const QString &destPath)
+                                      const QString &destPath,
+                                      std::function<void()> onSuccess = nullptr,
+                                      std::function<void(const QString &)> onError = nullptr)
 {
     const QUrl url(urlStr);
     if (urlStr.isEmpty() || !url.isValid()) {
         qCWarning(mainwindow_js8) << "ILC codebook download: invalid/empty URL:" << urlStr;
+        if (onError) onError(QStringLiteral("Invalid codebook update URL."));
         return;
     }
 
     auto *nam = new QNetworkAccessManager(parent);
     QObject::connect(nam, &QNetworkAccessManager::finished, parent,
-                     [nam, expectedSha256, destPath](QNetworkReply *reply) {
+                     [nam, expectedSha256, destPath, onSuccess, onError](QNetworkReply *reply) {
         reply->deleteLater();
         nam->deleteLater();
 
         if (reply->error() != QNetworkReply::NoError) {
             qCWarning(mainwindow_js8) << "ILC codebook download failed:" << reply->errorString();
+            if (onError) onError(QStringLiteral("Could not download the codebook (network error)."));
             return;
         }
 
@@ -54,6 +60,7 @@ static void downloadAndVerifyCodebook(QObject *parent,
             qCWarning(mainwindow_js8) << "ILC codebook sha256 mismatch; expected"
                                       << expectedSha256 << "got" << QString::fromLatin1(actual)
                                       << "- discarding download";
+            if (onError) onError(QStringLiteral("Codebook verification failed (checksum mismatch)."));
             return;  // never write a corrupt / mismatched artifact
         }
 
@@ -62,16 +69,19 @@ static void downloadAndVerifyCodebook(QObject *parent,
         if (!out.open(QIODevice::WriteOnly)) {
             qCWarning(mainwindow_js8) << "ILC codebook: cannot open staging file"
                                       << destPath << out.errorString();
+            if (onError) onError(QStringLiteral("Could not write the codebook file to disk."));
             return;
         }
         out.write(payload);
         if (!out.commit()) {
             qCWarning(mainwindow_js8) << "ILC codebook: commit failed"
                                       << destPath << out.errorString();
+            if (onError) onError(QStringLiteral("Could not save the updated codebook."));
             return;
         }
         qCDebug(mainwindow_js8) << "ILC codebook staged (" << payload.size()
                                 << "bytes, sha256 verified) ->" << destPath;
+        if (onSuccess) onSuccess();
     });
     nam->get(QNetworkRequest(url));
 }
@@ -217,9 +227,32 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                                 const QString codebookDest =
                                     QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)
                                     + QStringLiteral("/codebook_cn.csv");
-                                downloadAndVerifyCodebook(this, cbUrl, cbSha256, codebookDest);
-                                // TODO(step5): reuse app-update SDMB path to
-                                // prompt the user with download / changelog.
+                                if (QMessageBox::question(
+                                        this,
+                                        "Codebook Update Available",
+                                        QString("A new Chinese codebook (version %1) is "
+                                                "available. Download it now?")
+                                            .arg(remoteVN.toString()))
+                                    == QMessageBox::Yes) {
+                                    downloadAndVerifyCodebook(this, cbUrl, cbSha256, codebookDest,
+                                        /*onSuccess*/ [this]() {
+                                            SelfDestructMessageBox *m = new SelfDestructMessageBox(
+                                                60, "Codebook Updated",
+                                                "The Chinese codebook has been updated. "
+                                                "Please restart JS8Call-CN to apply the new codebook.",
+                                                QMessageBox::Information, QMessageBox::Ok,
+                                                QMessageBox::Ok, false, this);
+                                            m->show();
+                                        },
+                                        /*onError*/ [this](const QString &reason) {
+                                            SelfDestructMessageBox *m = new SelfDestructMessageBox(
+                                                60, "Codebook Update Failed",
+                                                reason,
+                                                QMessageBox::Warning, QMessageBox::Ok,
+                                                QMessageBox::Ok, false, this);
+                                            m->show();
+                                        });
+                                }
                             }
                         }
                     }

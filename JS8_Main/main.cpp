@@ -102,11 +102,20 @@ int main(int argc, char *argv[]) {
         // continues with its original TX/RX paths unchanged.
         {
             QString ilcErr;
-            QString ilcPath = QCoreApplication::applicationDirPath()
-                              + QStringLiteral("/codebook_cn.csv");
-            if (!QFile::exists(ilcPath)) {
+            // [loc] Prefer a staged/downloaded Chinese codebook from writable app data.
+            const QString stagedCodebook =
+                QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)
+                + QStringLiteral("/codebook_cn.csv");
+            QString ilcPath;
+            if (QFile::exists(stagedCodebook)) {
+                ilcPath = stagedCodebook;
+            } else {
                 ilcPath = QCoreApplication::applicationDirPath()
-                          + QStringLiteral("/../JS8_I18N/codebook_cn.csv");
+                          + QStringLiteral("/codebook_cn.csv");
+                if (!QFile::exists(ilcPath)) {
+                    ilcPath = QCoreApplication::applicationDirPath()
+                              + QStringLiteral("/../JS8_I18N/codebook_cn.csv");
+                }
             }
             if (!ILCRuntime::init(ilcPath, &ilcErr)) {
                 qWarning() << "JS8CALL-CN: ILC init failed, i18n disabled:"
