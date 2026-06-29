@@ -2148,7 +2148,7 @@ void Configuration::impl::read_settings() {
     my_info_ = settings_->value("MyInfo", QString{}).toString();
     my_status_ =
         settings_
-            ->value("MyStatus", QString{"IDLE <MYIDLE> VERSION <MYVERSION>"})
+            ->value("MyStatus", QString{"IDLE <MYIDLE> VERSION <MYVERSION> CB <MYCBVER>"})
             .toString();
     hb_ = settings_->value("HBMessage", QString{"HB <MYGRID4>"}).toString();
     cq_ =

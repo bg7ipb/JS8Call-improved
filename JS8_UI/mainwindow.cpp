@@ -5006,6 +5006,7 @@ QMap<QString, QString> UI_Constructor::buildMacroValues() {
         {"<MYSTATUS>", m_config.my_status()},
 
         {"<MYVERSION>", myVersion},
+        {"<MYCBVER>", ILCRuntime::codebookVersion()},
         {"<MYIDLE>", myIdle},
     };
 
