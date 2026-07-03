@@ -117,6 +117,16 @@ void UI_Constructor::processCommandActivity() {
             }
         }
 
+        if (d.cmd == " STATUS") {
+            // [loc] CN codebook 版本互见: 从 STATUS reply body 抽 VERSION / CB token -> in-memory (persist 留 Y4)
+            static const QRegularExpression reSwVer(R"(VERSION\s+(\S+))");
+            static const QRegularExpression reCbVer(R"(CB\s+(\S+))");
+            const auto mSw = reSwVer.match(d.text);
+            if (mSw.hasMatch()) m_callActivity[cd.call].peerSwVer = mSw.captured(1);
+            const auto mCb = reCbVer.match(d.text);
+            if (mCb.hasMatch()) m_callActivity[cd.call].peerCbVer = mCb.captured(1);
+        }
+
         // PROCESS @JS8NET, @APRSIS, AND OTHER GROUP SPOTS FOR EVERYONE
         if (d.to.startsWith("@")) {
             spotCmd(d);

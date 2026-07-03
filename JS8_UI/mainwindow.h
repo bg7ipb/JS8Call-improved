@@ -714,6 +714,8 @@ class UI_Constructor : public QMainWindow {
         float tdrift;
         int submode;
         int peerLangId = -1;  // [loc] §5路Z: peer wire langID (-1=unknown/未见, 1=CN); flat-additive
+        QString peerSwVer;  // [loc] 对端 SW 版本(STATUS VERSION token)
+        QString peerCbVer;  // [loc] 对端 codebook 版本(STATUS CB token)
     };
 
     struct CommandDetail {
