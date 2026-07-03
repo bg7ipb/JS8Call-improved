@@ -3643,6 +3643,18 @@ UI_Constructor::buildMessageFrames(const QString &text, bool isData,
     // prepare selected callsign for directed message
     QString selectedCall = callsignSelected();
 
+    // Y3: cnMode 下发往 codebook 版本未知的对端时提示。非阻断/advisory/per-peer one-shot。不改 TX。
+    if (ui->actionModeJS8CN->isChecked()
+        && !selectedCall.isEmpty()
+        && !m_cnNudgedPeers.contains(selectedCall)
+        && m_callActivity.contains(selectedCall)
+        && m_callActivity[selectedCall].peerCbVer.isEmpty()) {
+        statusBar()->showMessage(
+            QString::fromUtf8("提示：对端 %1 未通告中文码本版本，可能无法解码中文消息").arg(selectedCall),
+            5000);
+        m_cnNudgedPeers.insert(selectedCall);
+    }
+
     // prepare compound
     QString mycall = m_config.my_callsign();
     QString mygrid = m_config.my_grid().left(4);

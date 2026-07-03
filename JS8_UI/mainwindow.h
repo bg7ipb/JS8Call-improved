@@ -910,6 +910,7 @@ class UI_Constructor : public QMainWindow {
     QMap<int, MessageBuffer> m_messageBuffer; // freq -> (cmd, [frames, ...])
     QMap<int, DirectedCnCapture> m_directedCnCapture; // JS8CALL-CN: offset -> capture
     QMap<QString, QDateTime> m_directedCnFrameSeen;   // JS8CALL-CN: frame literal -> last seen (TTL guard)
+    QSet<QString> m_cnNudgedPeers;                    // Y3: per-peer 会话内 nudge 抑制(纯内存, 不 persist)
     int m_lastClosedMessageBufferOffset;
     QMap<QString, CallDetail>
         m_callActivity; // call -> (last freq, last timestamp)
