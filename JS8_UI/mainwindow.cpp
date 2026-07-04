@@ -447,6 +447,8 @@ void UI_Constructor::writeSettings() {
 #endif
                 {"submode", QVariant(cd.submode)},
                 {"peerLangId", QVariant(cd.peerLangId)},  // [loc] §5路Z
+                {"peerSwVer", QVariant(cd.peerSwVer)},    // [loc] Y-prime
+                {"peerCbVer", QVariant(cd.peerCbVer)},    // [loc] Y-prime
             });
     }
     m_settings->endGroup();
@@ -651,6 +653,8 @@ void UI_Constructor::readSettings() {
             auto submode =
                 values.value("submode", Varicode::JS8CallNormal).toInt();
             auto peerLangId = values.value("peerLangId", -1).toInt();  // [loc] §5路Z
+            auto peerSwVer = values.value("peerSwVer", "").toString();  // [loc] Y-prime
+            auto peerCbVer = values.value("peerCbVer", "").toString();  // [loc] Y-prime
 
             CallDetail cd = {};
             cd.call = call;
@@ -663,6 +667,8 @@ void UI_Constructor::readSettings() {
             cd.utcTimestamp = utcTimestamp;
             cd.submode = submode;
             cd.peerLangId = peerLangId;  // [loc] §5路Z
+            cd.peerSwVer = peerSwVer;    // [loc] Y-prime
+            cd.peerCbVer = peerCbVer;    // [loc] Y-prime
 
             logCallActivity(cd, false);
         }
@@ -4842,6 +4848,8 @@ void UI_Constructor::buildShowColumnsMenu(QMenu *menu, QString tableKey) {
             {"Worked Before", "log"},
             {"Logged Name", "logName"},
             {"Logged Comment", "logComment"},
+            {"Software Version", "peerSwVer"},   // [loc] Y-prime
+            {"Codebook Version", "peerCbVer"},   // [loc] Y-prime
         });
     }
 

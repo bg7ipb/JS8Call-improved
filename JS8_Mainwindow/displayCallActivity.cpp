@@ -386,6 +386,13 @@ void UI_Constructor::displayCallActivity() {
                 logCommentItem->setToolTip(logDetailComment);
                 ui->tableWidgetCalls->setItem(row, col++, logCommentItem);
 
+                auto peerSwVerItem = new QTableWidgetItem(d.peerSwVer);  // [loc] Y-prime
+                peerSwVerItem->setTextAlignment(Qt::AlignCenter);        // [loc] Y-prime
+                ui->tableWidgetCalls->setItem(row, col++, peerSwVerItem);
+                auto peerCbVerItem = new QTableWidgetItem(d.peerCbVer);  // [loc] Y-prime
+                peerCbVerItem->setTextAlignment(Qt::AlignCenter);        // [loc] Y-prime
+                ui->tableWidgetCalls->setItem(row, col++, peerCbVerItem);
+
             } else {
                 ui->tableWidgetCalls->setItem(row, col++,
                                               new QTableWidgetItem("")); // age
@@ -409,6 +416,10 @@ void UI_Constructor::displayCallActivity() {
                     row, col++, new QTableWidgetItem("")); // log name
                 ui->tableWidgetCalls->setItem(
                     row, col++, new QTableWidgetItem("")); // log comment
+                ui->tableWidgetCalls->setItem(
+                    row, col++, new QTableWidgetItem("")); // peerSwVer  [loc] Y-prime
+                ui->tableWidgetCalls->setItem(
+                    row, col++, new QTableWidgetItem("")); // peerCbVer  [loc] Y-prime
             }
 
             if (isCallSelected) {
@@ -501,6 +512,8 @@ void UI_Constructor::displayCallActivity() {
                                               !showColumn("call", "logName"));
         ui->tableWidgetCalls->setColumnHidden(
             12, !showColumn("call", "logComment"));
+        ui->tableWidgetCalls->setColumnHidden(13, !showColumn("call", "peerSwVer"));   // [loc] Y-prime
+        ui->tableWidgetCalls->setColumnHidden(14, !showColumn("call", "peerCbVer"));   // [loc] Y-prime
 
         // Resize the table columns
         ui->tableWidgetCalls->resizeColumnToContents(0);
@@ -515,6 +528,8 @@ void UI_Constructor::displayCallActivity() {
         ui->tableWidgetCalls->resizeColumnToContents(9);
         ui->tableWidgetCalls->resizeColumnToContents(10);
         ui->tableWidgetCalls->resizeColumnToContents(11);
+        ui->tableWidgetCalls->resizeColumnToContents(12);   // [loc] Y-prime: Comment 转 auto-fit
+        ui->tableWidgetCalls->resizeColumnToContents(13);   // [loc] Y-prime: SW auto-fit; CB(14)=new stretch-last
 
         // Reset the scroll position
         ui->tableWidgetCalls->verticalScrollBar()->setValue(currentScrollPos);

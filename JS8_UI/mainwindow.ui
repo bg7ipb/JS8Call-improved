@@ -1031,6 +1031,16 @@ QTextEdit[transmitting=&quot;true&quot;] {
            <string>Comment</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>SW</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>CB</string>
+          </property>
+         </column>
         </widget>
        </widget>
       </widget>
