@@ -2326,6 +2326,16 @@ void UI_Constructor::logCallActivity(CallDetail d, bool spot) {
         if (!d.cqTimestamp.isValid() && old.cqTimestamp.isValid()) {
             d.cqTimestamp = old.cqTimestamp;
         }
+        // [loc] Y4-SAVE: preserve peer version fields across default-cd updates
+        if (d.peerLangId < 0 && old.peerLangId >= 0) {
+            d.peerLangId = old.peerLangId;
+        }
+        if (d.peerSwVer.isEmpty() && !old.peerSwVer.isEmpty()) {
+            d.peerSwVer = old.peerSwVer;
+        }
+        if (d.peerCbVer.isEmpty() && !old.peerCbVer.isEmpty()) {
+            d.peerCbVer = old.peerCbVer;
+        }
         m_callActivity[d.call] = d;
     } else {
         // create
