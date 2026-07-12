@@ -58,7 +58,7 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0)
 
 project(
   JS8Call
-  VERSION   3.0.1.1
+  VERSION   3.0.1.2
   LANGUAGES C CXX
 )
 
@@ -227,8 +227,8 @@ endif()
 target_compile_definitions(${TARGET}
     PRIVATE
     CMAKE_BUILD
-    JS8CALL_VERSION=\"${PROJECT_VERSION}\" JS8CALL_VERSION_SUFFIX=\"-CN-Beta1\" JS8CALL_UPDATE_URL=\"\"
-    JS8CALL_CODEBOOK_URL=\"\"
+    JS8CALL_VERSION=\"${PROJECT_VERSION}\" JS8CALL_VERSION_SUFFIX=\"\" JS8CALL_UPDATE_URL=\"https://raw.githubusercontent.com/bg7ipb/JS8Call-improved/cn-dev/manifest.json\"
+    JS8CALL_CODEBOOK_URL=\"https://raw.githubusercontent.com/bg7ipb/JS8Call-improved/cn-dev/codebook_manifest.json\"
     GITSHORT=\"${GIT_HASH}\"
     MACHINE=\"${HOSTNAME}\"
     UNAME=\"${USERNAME}\"
