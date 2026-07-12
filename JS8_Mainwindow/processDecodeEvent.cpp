@@ -466,7 +466,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                             statusText.append(ad.text);
                         }
                         static const QRegularExpression reSwVer(R"(VERSION\s+(\S+))");
-                        static const QRegularExpression reCbVer(R"(CB\s+(\S+))");
+                        static const QRegularExpression reCbVer(R"(CB\s+(\d+\.\d+\.\d+))");
                         const auto mSw = reSwVer.match(statusText);
                         const auto mCb = reCbVer.match(statusText);
                         if ((mSw.hasMatch() || mCb.hasMatch()) &&
