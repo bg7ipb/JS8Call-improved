@@ -1,0 +1,5 @@
+{
+  "version": "3.0.1.2",
+  "url": "https://github.com/bg7ipb/JS8Call-improved/releases/tag/v3.0.1.2",
+  "changelog": "版本号互见(双向 SW/CB) + 跨重启持久化 + CB 污染修复 + CB 版本两段化 + UI 打磨"
+}

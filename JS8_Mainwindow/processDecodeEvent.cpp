@@ -466,7 +466,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                             statusText.append(ad.text);
                         }
                         static const QRegularExpression reSwVer(R"(VERSION\s+(\S+))");
-                        static const QRegularExpression reCbVer(R"(CB\s+(\d+\.\d+\.\d+))");
+                        static const QRegularExpression reCbVer(R"(CB\s+(\d+\.\d+))");
                         const auto mSw = reSwVer.match(statusText);
                         const auto mCb = reCbVer.match(statusText);
                         if ((mSw.hasMatch() || mCb.hasMatch()) &&
@@ -478,7 +478,7 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                                 const int colon = statusText.indexOf(':');
                                 if (colon > 0) from = statusText.left(colon).trimmed();
                             }
-                            if (!from.isEmpty() && from != "<....>") {
+                            if (!from.isEmpty() && from != "<....>" && from != m_config.my_callsign()) {
                                 if (mSw.hasMatch())
                                     m_callActivity[from].peerSwVer = mSw.captured(1);
                                 if (mCb.hasMatch())
