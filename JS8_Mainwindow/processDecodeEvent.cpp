@@ -455,6 +455,37 @@ void UI_Constructor::processDecodeEvent(JS8::Event::Variant const &event) {
                     while (m_bandActivity[offset].count() > 10) {
                         m_bandActivity[offset].removeFirst();
                     }
+
+                    // [loc] β'-B 版本互见: STATUS 末帧,从 m_bandActivity[offset] 累积器(无条件
+                    // append、含完整 payload)重建全文,抽 VERSION/CB → populate call activity。绕过
+                    // buffered-flush 断链(D-199-11a);from 取 m_messageBuffer[offset].cmd.from,
+                    // fallback 解析重建文本首段呼号。runtime 证: seq200 [PZR-B] green。
+                    if ((d.bits & Varicode::JS8CallLast) == Varicode::JS8CallLast) {
+                        QString statusText;
+                        for (auto const &ad : m_bandActivity[offset]) {
+                            statusText.append(ad.text);
+                        }
+                        static const QRegularExpression reSwVer(R"(VERSION\s+(\S+))");
+                        static const QRegularExpression reCbVer(R"(CB\s+(\S+))");
+                        const auto mSw = reSwVer.match(statusText);
+                        const auto mCb = reCbVer.match(statusText);
+                        if ((mSw.hasMatch() || mCb.hasMatch()) &&
+                            statusText.contains(QStringLiteral(" STATUS"))) {
+                            QString from = m_messageBuffer.contains(offset)
+                                               ? m_messageBuffer[offset].cmd.from
+                                               : QString();
+                            if (from.isEmpty() || from == "<....>") {
+                                const int colon = statusText.indexOf(':');
+                                if (colon > 0) from = statusText.left(colon).trimmed();
+                            }
+                            if (!from.isEmpty() && from != "<....>") {
+                                if (mSw.hasMatch())
+                                    m_callActivity[from].peerSwVer = mSw.captured(1);
+                                if (mCb.hasMatch())
+                                    m_callActivity[from].peerCbVer = mCb.captured(1);
+                            }
+                        }
+                    }
                 }
 #endif
 
