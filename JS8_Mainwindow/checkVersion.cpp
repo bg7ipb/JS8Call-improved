@@ -198,7 +198,7 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
         m->get(r);
     }
 
-    // --- Codebook manifest check (parse + log only; compare/download later) ---
+    // --- Codebook manifest check (compare + prompt download + sha256 verify + apply) ---
     QString codebookUrl = QStringLiteral(JS8CALL_CODEBOOK_URL);
     if (codebookUrl.isEmpty()) {
         qCDebug(mainwindow_js8) << "Codebook URL empty, skipping codebook check";
@@ -254,24 +254,22 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                                     + QStringLiteral("/codebook_cn.csv");
                                 if (QMessageBox::question(
                                         this,
-                                        "Codebook Update Available",
-                                        QString("A new Chinese codebook (version %1) is "
-                                                "available. Download it now?")
+                                        "词库有更新",
+                                        QString("发现新版中文词库 %1。现在下载？")
                                             .arg(remoteVN.toString()))
                                     == QMessageBox::Yes) {
                                     downloadAndVerifyCodebook(this, cbUrl, cbSha256, codebookDest,
                                         /*onSuccess*/ [this]() {
                                             SelfDestructMessageBox *m = new SelfDestructMessageBox(
-                                                60, "Codebook Updated",
-                                                "The Chinese codebook has been updated. "
-                                                "Please restart JS8Call-CN to apply the new codebook.",
+                                                60, "词库已更新",
+                                                "中文词库已更新。请重启 JS8Call-CN 以应用新词库。",
                                                 QMessageBox::Information, QMessageBox::Ok,
                                                 QMessageBox::Ok, false, this);
                                             m->show();
                                         },
                                         /*onError*/ [this](const QString &reason) {
                                             SelfDestructMessageBox *m = new SelfDestructMessageBox(
-                                                60, "Codebook Update Failed",
+                                                60, "词库更新失败",
                                                 reason,
                                                 QMessageBox::Warning, QMessageBox::Ok,
                                                 QMessageBox::Ok, false, this);
