@@ -1,5 +1,5 @@
 #define MyAppName "JS8Call-CN"
-#define MyAppVersion "3.0.1.1-CN-Beta1"
+#define MyAppVersion "3.0.1.3"
 #define MyAppPublisher "BG7IPB"
 #define MyAppURL "https://github.com/bg7ipb/JS8Call-improved/"
 #define MyAppExeName "JS8CALL-CN.exe"
@@ -9,7 +9,7 @@
 AppId={{67820EE0-ABE4-4386-8DC4-0637D0B94601}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-VersionInfoVersion=3.0.1.1
+VersionInfoVersion=3.0.1.3
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
