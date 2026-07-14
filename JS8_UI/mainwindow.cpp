@@ -2183,7 +2183,7 @@ void UI_Constructor::decodeBusy(bool b) // decodeBusy()
     m_decoderBusy = b;
 
     if (m_decoderBusy) {
-        tx_status_label.setText("Decoding");
+        tx_status_label.setText("解码中");
 
         m_decoderBusyStartTime = QDateTime::
             currentDateTimeUtc(); // DriftingDateTime::currentDateTimeUtc();
@@ -2771,22 +2771,22 @@ void UI_Constructor::guiUpdate() {
             tx_status_label.setStyleSheet(txStatusLabelStyle(TxStatusAppearance::Transmitting));
 
             if (m_tune) {
-                tx_status_label.setText("Tx: TUNE");
+                tx_status_label.setText("发射: 调谐");
             } else {
                 auto message =
                     DecodedText(msgsent, msgibits, m_nSubMode).message();
                 tx_status_label.setText(
-                    QString("Tx: %1").arg(message).left(40).trimmed());
+                    QString("发射: %1").arg(message).left(40).trimmed());
             }
             transmitDisplay(true);
         } else if (m_monitoring) {
             if (m_tx_watchdog) {
                 tx_status_label.setStyleSheet(txStatusLabelStyle(TxStatusAppearance::IdleTimeout));
-                tx_status_label.setText("Idle timeout");
+                tx_status_label.setText("空闲超时");
             } else {
                 tx_status_label.setStyleSheet(txStatusLabelStyle(TxStatusAppearance::Decoding));
-                tx_status_label.setText(m_decoderBusy ? "Decoding"
-                                                      : "Receiving");
+                tx_status_label.setText(m_decoderBusy ? "解码中"
+                                                      : "接收中");
             }
             transmitDisplay(false);
         } else if (!m_tx_watchdog) {
@@ -2907,7 +2907,7 @@ void UI_Constructor::stopTx() {
 
     auto dt = DecodedText(m_currentMessage.trimmed(), m_currentMessageBits,
                           m_nSubMode);
-    last_tx_label.setText("Last Tx: " +
+    last_tx_label.setText("上次发射: " +
                           dt.message()); // m_currentMessage.trimmed());
 
     // TODO: uncomment if we want to mark after the frame is sent.
@@ -7110,7 +7110,7 @@ void UI_Constructor::tx_watchdog(bool triggered) {
         {
             tx_status_label.setStyleSheet(txStatusLabelStyle(TxStatusAppearance::IdleTimeout));
         }
-        tx_status_label.setText("Idle timeout");
+        tx_status_label.setText("空闲超时");
 
         // if the watchdog is triggered...we're no longer active
         bool wasAuto = ui->actionModeAutoreply->isChecked();
