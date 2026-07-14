@@ -14,7 +14,7 @@ CAboutDlg::CAboutDlg(QWidget *parent) : QDialog(parent), ui(new Ui::CAboutDlg) {
     setWindowTitle("About JS8Call");
     ui->labelTxt->setText(QString(
         "<h3>%1</h3><br/ >"
-        "Build %2 on %3 by %4@%5<br />"
+        "Build %2 on %3 by BG7IPB<br />"
         "<h3>JS8CALL-CN 3.0.1.2 版本说明</h3>"
         "<p align='left'>JS8CALL-CN 是 JS8Call v3.0.1 的中文本地化版本，面向中文 HAM 社区，把中文界面与中文空口收发做进 JS8Call。</p>"
         "<p align='left'><strong>【设计原则】</strong><br/>"
@@ -96,7 +96,7 @@ CAboutDlg::CAboutDlg(QWidget *parent) : QDialog(parent), ui(new Ui::CAboutDlg) {
         "W6BAZ,</strong><br/><br/>"
         "and the many other amateur radio operators who have helped bring "
         "JS8Call into the world.</p>"
-    ).arg(program_title(), GITSHORT, CREATED, UNAME, MACHINE));
+    ).arg(program_title(), GITSHORT, CREATED));
 }
 
 CAboutDlg::~CAboutDlg() {}
