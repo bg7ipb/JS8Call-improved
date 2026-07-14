@@ -98,6 +98,16 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                     if (reply->error()) {
                         qCDebug(mainwindow_js8) << "App check error:"
                                                 << reply->errorString();
+                        if (alertOnUpToDate) {
+                            SelfDestructMessageBox *m =
+                                new SelfDestructMessageBox(
+                                    60, "检查更新",
+                                    QString("无法检查更新：%1")
+                                        .arg(reply->errorString()),
+                                    QMessageBox::Warning, QMessageBox::Ok,
+                                    QMessageBox::Ok, false, this);
+                            m->show();
+                        }
                         return;
                     }
 
@@ -108,6 +118,16 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                         || !doc.isObject()) {
                         qCDebug(mainwindow_js8)
                             << "App manifest parse error:" << jErr.errorString();
+                        if (alertOnUpToDate) {
+                            SelfDestructMessageBox *m =
+                                new SelfDestructMessageBox(
+                                    60, "检查更新",
+                                    QString("无法检查更新：服务器响应格式错误（%1）")
+                                        .arg(jErr.errorString()),
+                                    QMessageBox::Warning, QMessageBox::Ok,
+                                    QMessageBox::Ok, false, this);
+                            m->show();
+                        }
                         return;
                     }
                     QJsonObject const obj = doc.object();
@@ -117,6 +137,15 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                     if (appVer.isEmpty()) {
                         qCDebug(mainwindow_js8)
                             << "App manifest missing version, skipping";
+                        if (alertOnUpToDate) {
+                            SelfDestructMessageBox *m =
+                                new SelfDestructMessageBox(
+                                    60, "检查更新",
+                                    "无法检查更新：服务器未提供版本信息",
+                                    QMessageBox::Warning, QMessageBox::Ok,
+                                    QMessageBox::Ok, false, this);
+                            m->show();
+                        }
                         return;
                     }
 
@@ -132,10 +161,7 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                     if (currentVersion < networkVersion) {
 
                         QString body =
-                            QString("A new version (%1) of JS8Call is now "
-                                    "available. Please see the <a "
-                                    "href='%2'>GitHub Releases</a> for more "
-                                    "details.")
+                            QString("发现新版本 %1。请到 <a href='%2'>GitHub Releases</a> 下载。")
                                 .arg(appVer,
                                      appUrl.isEmpty()
                                          ? QStringLiteral(
@@ -147,7 +173,7 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                         }
 
                         SelfDestructMessageBox *m = new SelfDestructMessageBox(
-                            60, "New Updates Available", body,
+                            60, "检查更新", body,
                             QMessageBox::Information, QMessageBox::Ok,
                             QMessageBox::Ok, false, this);
 
@@ -156,9 +182,8 @@ void UI_Constructor::checkVersion(bool const alertOnUpToDate) {
                     } else if (alertOnUpToDate) {
 
                         SelfDestructMessageBox *m = new SelfDestructMessageBox(
-                            60, "No Updates Available",
-                            QString("Your version (%1) of JS8Call is "
-                                    "up-to-date.")
+                            60, "检查更新",
+                            QString("你现在是 %1 版本，已经是最新版了。")
                                 .arg(version()),
                             QMessageBox::Information, QMessageBox::Ok,
                             QMessageBox::Ok, false, this);
