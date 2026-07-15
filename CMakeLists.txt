@@ -227,8 +227,8 @@ endif()
 target_compile_definitions(${TARGET}
     PRIVATE
     CMAKE_BUILD
-    JS8CALL_VERSION=\"${PROJECT_VERSION}\" JS8CALL_VERSION_SUFFIX=\"\" JS8CALL_UPDATE_URL=\"https://raw.githubusercontent.com/bg7ipb/JS8Call-improved/cn-dev/manifest.json\"
-    JS8CALL_CODEBOOK_URL=\"https://raw.githubusercontent.com/bg7ipb/JS8Call-improved/cn-dev/codebook_manifest.json\"
+    JS8CALL_VERSION=\"${PROJECT_VERSION}\" JS8CALL_VERSION_SUFFIX=\"\" JS8CALL_UPDATE_URL=\"https://cdn.jsdelivr.net/gh/bg7ipb/JS8Call-improved@cn-dev/manifest.json\"
+    JS8CALL_CODEBOOK_URL=\"https://cdn.jsdelivr.net/gh/bg7ipb/JS8Call-improved@cn-dev/codebook_manifest.json\"
     GITSHORT=\"${GIT_HASH}\"
     MACHINE=\"${HOSTNAME}\"
     UNAME=\"${USERNAME}\"
