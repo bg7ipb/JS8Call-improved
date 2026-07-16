@@ -67,6 +67,12 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
+    - name: Force apt to use IPv4 (arm64 runner has flaky IPv6 route to ports.ubuntu.com)
+      if: (runner.arch == 'ARM64')
+      run: |
+        echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
+        cat /etc/apt/apt.conf.d/99force-ipv4
+
     - name: Create our own var with the ImageOS value for cache use
       id: which-os
       run: |
