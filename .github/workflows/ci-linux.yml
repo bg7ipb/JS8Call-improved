@@ -175,8 +175,9 @@ jobs:
         chmod +x /tmp/linuxdeploy-plugin-qt-x86_64.AppImage
         curl --location --output /tmp/appimagelint-x86_64.AppImage https://github.com/TheAssassin/appimagelint/releases/download/continuous/appimagelint-x86_64.AppImage
         chmod +x /tmp/appimagelint-x86_64.AppImage
-        sudo apt-get install -y ${{ env.ffmpeg_build }} ${{ env.opengl_package1 }} ${{ env.opengl_package2 }} ${{ env.opengl_package3 }}
-        
+        sudo apt-get update
+        sudo apt-get install -y --fix-missing ${{ env.ffmpeg_build }} ${{ env.opengl_package1 }} ${{ env.opengl_package2 }} ${{ env.opengl_package3 }}
+
     - name: AppImage tools (arm64)
       if: (runner.arch == 'ARM64')
       run: |
@@ -184,7 +185,8 @@ jobs:
         chmod a+x /tmp/linuxdeploy-aarch64.AppImage
         curl --location --output /tmp/linuxdeploy-plugin-qt-aarch64.AppImage https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-aarch64.AppImage
         chmod a+x /tmp/linuxdeploy-plugin-qt-aarch64.AppImage
-        sudo apt-get install -y ${{ env.ffmpeg_build }} ${{ env.opengl_package1 }} ${{ env.opengl_package2 }} ${{ env.opengl_package3 }}
+        sudo apt-get update
+        sudo apt-get install -y --fix-missing ${{ env.ffmpeg_build }} ${{ env.opengl_package1 }} ${{ env.opengl_package2 }} ${{ env.opengl_package3 }}
 
 ## libusb
     - name: Install libusb 1.0.29
