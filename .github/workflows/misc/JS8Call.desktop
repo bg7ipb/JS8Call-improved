@@ -2,7 +2,7 @@
 Version=1.0
 Name=JS8Call
 Comment=Amateur Radio Weak Signal keyboard-to-keyboard messaging 
-Exec=JS8Call
+Exec=JS8CALL-CN
 Icon=js8call_icon
 Terminal=false
 X-MultipleArgs=false
