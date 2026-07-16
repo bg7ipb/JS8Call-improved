@@ -372,7 +372,7 @@ jobs:
           /tmp/linuxdeploy-x86_64.AppImage \
           --appdir=AppDir \
           --desktop-file=${GITHUB_WORKSPACE}/.github/workflows/misc/JS8Call.desktop \
-          --executable=${GITHUB_WORKSPACE}/build/JS8Call \
+          --executable=${GITHUB_WORKSPACE}/build/JS8CALL-CN \
           --plugin=qt \
           --output appimage \
           --verbosity=1
@@ -394,7 +394,7 @@ jobs:
           /tmp/linuxdeploy-x86_64.AppImage \
           --appdir=AppDir \
           --desktop-file=${GITHUB_WORKSPACE}/.github/workflows/misc/JS8Call.desktop \
-          --executable=${GITHUB_WORKSPACE}/build/JS8Call \
+          --executable=${GITHUB_WORKSPACE}/build/JS8CALL-CN \
           --plugin=qt \
           --output appimage \
           --verbosity=1
@@ -416,7 +416,7 @@ jobs:
           /tmp/linuxdeploy-aarch64.AppImage \
           --appdir=AppDir \
           --desktop-file=${GITHUB_WORKSPACE}/.github/workflows/misc/JS8Call.desktop \
-          --executable=${GITHUB_WORKSPACE}/build/JS8Call \
+          --executable=${GITHUB_WORKSPACE}/build/JS8CALL-CN \
           --plugin=qt \
           --output appimage \
           --verbosity=1
@@ -438,7 +438,7 @@ jobs:
           /tmp/linuxdeploy-aarch64.AppImage \
           --appdir=AppDir \
           --desktop-file=${GITHUB_WORKSPACE}/.github/workflows/misc/JS8Call.desktop \
-          --executable=${GITHUB_WORKSPACE}/build/JS8Call \
+          --executable=${GITHUB_WORKSPACE}/build/JS8CALL-CN \
           --plugin=qt \
           --output appimage \
           --verbosity=1
