@@ -350,7 +350,7 @@ jobs:
         echo "${{ secrets.RELEASE_APPIMAGE_SIGNING_KEY }}" >/tmp/js8call.key.asc
         ls -l /tmp/js8call.key.asc
         echo "${{ secrets.RELEASE_APPIMAGE_SIGNING_PASS }}" | gpg --batch --yes --always-trust --passphrase-fd 0 --pinentry-mode loopback --import /tmp/js8call.key.asc
-      continue-on-error: false
+      continue-on-error: true  # unsigned OK · GPG secret 未配时不阻塞 job
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -367,8 +367,8 @@ jobs:
         export LD_LIBRARY_PATH=/home/runner/work/JS8Call-improved/JS8Call-improved/local/ffmpeg/lib
 
         cd ${GITHUB_WORKSPACE}/AppImage/
-        APPIMAGETOOL_SIGN_PASSPHRASE="${{ secrets.RELEASE_APPIMAGE_SIGNING_PASS }}" DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1 \
-          LDAI_SIGN=1 QMAKE=/home/runner/work/JS8Call-improved/JS8Call-improved/local/qt693-install/bin/qmake \
+        DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1 \
+          QMAKE=/home/runner/work/JS8Call-improved/JS8Call-improved/local/qt693-install/bin/qmake \
           /tmp/linuxdeploy-x86_64.AppImage \
           --appdir=AppDir \
           --desktop-file=${GITHUB_WORKSPACE}/.github/workflows/misc/JS8Call.desktop \
@@ -433,8 +433,8 @@ jobs:
         export LD_LIBRARY_PATH=/home/runner/work/JS8Call-improved/JS8Call-improved/local/ffmpeg/lib
 
         cd ${GITHUB_WORKSPACE}/AppImage/
-        APPIMAGETOOL_SIGN_PASSPHRASE="${{ secrets.RELEASE_APPIMAGE_SIGNING_PASS }}" DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1 \
-          LDAI_SIGN=1 QMAKE=/home/runner/work/JS8Call-improved/JS8Call-improved/local/qt693-install/bin/qmake \
+        DISABLE_COPYRIGHT_FILES_DEPLOYMENT=1 \
+          QMAKE=/home/runner/work/JS8Call-improved/JS8Call-improved/local/qt693-install/bin/qmake \
           /tmp/linuxdeploy-aarch64.AppImage \
           --appdir=AppDir \
           --desktop-file=${GITHUB_WORKSPACE}/.github/workflows/misc/JS8Call.desktop \
